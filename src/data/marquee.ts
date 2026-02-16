@@ -26,14 +26,14 @@ export const trustedByLogos: LogoItem[] = [
   { alt: "Company 6", name: "Company 6" },
 ];
 
-// TODO: integrationLogos[] - replace with real logo paths
 export const integrationLogos: LogoItem[] = [
-  { alt: "Integration 1", name: "Integration 1" },
-  { alt: "Integration 2", name: "Integration 2" },
-  { alt: "Integration 3", name: "Integration 3" },
-  { alt: "Integration 4", name: "Integration 4" },
-  { alt: "Integration 5", name: "Integration 5" },
-  { alt: "Integration 6", name: "Integration 6" },
+  { src: "/images/logos/integrations/microsoft.png", alt: "Microsoft", name: "Microsoft" },
+  { src: "/images/logos/integrations/stripe.png", alt: "Stripe", name: "Stripe" },
+  { src: "/images/logos/integrations/oracle-netsuite.png", alt: "Oracle NetSuite", name: "Oracle NetSuite" },
+  { src: "/images/logos/integrations/hubspot.png", alt: "HubSpot", name: "HubSpot" },
+  { src: "/images/logos/integrations/google.png", alt: "Google", name: "Google" },
+  { src: "/images/logos/integrations/xero.png", alt: "Xero", name: "Xero" },
+  { src: "/images/logos/integrations/quickbooks.png", alt: "QuickBooks", name: "QuickBooks" },
 ];
 
 // TODO: whatWeDoImages[] - replace with real image paths
