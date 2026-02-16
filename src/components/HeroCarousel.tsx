@@ -11,13 +11,32 @@ import {
 const SLIDE_COUNT = 5;
 const AUTO_ADVANCE_MS = 5000;
 
-// TODO: Replace with real slide data (image, title, description)
 const slides: { src: string; title: string; description: string }[] = [
-  { src: "/hero/slide-1.svg", title: "Slide 1", description: "Placeholder description for slide 1." },
-  { src: "/hero/slide-2.svg", title: "Slide 2", description: "Placeholder description for slide 2." },
-  { src: "/hero/slide-3.svg", title: "Slide 3", description: "Placeholder description for slide 3." },
-  { src: "/hero/slide-4.svg", title: "Slide 4", description: "Placeholder description for slide 4." },
-  { src: "/hero/slide-5.svg", title: "Slide 5", description: "Placeholder description for slide 5." },
+  {
+    src: "/hero/slide-1.png",
+    title: "Lifetime Value, CAC & Payback",
+    description: "Connects retention and pricing to customer lifetime value and CAC payback.",
+  },
+  {
+    src: "/hero/slide-2.png",
+    title: "Revenue Churn, Expansion & NRR",
+    description: "Gross MRR churn, upsell expansion and net revenue retention in a single view.",
+  },
+  {
+    src: "/hero/slide-3.png",
+    title: "Insights & Commentary",
+    description: "AI-powered virtual analyst explains what changed, why it matters, and where to focus.",
+  },
+  {
+    src: "/hero/slide-4.png",
+    title: "Financial Snapshot",
+    description: "Executive-ready summaries with data sourced directly from your systems.",
+  },
+  {
+    src: "/hero/slide-5.png",
+    title: "Numbers That Matter",
+    description: "Headline financials and customer metrics with MoM and YoY movements, plus AI narrative.",
+  },
 ];
 
 export default function HeroCarousel() {
