@@ -1,0 +1,62 @@
+import Link from "next/link";
+import { securityItems } from "@/data/security";
+import { SecurityIcon } from "./SecurityIcons";
+
+export default function SecurityGrid() {
+  return (
+    <section
+      id="security"
+      className="border-t border-neutral-200 bg-neutral-50 py-24"
+      aria-labelledby="security-heading"
+    >
+      <div className="mx-auto max-w-content px-content lg:px-8">
+        <p className="mb-4 text-center text-sm font-medium uppercase tracking-wider text-brand-orange">
+          Security & compliance
+        </p>
+        <h2
+          id="security-heading"
+          className="mx-auto max-w-2xl text-center text-3xl font-semibold tracking-tight text-neutral-900 sm:text-4xl"
+        >
+          Enterprise-grade security
+        </h2>
+        <p className="mx-auto mt-6 max-w-xl text-center text-lg text-neutral-600">
+          Built for teams who demand control, auditability, and compliance by design.
+        </p>
+
+        <ul className="mt-16 grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {securityItems.map((item, i) => (
+            <li key={i}>
+              <article
+                className="flex h-full flex-col rounded-xl border border-neutral-200 bg-white p-6 transition-shadow duration-200 hover:shadow-soft focus-within:ring-2 focus-within:ring-brand-orange/20 sm:p-8"
+                style={{ contain: "layout" }}
+              >
+                <SecurityIcon name={item.icon} />
+                <h3 className="mt-5 font-semibold text-neutral-900">
+                  {item.title}
+                </h3>
+                <p className="mt-2 flex-1 text-sm text-neutral-600">
+                  {item.description}
+                </p>
+              </article>
+            </li>
+          ))}
+        </ul>
+
+        <div className="mt-16 flex flex-wrap justify-center gap-4">
+          <Link
+            href="/pricing"
+            className="inline-flex items-center justify-center rounded-lg bg-brand-orange px-6 py-3 text-base font-medium text-white transition-colors hover:bg-brand-orange-hover focus-visible:bg-brand-orange-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange focus-visible:ring-offset-2"
+          >
+            See pricing
+          </Link>
+          <Link
+            href="/contact"
+            className="inline-flex items-center justify-center rounded-lg border border-neutral-300 bg-white px-6 py-3 text-base font-medium text-neutral-700 transition-colors hover:border-neutral-400 hover:bg-neutral-50 focus-visible:border-brand-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange focus-visible:ring-offset-2"
+          >
+            Talk to us
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
