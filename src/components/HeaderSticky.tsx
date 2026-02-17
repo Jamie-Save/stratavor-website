@@ -75,7 +75,11 @@ function NavDropdown({
   );
 }
 
-const navLinks = [
+type NavLink =
+  | { href: string; label: string }
+  | { label: string; children: { href: string; label: string }[] };
+
+const navLinks: NavLink[] = [
   { href: "#what-we-do", label: "Product" },
   { href: "/pricing", label: "Pricing" },
   {
