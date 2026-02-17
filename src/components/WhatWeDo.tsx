@@ -13,8 +13,17 @@ export default function WhatWeDo() {
   return (
     <section id="what-we-do" className="py-24">
       <div className="mx-auto grid max-w-content grid-cols-1 gap-12 px-content lg:grid-cols-2 lg:gap-16 lg:px-8">
-        {/* Left column */}
-        <div className="flex flex-col justify-center">
+        {/* Left column: vertical rolling images */}
+        <div className="relative min-h-[320px] order-1">
+          <Marquee
+            direction="vertical"
+            items={whatWeDoImages}
+            showPlayPause
+          />
+        </div>
+
+        {/* Right column: text */}
+        <div className="flex flex-col justify-center order-2">
           <h2 className="text-3xl font-semibold tracking-tight text-neutral-900 sm:text-4xl">
             What we do
           </h2>
@@ -33,15 +42,6 @@ export default function WhatWeDo() {
               </li>
             ))}
           </ul>
-        </div>
-
-        {/* Right column: vertical rolling images */}
-        <div className="relative min-h-[320px]">
-          <Marquee
-            direction="vertical"
-            items={whatWeDoImages}
-            showPlayPause
-          />
         </div>
       </div>
     </section>

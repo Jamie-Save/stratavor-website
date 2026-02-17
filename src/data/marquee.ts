@@ -33,14 +33,13 @@ export const integrationLogos: LogoItem[] = [
   { src: "/images/logos/integrations/hubspot.png", alt: "HubSpot", name: "HubSpot" },
   { src: "/images/logos/integrations/google.png", alt: "Google", name: "Google" },
   { src: "/images/logos/integrations/xero.png", alt: "Xero", name: "Xero" },
-  { src: "/images/logos/integrations/quickbooks.png", alt: "QuickBooks", name: "QuickBooks" },
+  { src: "/images/logos/integrations/quickbooks.svg", alt: "QuickBooks", name: "QuickBooks" },
 ];
 
-// TODO: whatWeDoImages[] - replace with real image paths
 export const whatWeDoImages: ImageItem[] = [
-  { src: "/images/what-we-do/placeholder-1.svg", alt: "Placeholder 1" },
-  { src: "/images/what-we-do/placeholder-2.svg", alt: "Placeholder 2" },
-  { src: "/images/what-we-do/placeholder-3.svg", alt: "Placeholder 3" },
-  { src: "/images/what-we-do/placeholder-4.svg", alt: "Placeholder 4" },
-  { src: "/images/what-we-do/placeholder-5.svg", alt: "Placeholder 5" },
+  { src: "/images/what-we-do/what-we-do-1.png", alt: "Stratavor Risk Register" },
+  { src: "/images/what-we-do/what-we-do-2.png", alt: "Stratavor Strategic Profile" },
+  { src: "/images/what-we-do/placeholder-3.svg", alt: "Stratavor OKRs & Initiatives" },
+  { src: "/images/what-we-do/placeholder-4.svg", alt: "Stratavor Data & Settings" },
+  { src: "/images/what-we-do/placeholder-5.svg", alt: "Stratavor Strategic Insights" },
 ];

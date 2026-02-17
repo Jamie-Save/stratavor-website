@@ -1,14 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import React, { useState, useEffect, useCallback } from "react";
 import { useScrollState } from "@/hooks/useScrollState";
 import { useFocusTrap } from "@/hooks/useFocusTrap";
-
-// TODO: Replace with actual Stratavor logo file
-const LogoPlaceholder = () => (
-  <span className="text-xl font-semibold text-neutral-900">Stratavor</span>
-);
 
 const navLinks = [
   { href: "#what-we-do", label: "Product" },
@@ -56,9 +52,25 @@ export default function HeaderSticky() {
       role="banner"
     >
       <div className="mx-auto flex max-w-content items-center justify-between gap-6 px-content py-4 lg:px-8">
-        {/* Desktop: Nav links on left */}
+        {/* Logo: left */}
+        <Link
+          href="/"
+          className="relative flex h-9 shrink-0 focus-visible:rounded-lg"
+          aria-label="Stratavor home"
+        >
+          <Image
+            src="/images/stratavor-logo.svg"
+            alt="Stratavor"
+            width={140}
+            height={44}
+            className="h-9 w-auto object-contain"
+            priority
+          />
+        </Link>
+
+        {/* Nav: center (desktop) */}
         <nav
-          className="hidden items-center gap-8 md:flex"
+          className="hidden flex-1 items-center justify-center gap-8 md:flex"
           aria-label="Main"
         >
           {navLinks.map((link) => (
@@ -72,11 +84,8 @@ export default function HeaderSticky() {
           ))}
         </nav>
 
-        {/* Desktop: Spacer to push actions+logo right when nav exists; mobile: nothing */}
-        <div className="hidden flex-1 md:block" aria-hidden />
-
-        {/* Right side: Login, Free Trial, Logo (desktop) | Hamburger, Free Trial, Logo (mobile) */}
-        <div className="flex min-w-0 flex-1 items-center justify-end gap-3 md:flex-initial md:gap-4">
+        {/* Right: CTAs (desktop) | Hamburger + Free Trial (mobile) */}
+        <div className="flex items-center gap-3 md:gap-4">
           {/* Hamburger: mobile only */}
           <button
             ref={hamburgerRef}
@@ -120,21 +129,12 @@ export default function HeaderSticky() {
             Login
           </Link>
 
-          {/* Free Trial: always visible */}
+          {/* Free Trial */}
           <Link
             href="/pricing"
             className="shrink-0 rounded-lg bg-brand-orange px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-brand-orange-hover focus-visible:bg-brand-orange-hover"
           >
             Free Trial
-          </Link>
-
-          {/* Logo: far right */}
-          <Link
-            href="/"
-            className="shrink-0 focus-visible:rounded-lg"
-            aria-label="Stratavor home"
-          >
-            <LogoPlaceholder />
           </Link>
         </div>
       </div>

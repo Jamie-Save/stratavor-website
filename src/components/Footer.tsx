@@ -1,9 +1,5 @@
 import Link from "next/link";
-
-// TODO: Replace with actual Stratavor logo
-const LogoPlaceholder = () => (
-  <span className="text-lg font-semibold text-neutral-900">Stratavor</span>
-);
+import Image from "next/image";
 
 const footerLinks = {
   Product: [
@@ -29,7 +25,13 @@ export default function Footer() {
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-2">
             <Link href="/" className="inline-block focus-visible:rounded-lg">
-              <LogoPlaceholder />
+              <Image
+                src="/images/stratavor-logo.svg"
+                alt="Stratavor"
+                width={140}
+                height={44}
+                className="h-8 w-auto object-contain"
+              />
             </Link>
             <p className="mt-4 max-w-xs text-sm text-neutral-600">
               Placeholder tagline. Short company description.
