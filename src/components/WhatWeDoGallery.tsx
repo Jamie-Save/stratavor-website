@@ -17,7 +17,6 @@ export default function WhatWeDoGallery() {
   const total = whatWeDoImages.length;
   const [prevIdx, centerIdx, nextIdx] = getIndices(centerIndex, total);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
-  const [isPaused, setIsPaused] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -31,10 +30,6 @@ export default function WhatWeDoGallery() {
     return () => mq.removeEventListener("change", handler);
   }, []);
 
-  const goPrev = useCallback(() => {
-    setCenterIndex((i) => (i - 1 + total) % total);
-  }, [total]);
-
   const goNext = useCallback(() => {
     setCenterIndex((i) => (i + 1) % total);
   }, [total]);
@@ -44,12 +39,7 @@ export default function WhatWeDoGallery() {
   }, [total]);
 
   useEffect(() => {
-    if (
-      prefersReducedMotion ||
-      isPaused ||
-      isHovered ||
-      isFocused
-    ) {
+    if (prefersReducedMotion || isHovered || isFocused) {
       if (timerRef.current) {
         clearInterval(timerRef.current);
         timerRef.current = null;
@@ -60,7 +50,7 @@ export default function WhatWeDoGallery() {
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
-  }, [prefersReducedMotion, isPaused, isHovered, isFocused, goNext]);
+  }, [prefersReducedMotion, isHovered, isFocused, goNext]);
 
   const pauseForInteraction = useCallback(() => {
     setIsHovered(true);
@@ -83,7 +73,7 @@ export default function WhatWeDoGallery() {
   return (
     <div
       ref={containerRef}
-      className="relative w-full"
+      className="relative w-full max-w-4xl"
       role="region"
       aria-roledescription="carousel"
       aria-label="What we do imagery"
@@ -95,7 +85,7 @@ export default function WhatWeDoGallery() {
       onKeyDown={(e) => {
         if (e.key === "ArrowLeft") {
           e.preventDefault();
-          goPrev();
+          setCenterIndex((i) => (i - 1 + total) % total);
         } else if (e.key === "ArrowRight") {
           e.preventDefault();
           goNext();
@@ -109,20 +99,20 @@ export default function WhatWeDoGallery() {
       >
         <div
           className="flex items-center justify-center gap-0"
-          style={{ transformStyle: "preserve-3d", minHeight: "260px" }}
+          style={{ transformStyle: "preserve-3d", minHeight: "320px" }}
         >
           {/* Left card - rotated, scaled, peeking */}
           <div
             className="hidden shrink-0 cursor-pointer transition-all ease-out sm:block"
             style={{
-              width: "200px",
+              width: "240px",
               transform: "rotateY(26deg) scale(0.82)",
               transformOrigin: "right center",
               transitionDuration: `${duration}ms`,
-              marginRight: "-24px",
+              marginRight: "-20px",
               zIndex: 2,
             }}
-            onClick={goPrev}
+            onClick={() => setCenterIndex((i) => (i - 1 + total) % total)}
           >
             <div className="relative w-full overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-soft aspect-[4/3]">
               <Image
@@ -130,16 +120,16 @@ export default function WhatWeDoGallery() {
                 alt={whatWeDoImages[prevIdx].alt}
                 fill
                 className="object-cover"
-                sizes="200px"
+                sizes="240px"
               />
             </div>
           </div>
 
-          {/* Center card - full size, elevated */}
+          {/* Center card - larger, elevated */}
           <div
             className="relative z-10 shrink-0 transition-all ease-out"
             style={{
-              width: "min(380px, 90vw)",
+              width: "min(520px, 92vw)",
               transitionDuration: `${duration}ms`,
             }}
           >
@@ -149,7 +139,7 @@ export default function WhatWeDoGallery() {
                 alt={whatWeDoImages[centerIdx].alt}
                 fill
                 className="object-cover"
-                sizes="(max-width: 640px) 90vw, 380px"
+                sizes="(max-width: 640px) 92vw, 520px"
                 priority
               />
             </div>
@@ -159,11 +149,11 @@ export default function WhatWeDoGallery() {
           <div
             className="hidden shrink-0 cursor-pointer transition-all ease-out sm:block"
             style={{
-              width: "200px",
+              width: "240px",
               transform: "rotateY(-26deg) scale(0.82)",
               transformOrigin: "left center",
               transitionDuration: `${duration}ms`,
-              marginLeft: "-24px",
+              marginLeft: "-20px",
               zIndex: 2,
             }}
             onClick={goNext}
@@ -174,72 +164,29 @@ export default function WhatWeDoGallery() {
                 alt={whatWeDoImages[nextIdx].alt}
                 fill
                 className="object-cover"
-                sizes="200px"
+                sizes="240px"
               />
             </div>
           </div>
         </div>
       </div>
 
-      {/* Controls - Flowstep-style: minimal, below carousel */}
-      <div className="flex flex-col items-center gap-4">
-        {/* Prev/Next + Play/Pause */}
-        <div className="flex items-center gap-2">
+      {/* Pagination dots only - no prev/next/pause buttons */}
+      <div className="flex justify-center gap-2" role="tablist" aria-label="Slide thumbnails">
+        {whatWeDoImages.map((_, i) => (
           <button
-            type="button"
-            onClick={goPrev}
-            aria-label="Previous image"
-            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-neutral-200 bg-white text-neutral-600 shadow-soft transition-colors hover:border-brand-orange hover:bg-brand-orange-light hover:text-brand-orange focus-visible:border-brand-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange/20"
-          >
-            <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-          <button
-            type="button"
-            onClick={() => setIsPaused((p) => !p)}
-            aria-label={isPaused ? "Play carousel" : "Pause carousel"}
-            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-neutral-200 bg-white text-neutral-600 shadow-soft transition-colors hover:border-brand-orange hover:bg-brand-orange-light hover:text-brand-orange focus-visible:border-brand-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange/20"
-          >
-            {isPaused ? (
-              <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            ) : (
-              <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" />
-              </svg>
-            )}
-          </button>
-          <button
-            type="button"
-            onClick={goNext}
-            aria-label="Next image"
-            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-neutral-200 bg-white text-neutral-600 shadow-soft transition-colors hover:border-brand-orange hover:bg-brand-orange-light hover:text-brand-orange focus-visible:border-brand-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange/20"
-          >
-            <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
-        </div>
-
-        {/* Pagination dots */}
-        <div className="flex items-center gap-2" role="tablist" aria-label="Slide thumbnails">
-          {whatWeDoImages.map((_, i) => (
-            <button
-              key={i}
-              role="tab"
-              aria-selected={i === centerIndex}
-              aria-label={`Go to slide ${i + 1} of ${total}`}
-              onClick={() => goTo(i)}
-              className={`rounded-full transition-all ${
-                i === centerIndex
-                  ? "h-2 w-6 bg-brand-orange"
-                  : "h-2 w-2 bg-neutral-300 hover:bg-neutral-400"
-              }`}
-            />
-          ))}
-        </div>
+            key={i}
+            role="tab"
+            aria-selected={i === centerIndex}
+            aria-label={`Go to slide ${i + 1} of ${total}`}
+            onClick={() => goTo(i)}
+            className={`rounded-full transition-all ${
+              i === centerIndex
+                ? "h-2 w-6 bg-brand-orange"
+                : "h-2 w-2 bg-neutral-300 hover:bg-neutral-400"
+            }`}
+          />
+        ))}
       </div>
     </div>
   );
