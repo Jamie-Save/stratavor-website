@@ -125,11 +125,11 @@ export default function WhatWeDoGallery() {
             </div>
           </div>
 
-          {/* Center card - larger, elevated */}
+          {/* Center card - full width, full image visible (no cropping) */}
           <div
             className="relative z-10 shrink-0 transition-all ease-out"
             style={{
-              width: "min(680px, 92vw)",
+              width: "min(960px, 90vw)",
               transitionDuration: `${duration}ms`,
             }}
           >
@@ -138,8 +138,8 @@ export default function WhatWeDoGallery() {
                 src={whatWeDoImages[centerIdx].src}
                 alt={whatWeDoImages[centerIdx].alt}
                 fill
-                className="object-cover"
-                sizes="(max-width: 640px) 92vw, 680px"
+                className="object-contain"
+                sizes="(max-width: 640px) 95vw, (max-width: 1024px) 85vw, 1200px"
                 priority
               />
             </div>
