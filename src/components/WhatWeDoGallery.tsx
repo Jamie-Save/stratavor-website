@@ -73,7 +73,7 @@ export default function WhatWeDoGallery() {
   return (
     <div
       ref={containerRef}
-      className="relative w-full max-w-4xl"
+      className="relative w-full max-w-6xl"
       role="region"
       aria-roledescription="carousel"
       aria-label="What we do imagery"
@@ -129,7 +129,7 @@ export default function WhatWeDoGallery() {
           <div
             className="relative z-10 shrink-0 transition-all ease-out"
             style={{
-              width: "min(520px, 92vw)",
+              width: "min(680px, 92vw)",
               transitionDuration: `${duration}ms`,
             }}
           >
@@ -139,7 +139,7 @@ export default function WhatWeDoGallery() {
                 alt={whatWeDoImages[centerIdx].alt}
                 fill
                 className="object-cover"
-                sizes="(max-width: 640px) 92vw, 520px"
+                sizes="(max-width: 640px) 92vw, 680px"
                 priority
               />
             </div>
