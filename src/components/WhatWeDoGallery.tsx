@@ -1,8 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { whatWeDoImages } from "@/data/marquee";
+
+const AUTO_ADVANCE_MS = 5000;
 
 function getIndices(center: number, total: number) {
   const prev = (center - 1 + total) % total;
@@ -14,6 +16,20 @@ export default function WhatWeDoGallery() {
   const [centerIndex, setCenterIndex] = useState(0);
   const total = whatWeDoImages.length;
   const [prevIdx, centerIdx, nextIdx] = getIndices(centerIndex, total);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setPrefersReducedMotion(mq.matches);
+    const handler = () => setPrefersReducedMotion(mq.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
 
   const goPrev = useCallback(() => {
     setCenterIndex((i) => (i - 1 + total) % total);
@@ -23,111 +39,207 @@ export default function WhatWeDoGallery() {
     setCenterIndex((i) => (i + 1) % total);
   }, [total]);
 
+  const goTo = useCallback((i: number) => {
+    setCenterIndex(((i % total) + total) % total);
+  }, [total]);
+
+  useEffect(() => {
+    if (
+      prefersReducedMotion ||
+      isPaused ||
+      isHovered ||
+      isFocused
+    ) {
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+        timerRef.current = null;
+      }
+      return;
+    }
+    timerRef.current = setInterval(goNext, AUTO_ADVANCE_MS);
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, [prefersReducedMotion, isPaused, isHovered, isFocused, goNext]);
+
+  const pauseForInteraction = useCallback(() => {
+    setIsHovered(true);
+    setIsFocused(true);
+  }, []);
+  const resumeAfterInteraction = useCallback(() => {
+    setIsHovered(false);
+    setIsFocused(false);
+  }, []);
+
+  const handleFocusOut = useCallback((e: React.FocusEvent) => {
+    if (!containerRef.current) return;
+    const related = e.relatedTarget as Node | null;
+    if (related && containerRef.current.contains(related)) return;
+    setIsFocused(false);
+  }, []);
+
+  const duration = prefersReducedMotion ? 0 : 500;
+
   return (
     <div
-      className="relative flex flex-col items-center gap-4"
+      ref={containerRef}
+      className="relative w-full"
       role="region"
+      aria-roledescription="carousel"
       aria-label="What we do imagery"
+      tabIndex={0}
+      onMouseEnter={pauseForInteraction}
+      onMouseLeave={resumeAfterInteraction}
+      onFocusCapture={pauseForInteraction}
+      onBlurCapture={handleFocusOut}
+      onKeyDown={(e) => {
+        if (e.key === "ArrowLeft") {
+          e.preventDefault();
+          goPrev();
+        } else if (e.key === "ArrowRight") {
+          e.preventDefault();
+          goNext();
+        }
+      }}
     >
-      <div className="flex items-center justify-center gap-4">
-      <button
-        type="button"
-        onClick={goPrev}
-        aria-label="Previous image"
-        className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-neutral-300 bg-white text-neutral-600 transition-colors hover:bg-neutral-50 hover:text-neutral-900 focus-visible:border-brand-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange/20"
+      {/* Flowstep-style 3D perspective scene: bent cards, center focus */}
+      <div
+        className="relative flex items-center justify-center overflow-visible py-8"
+        style={{ perspective: "1600px", perspectiveOrigin: "50% 50%" }}
       >
-        <svg
-          className="h-6 w-6"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
+        <div
+          className="flex items-center justify-center gap-0"
+          style={{ transformStyle: "preserve-3d", minHeight: "260px" }}
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M15 19l-7-7 7-7"
-          />
-        </svg>
-      </button>
-
-      <div className="flex items-end gap-4">
-        {/* Left: smaller */}
-        <div className="hidden w-[140px] shrink-0 overflow-hidden rounded-xl border border-neutral-200 bg-neutral-100 shadow-soft sm:block">
-          <div className="relative aspect-[4/3]">
-            <Image
-              src={whatWeDoImages[prevIdx].src}
-              alt={whatWeDoImages[prevIdx].alt}
-              fill
-              className="object-cover"
-              sizes="140px"
-            />
+          {/* Left card - rotated, scaled, peeking */}
+          <div
+            className="hidden shrink-0 cursor-pointer transition-all ease-out sm:block"
+            style={{
+              width: "200px",
+              transform: "rotateY(26deg) scale(0.82)",
+              transformOrigin: "right center",
+              transitionDuration: `${duration}ms`,
+              marginRight: "-24px",
+              zIndex: 2,
+            }}
+            onClick={goPrev}
+          >
+            <div className="relative w-full overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-soft aspect-[4/3]">
+              <Image
+                src={whatWeDoImages[prevIdx].src}
+                alt={whatWeDoImages[prevIdx].alt}
+                fill
+                className="object-cover"
+                sizes="200px"
+              />
+            </div>
           </div>
-        </div>
 
-        {/* Center: larger, focus */}
-        <div className="relative w-[280px] shrink-0 overflow-hidden rounded-xl border-2 border-brand-orange/30 bg-white shadow-medium ring-2 ring-brand-orange/10 sm:w-[340px] lg:w-[400px]">
-          <div className="relative aspect-[4/3]">
-            <Image
-              src={whatWeDoImages[centerIdx].src}
-              alt={whatWeDoImages[centerIdx].alt}
-              fill
-              className="object-cover"
-              sizes="(max-width: 640px) 280px, (max-width: 1024px) 340px, 400px"
-              priority
-            />
+          {/* Center card - full size, elevated */}
+          <div
+            className="relative z-10 shrink-0 transition-all ease-out"
+            style={{
+              width: "min(380px, 90vw)",
+              transitionDuration: `${duration}ms`,
+            }}
+          >
+            <div className="relative w-full overflow-hidden rounded-2xl border-2 border-brand-orange/35 bg-white shadow-medium ring-4 ring-brand-orange/10 aspect-[4/3]">
+              <Image
+                src={whatWeDoImages[centerIdx].src}
+                alt={whatWeDoImages[centerIdx].alt}
+                fill
+                className="object-cover"
+                sizes="(max-width: 640px) 90vw, 380px"
+                priority
+              />
+            </div>
           </div>
-        </div>
 
-        {/* Right: smaller */}
-        <div className="hidden w-[140px] shrink-0 overflow-hidden rounded-xl border border-neutral-200 bg-neutral-100 shadow-soft sm:block">
-          <div className="relative aspect-[4/3]">
-            <Image
-              src={whatWeDoImages[nextIdx].src}
-              alt={whatWeDoImages[nextIdx].alt}
-              fill
-              className="object-cover"
-              sizes="140px"
-            />
+          {/* Right card - rotated, scaled, peeking */}
+          <div
+            className="hidden shrink-0 cursor-pointer transition-all ease-out sm:block"
+            style={{
+              width: "200px",
+              transform: "rotateY(-26deg) scale(0.82)",
+              transformOrigin: "left center",
+              transitionDuration: `${duration}ms`,
+              marginLeft: "-24px",
+              zIndex: 2,
+            }}
+            onClick={goNext}
+          >
+            <div className="relative w-full overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-soft aspect-[4/3]">
+              <Image
+                src={whatWeDoImages[nextIdx].src}
+                alt={whatWeDoImages[nextIdx].alt}
+                fill
+                className="object-cover"
+                sizes="200px"
+              />
+            </div>
           </div>
         </div>
       </div>
 
-      <button
-        type="button"
-        onClick={goNext}
-        aria-label="Next image"
-        className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-neutral-300 bg-white text-neutral-600 transition-colors hover:bg-neutral-50 hover:text-neutral-900 focus-visible:border-brand-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange/20"
-      >
-        <svg
-          className="h-6 w-6"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M9 5l7 7-7 7"
-          />
-        </svg>
-      </button>
-      </div>
-      <div className="flex justify-center gap-1.5">
-        {whatWeDoImages.map((_, i) => (
+      {/* Controls - Flowstep-style: minimal, below carousel */}
+      <div className="flex flex-col items-center gap-4">
+        {/* Prev/Next + Play/Pause */}
+        <div className="flex items-center gap-2">
           <button
-            key={i}
             type="button"
-            onClick={() => setCenterIndex(i)}
-            aria-label={`Go to slide ${i + 1} of ${total}`}
-            className={`h-2 w-2 rounded-full transition-colors ${
-              i === centerIndex
-                ? "bg-brand-orange"
-                : "bg-neutral-300 hover:bg-neutral-400"
-            }`}
-          />
-        ))}
+            onClick={goPrev}
+            aria-label="Previous image"
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-neutral-200 bg-white text-neutral-600 shadow-soft transition-colors hover:border-brand-orange hover:bg-brand-orange-light hover:text-brand-orange focus-visible:border-brand-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange/20"
+          >
+            <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <button
+            type="button"
+            onClick={() => setIsPaused((p) => !p)}
+            aria-label={isPaused ? "Play carousel" : "Pause carousel"}
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-neutral-200 bg-white text-neutral-600 shadow-soft transition-colors hover:border-brand-orange hover:bg-brand-orange-light hover:text-brand-orange focus-visible:border-brand-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange/20"
+          >
+            {isPaused ? (
+              <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            ) : (
+              <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" />
+              </svg>
+            )}
+          </button>
+          <button
+            type="button"
+            onClick={goNext}
+            aria-label="Next image"
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-neutral-200 bg-white text-neutral-600 shadow-soft transition-colors hover:border-brand-orange hover:bg-brand-orange-light hover:text-brand-orange focus-visible:border-brand-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange/20"
+          >
+            <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+
+        {/* Pagination dots */}
+        <div className="flex items-center gap-2" role="tablist" aria-label="Slide thumbnails">
+          {whatWeDoImages.map((_, i) => (
+            <button
+              key={i}
+              role="tab"
+              aria-selected={i === centerIndex}
+              aria-label={`Go to slide ${i + 1} of ${total}`}
+              onClick={() => goTo(i)}
+              className={`rounded-full transition-all ${
+                i === centerIndex
+                  ? "h-2 w-6 bg-brand-orange"
+                  : "h-2 w-2 bg-neutral-300 hover:bg-neutral-400"
+              }`}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

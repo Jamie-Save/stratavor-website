@@ -12,8 +12,8 @@ export default function WhatWeDo() {
   return (
     <section id="what-we-do" className="py-24">
       <div className="mx-auto grid max-w-content grid-cols-1 gap-12 px-content lg:grid-cols-2 lg:gap-16 lg:px-8">
-        {/* Left column: static gallery, 3 in view, center larger */}
-        <div className="order-1 flex items-center justify-center">
+        {/* Left column: Flowstep-style 3D carousel */}
+        <div className="order-1 flex items-center justify-center overflow-visible">
           <WhatWeDoGallery />
         </div>
 
