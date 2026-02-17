@@ -13,6 +13,11 @@
     @apply bg-neutral-50 text-neutral-900 antialiased;
   }
 
+  /* Improve heading letter-spacing for premium feel */
+  h1, h2 {
+    letter-spacing: -0.02em;
+  }
+
   /* Focus styles for keyboard users */
   :focus-visible {
     @apply outline-2 outline-offset-2 outline-brand-orange;

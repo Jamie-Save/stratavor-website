@@ -5,8 +5,11 @@ import { integrationLogos } from "@/data/marquee";
 
 export default function IntegrationsMarquee() {
   return (
-    <section id="integrations" className="border-y border-neutral-200 bg-neutral-50 py-20">
+    <section id="integrations" className="border-y border-neutral-200 bg-neutral-50/90 py-24">
       <div className="mx-auto max-w-content px-content lg:px-8">
+        <p className="mb-4 text-sm font-medium uppercase tracking-wider text-brand-orange">
+          Integrations
+        </p>
         <h2 className="text-2xl font-semibold tracking-tight text-neutral-900 sm:text-3xl">
           Integrate your systems
         </h2>

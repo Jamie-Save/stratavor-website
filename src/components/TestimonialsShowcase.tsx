@@ -163,7 +163,7 @@ export default function TestimonialsShowcase() {
   return (
     <section
       id="testimonials"
-      className="py-24"
+      className="bg-white py-24"
       aria-labelledby="testimonials-heading"
     >
       <div className="mx-auto max-w-content px-content lg:px-8">

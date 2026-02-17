@@ -10,9 +10,11 @@ const bullets = [
 
 export default function WhatWeDo() {
   return (
-    <section id="what-we-do" className="py-24">
+    <section id="what-we-do" className="bg-white py-24">
       <div className="mx-auto max-w-content px-content lg:px-8">
-        {/* Title above carousel */}
+        <p className="mb-4 text-center text-sm font-medium uppercase tracking-wider text-brand-orange">
+          Product
+        </p>
         <h2 className="text-center text-3xl font-semibold tracking-tight text-neutral-900 sm:text-4xl">
           What we do
         </h2>

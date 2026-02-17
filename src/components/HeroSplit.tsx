@@ -3,14 +3,14 @@ import HeroCarousel from "./HeroCarousel";
 
 export default function HeroSplit() {
   return (
-    <section className="relative overflow-hidden">
-      {/* Soft gradient atmosphere (pure CSS) */}
+    <section className="relative overflow-hidden bg-white">
+      {/* Gradient atmosphere */}
       <div
         className="absolute inset-0 -z-10"
         aria-hidden
         style={{
           background:
-            "radial-gradient(ellipse 80% 50% at 50% 0%, rgba(249, 115, 22, 0.08) 0%, transparent 50%), radial-gradient(ellipse 60% 40% at 80% 20%, rgba(249, 115, 22, 0.04) 0%, transparent 40%)",
+            "radial-gradient(ellipse 90% 60% at 50% -20%, rgba(249, 115, 22, 0.12) 0%, transparent 55%), radial-gradient(ellipse 70% 50% at 90% 30%, rgba(249, 115, 22, 0.05) 0%, transparent 45%)",
         }}
       />
 
@@ -31,7 +31,7 @@ export default function HeroSplit() {
           <div className="mt-10 flex flex-wrap gap-4">
             <Link
               href="/pricing"
-              className="inline-flex items-center justify-center rounded-lg bg-brand-orange px-6 py-3 text-base font-medium text-white transition-colors hover:bg-brand-orange-hover focus-visible:bg-brand-orange-hover"
+              className="inline-flex items-center justify-center rounded-lg bg-brand-orange px-6 py-3 text-base font-medium text-white shadow-soft transition-all hover:bg-brand-orange-hover hover:shadow-medium focus-visible:bg-brand-orange-hover focus-visible:shadow-medium"
             >
               Free Trial
             </Link>

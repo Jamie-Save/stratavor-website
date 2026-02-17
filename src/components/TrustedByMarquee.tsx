@@ -6,7 +6,7 @@ import { trustedByLogos } from "@/data/marquee";
 export default function TrustedByMarquee() {
   return (
     <section
-      className="border-y border-neutral-200 bg-white py-6"
+      className="border-y border-neutral-200 bg-neutral-50/80 py-8"
       aria-label="Trusted by"
     >
       <div className="mx-auto flex max-w-content items-center gap-8 px-content lg:px-8">

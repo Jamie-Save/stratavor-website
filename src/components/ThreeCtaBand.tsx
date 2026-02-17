@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function ThreeCtaBand() {
   return (
     <section
-      className="border-t border-neutral-200 bg-white py-10"
+      className="relative border-t border-neutral-200 bg-gradient-to-b from-neutral-50 to-white py-14"
       aria-labelledby="final-cta-heading"
     >
       <div className="mx-auto flex max-w-content flex-col items-stretch gap-4 px-content sm:flex-row sm:items-center sm:justify-center sm:gap-6 md:gap-8 lg:px-8">
@@ -15,7 +15,7 @@ export default function ThreeCtaBand() {
         </h2>
         <Link
           href="/pricing"
-          className="inline-flex w-full items-center justify-center rounded-lg bg-brand-orange px-6 py-3 text-base font-medium text-white transition-colors hover:bg-brand-orange-hover focus-visible:bg-brand-orange-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange focus-visible:ring-offset-2 sm:w-auto"
+          className="inline-flex w-full items-center justify-center rounded-lg bg-brand-orange px-6 py-3 text-base font-medium text-white shadow-soft transition-all hover:bg-brand-orange-hover hover:shadow-medium focus-visible:bg-brand-orange-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange focus-visible:ring-offset-2 sm:w-auto"
         >
           See Pricing
         </Link>

@@ -27,7 +27,7 @@ export default function SecurityGrid() {
           {securityItems.map((item, i) => (
             <li key={i}>
               <article
-                className="flex h-full flex-col rounded-xl border border-neutral-200 bg-white p-6 transition-shadow duration-200 hover:shadow-soft focus-within:ring-2 focus-within:ring-brand-orange/20 sm:p-8"
+                className="flex h-full flex-col rounded-xl border border-neutral-200 bg-white p-6 transition-all duration-200 hover:border-neutral-300 hover:shadow-medium focus-within:ring-2 focus-within:ring-brand-orange/20 sm:p-8"
                 style={{ contain: "layout" }}
               >
                 <SecurityIcon name={item.icon} />
@@ -45,7 +45,7 @@ export default function SecurityGrid() {
         <div className="mt-16 flex flex-wrap justify-center gap-4">
           <Link
             href="/pricing"
-            className="inline-flex items-center justify-center rounded-lg bg-brand-orange px-6 py-3 text-base font-medium text-white transition-colors hover:bg-brand-orange-hover focus-visible:bg-brand-orange-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange focus-visible:ring-offset-2"
+            className="inline-flex items-center justify-center rounded-lg bg-brand-orange px-6 py-3 text-base font-medium text-white shadow-soft transition-all hover:bg-brand-orange-hover hover:shadow-medium focus-visible:bg-brand-orange-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange focus-visible:ring-offset-2"
           >
             See pricing
           </Link>
