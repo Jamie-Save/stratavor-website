@@ -16,14 +16,14 @@ export type ImageItem = {
   alt: string;
 };
 
-// TODO: trustedByLogos[] - replace with real logo paths
+// TODO: Add real logo files to public/images/logos/trusted/ and set src
 export const trustedByLogos: LogoItem[] = [
-  { alt: "Company 1", name: "Company 1" },
-  { alt: "Company 2", name: "Company 2" },
-  { alt: "Company 3", name: "Company 3" },
-  { alt: "Company 4", name: "Company 4" },
-  { alt: "Company 5", name: "Company 5" },
-  { alt: "Company 6", name: "Company 6" },
+  { alt: "Finance teams", name: "Finance" },
+  { alt: "Strategy leaders", name: "Strategy" },
+  { alt: "Board members", name: "Board" },
+  { alt: "FP&A teams", name: "FP&A" },
+  { alt: "Executive teams", name: "Executive" },
+  { alt: "CFOs", name: "CFO" },
 ];
 
 export const integrationLogos: LogoItem[] = [

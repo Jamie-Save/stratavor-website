@@ -21,12 +21,12 @@ export default function HeroSplit() {
             Stratavor
           </h1>
           <p className="mt-6 max-w-xl text-lg text-neutral-600">
-            Placeholder subcopy line one. Describe your value proposition in
-            clear, confident language.
+            Turn your data into board-ready strategy. Financial snapshots, risk
+            registers, OKRs, and AI commentary—all connected to your systems.
             <br />
-            Placeholder subcopy line two. Emphasize outcomes and trust.
-            <br />
-            Placeholder subcopy line three. Optional closing hook.
+            <span className="mt-2 block font-medium text-neutral-700">
+              Devour the data. Deliver the strategy.
+            </span>
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
             <Link
@@ -48,7 +48,7 @@ export default function HeroSplit() {
         </div>
 
         {/* RIGHT COLUMN: Carousel */}
-        <div className="flex items-center">
+        <div id="demo" className="flex items-center scroll-mt-20">
           <HeroCarousel />
         </div>
       </div>

@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import "./globals.css";
-// TODO: plug real Stratavor font – e.g. import { Inter } from "next/font/google"; const font = Inter({ subsets: ["latin"] });
-// TODO: Update metadata title and description
+// TODO: plug real Stratavor font when provided
 
 export const metadata: Metadata = {
-  title: "Stratavor | TODO: Update title",
-  description: "TODO: Update meta description",
+  title: "Stratavor | Strategic Intelligence & FP&A Platform",
+  description:
+    "Stratavor turns your data into board-ready insights. Reporting snapshots, risk management, OKRs, and AI-powered commentary—connected to your systems.",
 };
 
 export default function RootLayout({

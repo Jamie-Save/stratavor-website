@@ -34,7 +34,7 @@ export default function Footer() {
               />
             </Link>
             <p className="mt-4 max-w-xs text-sm text-neutral-600">
-              Placeholder tagline. Short company description.
+              Devour the data. Deliver the strategy.
             </p>
           </div>
 
@@ -61,7 +61,7 @@ export default function Footer() {
 
         <div className="mt-16 flex flex-col gap-4 border-t border-neutral-200 pt-8 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm text-neutral-500">
-            © {new Date().getFullYear()} Stratavor. Placeholder.
+            © {new Date().getFullYear()} Stratavor. All rights reserved.
           </p>
         </div>
       </div>

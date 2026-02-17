@@ -11,8 +11,8 @@ export default function IntegrationsMarquee() {
           Integrate your systems
         </h2>
         <p className="mt-3 max-w-2xl text-neutral-600">
-          Connect with the tools you already use. Placeholder subtext for
-          integration value.
+          Connect your ERP, CRM, and finance tools. Stratavor pulls data from
+          Xero, QuickBooks, Stripe, and more—so insights stay current.
         </p>
         <div className="mt-10">
           <Marquee

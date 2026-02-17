@@ -1,25 +1,20 @@
 "use client";
 
-import Marquee from "./Marquee";
-import { whatWeDoImages } from "@/data/marquee";
+import WhatWeDoGallery from "./WhatWeDoGallery";
 
 const bullets = [
-  "Placeholder bullet one: key benefit or capability.",
-  "Placeholder bullet two: another benefit.",
-  "Placeholder bullet three: optional third item.",
+  "Reporting snapshots: Board-ready financials with AI narrative on what matters.",
+  "Risk register & OKRs: Monitor strategic risks and track objectives in one place.",
+  "Strategic profile: Configure ambition, posture, and priorities so AI generates relevant recommendations.",
 ];
 
 export default function WhatWeDo() {
   return (
     <section id="what-we-do" className="py-24">
       <div className="mx-auto grid max-w-content grid-cols-1 gap-12 px-content lg:grid-cols-2 lg:gap-16 lg:px-8">
-        {/* Left column: vertical rolling images */}
-        <div className="relative min-h-[320px] order-1">
-          <Marquee
-            direction="vertical"
-            items={whatWeDoImages}
-            showPlayPause
-          />
+        {/* Left column: static gallery, 3 in view, center larger */}
+        <div className="order-1 flex items-center justify-center">
+          <WhatWeDoGallery />
         </div>
 
         {/* Right column: text */}
@@ -28,8 +23,9 @@ export default function WhatWeDo() {
             What we do
           </h2>
           <p className="mt-6 max-w-lg text-lg text-neutral-600">
-            Placeholder paragraph. Describe your core offering in clear,
-            benefit-focused language that resonates with your audience.
+            Stratavor unifies financial reporting, risk management, and
+            strategic planning. Get executive-ready snapshots, AI insights, and
+            traceability—without the spreadsheet sprawl.
           </p>
           <ul className="mt-8 space-y-3" role="list">
             {bullets.map((bullet, i) => (
