@@ -3,34 +3,36 @@ import Link from "next/link";
 export default function ThreeCtaBand() {
   return (
     <section
-      className="relative border-t border-neutral-200 bg-gradient-to-b from-neutral-50 to-white py-14"
+      className="bg-brand-gunmetal py-16"
       aria-labelledby="final-cta-heading"
     >
-      <div className="mx-auto flex max-w-content flex-col items-stretch gap-4 px-content sm:flex-row sm:items-center sm:justify-center sm:gap-6 md:gap-8 lg:px-8">
+      <div className="mx-auto max-w-content px-content lg:px-8">
         <h2
           id="final-cta-heading"
-          className="sr-only"
+          className="mb-8 text-center text-heading-lg text-white"
         >
-          Get started
+          Ready to get started?
         </h2>
-        <Link
-          href="/pricing"
-          className="inline-flex w-full items-center justify-center rounded-lg bg-brand-orange px-6 py-3 text-base font-medium text-white shadow-soft transition-all hover:bg-brand-orange-hover hover:shadow-medium focus-visible:bg-brand-orange-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange focus-visible:ring-offset-2 sm:w-auto"
-        >
-          See Pricing
-        </Link>
-        <Link
-          href="#demo"
-          className="inline-flex w-full items-center justify-center rounded-lg border border-neutral-300 bg-white px-6 py-3 text-base font-medium text-neutral-700 transition-colors hover:border-neutral-400 hover:bg-neutral-50 focus-visible:border-brand-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange focus-visible:ring-offset-2 sm:w-auto"
-        >
-          See Live Preview
-        </Link>
-        <Link
-          href="/contact"
-          className="inline-flex w-full items-center justify-center rounded-lg border border-neutral-300 bg-white px-6 py-3 text-base font-medium text-neutral-700 transition-colors hover:border-neutral-400 hover:bg-neutral-50 focus-visible:border-brand-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange focus-visible:ring-offset-2 sm:w-auto"
-        >
-          Contact Us
-        </Link>
+        <div className="flex flex-col items-stretch gap-4 sm:flex-row sm:items-center sm:justify-center sm:gap-6 md:gap-8">
+          <Link
+            href="/pricing"
+            className="inline-flex w-full items-center justify-center rounded-xl bg-brand-accent px-7 py-3.5 text-[15px] font-semibold text-white shadow-soft transition-all hover:bg-brand-accent-hover hover:shadow-medium focus-visible:bg-brand-accent-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2 sm:w-auto"
+          >
+            See Pricing
+          </Link>
+          <Link
+            href="#demo"
+            className="inline-flex w-full items-center justify-center rounded-xl border border-white/20 bg-white/10 px-7 py-3.5 text-[15px] font-semibold text-white backdrop-blur-sm transition-colors hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 sm:w-auto"
+          >
+            See Live Preview
+          </Link>
+          <Link
+            href="/contact"
+            className="inline-flex w-full items-center justify-center rounded-xl border border-white/20 bg-white/10 px-7 py-3.5 text-[15px] font-semibold text-white backdrop-blur-sm transition-colors hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 sm:w-auto"
+          >
+            Contact Us
+          </Link>
+        </div>
       </div>
     </section>
   );

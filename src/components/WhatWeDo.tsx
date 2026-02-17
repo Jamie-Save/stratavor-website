@@ -10,12 +10,12 @@ const bullets = [
 
 export default function WhatWeDo() {
   return (
-    <section id="what-we-do" className="bg-white py-24">
+    <section id="what-we-do" className="bg-white py-section">
       <div className="mx-auto max-w-content px-content lg:px-8">
-        <p className="mb-4 text-center text-sm font-medium uppercase tracking-wider text-brand-orange">
+        <p className="section-label mb-4 text-center">
           Product
         </p>
-        <h2 className="text-center text-3xl font-semibold tracking-tight text-neutral-900 sm:text-4xl">
+        <h2 className="text-center text-3xl font-semibold tracking-tight text-brand-gunmetal sm:text-4xl">
           What we do
         </h2>
 
@@ -26,7 +26,7 @@ export default function WhatWeDo() {
 
         {/* Text below carousel */}
         <div className="mx-auto mt-12 max-w-2xl text-center">
-          <p className="text-lg text-neutral-600">
+          <p className="text-body-lg text-neutral-500">
             Stratavor unifies financial reporting, risk management, and
             strategic planning. Get executive-ready snapshots, AI insights, and
             traceability—without the spreadsheet sprawl.

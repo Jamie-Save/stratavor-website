@@ -39,10 +39,12 @@ function LogoSlot({
   variant: "trusted" | "integrations";
 }) {
   const base =
-    "flex h-12 w-32 shrink-0 items-center justify-center text-sm font-medium text-neutral-500";
-  const trusted = "rounded-lg bg-neutral-100 px-6";
+    "flex shrink-0 items-center justify-center text-sm font-medium text-neutral-500";
+  const trusted = "h-12 w-32 rounded-lg bg-neutral-100 px-6";
   const integrations =
-    "rounded-lg border border-neutral-200 bg-white px-8 text-neutral-600";
+    "h-14 w-36 rounded-lg border border-neutral-200 bg-white px-8 text-neutral-600";
+
+  const imgH = variant === "integrations" ? "h-9" : "h-8";
 
   if (item.src) {
     return (
@@ -54,7 +56,7 @@ function LogoSlot({
           alt={item.alt}
           width={120}
           height={40}
-          className="h-8 w-auto object-contain"
+          className={`${imgH} w-auto object-contain grayscale transition-all duration-300 hover:grayscale-0`}
         />
       </div>
     );
@@ -156,9 +158,9 @@ export default function Marquee(props: MarqueeProps) {
         onFocusCapture={() => setIsFocused(true)}
         onBlurCapture={handleFocusOut}
       >
-        <div className="min-w-0 flex-1 overflow-hidden">
+        <div className="marquee-mask min-w-0 flex-1 overflow-hidden">
           <div
-            className="flex gap-8 whitespace-nowrap"
+            className="flex gap-8 whitespace-nowrap will-change-transform"
             style={{
               animation: paused ? "none" : "marquee-h 30s linear infinite",
             }}
@@ -172,24 +174,6 @@ export default function Marquee(props: MarqueeProps) {
             ))}
           </div>
         </div>
-        {showPlayPause && (
-          <button
-            type="button"
-            onClick={() => setIsPaused((p) => !p)}
-            aria-label={paused ? "Play marquee" : "Pause marquee"}
-            className="flex h-7 w-7 shrink-0 items-center justify-center rounded text-neutral-500 transition-colors hover:text-neutral-700 focus-visible:text-neutral-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange"
-          >
-            {paused ? (
-              <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            ) : (
-              <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" />
-              </svg>
-            )}
-          </button>
-        )}
       </div>
     );
   }

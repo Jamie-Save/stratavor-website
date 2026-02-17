@@ -109,7 +109,7 @@ export default function HeroCarousel() {
   return (
     <div
       ref={containerRef}
-      className="group relative aspect-[16/9] w-full overflow-hidden rounded-xl bg-neutral-800"
+      className="group relative aspect-[16/9] w-full overflow-hidden rounded-2xl bg-neutral-800 shadow-large ring-1 ring-neutral-200/50"
       role="region"
       aria-roledescription="carousel"
       aria-label="Hero image carousel"
@@ -139,7 +139,7 @@ export default function HeroCarousel() {
 
       {/* Slides strip: right-to-left slide (enter from right, exit to left) */}
       <div
-        className={`flex h-full transition-transform ${
+        className={`flex h-full will-change-transform transition-transform ${
           prefersReducedMotion ? "duration-0" : "duration-500 ease-out"
         }`}
         style={{ transform: `translateX(-${index * 100}%)` }}
@@ -150,13 +150,13 @@ export default function HeroCarousel() {
               src={slide.src}
               alt=""
               fill
-              className="object-cover"
+              className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
               sizes="(max-width: 1024px) 100vw, 50vw"
               priority={i === 0}
             />
             {/* Hover overlay: gradient + text */}
             <div
-              className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-t from-black/70 via-black/20 to-transparent p-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100"
+              className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-t from-brand-gunmetal/80 via-brand-gunmetal/20 to-transparent p-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100"
               aria-hidden
             >
               <p className="text-center text-lg font-semibold text-white">
@@ -169,6 +169,9 @@ export default function HeroCarousel() {
           </div>
         ))}
       </div>
+
+      {/* Subtle inner vignette ring */}
+      <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-inset ring-black/[0.04]" aria-hidden />
 
       {/* Controls */}
       <div className="absolute bottom-4 left-0 right-0 flex items-center justify-between px-4">
@@ -185,10 +188,10 @@ export default function HeroCarousel() {
               aria-selected={i === index}
               aria-label={`Slide ${i + 1} of ${SLIDE_COUNT}: ${slides[i].title}`}
               onClick={() => goTo(i)}
-              className={`h-2 rounded-full transition-colors ${
+              className={`h-2.5 rounded-full transition-all ${
                 i === index
-                  ? "w-6 bg-white"
-                  : "w-2 bg-white/50 hover:bg-white/70"
+                  ? "w-7 bg-white"
+                  : "w-2.5 bg-white/60 hover:bg-white/80"
               }`}
             />
           ))}
@@ -200,7 +203,7 @@ export default function HeroCarousel() {
             type="button"
             onClick={goPrev}
             aria-label="Previous slide"
-            className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/20 text-white transition-colors hover:bg-white/30 focus-visible:bg-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/15 backdrop-blur-sm text-white transition-colors hover:bg-white/25 focus-visible:bg-white/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
           >
             <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -210,7 +213,7 @@ export default function HeroCarousel() {
             type="button"
             onClick={() => setIsPaused((p) => !p)}
             aria-label={isPaused ? "Play carousel" : "Pause carousel"}
-            className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/20 text-white transition-colors hover:bg-white/30 focus-visible:bg-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/15 backdrop-blur-sm text-white transition-colors hover:bg-white/25 focus-visible:bg-white/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
           >
             {isPaused ? (
               <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -226,7 +229,7 @@ export default function HeroCarousel() {
             type="button"
             onClick={goNext}
             aria-label="Next slide"
-            className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/20 text-white transition-colors hover:bg-white/30 focus-visible:bg-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/15 backdrop-blur-sm text-white transition-colors hover:bg-white/25 focus-visible:bg-white/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
           >
             <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

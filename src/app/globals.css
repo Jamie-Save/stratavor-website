@@ -7,27 +7,25 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   body {
-    @apply bg-neutral-50 text-neutral-900 antialiased;
+    @apply bg-neutral-50 font-body text-neutral-700 antialiased;
   }
 
-  /* Improve heading letter-spacing for premium feel */
-  h1, h2 {
+  h1, h2, h3, h4 {
+    @apply font-heading text-neutral-900;
     letter-spacing: -0.02em;
   }
 
-  /* Focus styles for keyboard users */
   :focus-visible {
-    @apply outline-2 outline-offset-2 outline-brand-orange;
+    @apply outline-2 outline-offset-2 outline-brand-accent;
   }
 
-  /* Reduce motion for users who prefer it */
   @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
+    *, *::before, *::after {
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
@@ -35,13 +33,26 @@
   }
 }
 
-/* Marquee animations (transform only) */
+@layer components {
+  /* Edge fade mask for marquees */
+  .marquee-mask {
+    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  }
+
+  /* Section label */
+  .section-label {
+    @apply text-caption font-semibold uppercase tracking-widest text-brand-accent;
+  }
+}
+
+/* Marquee animations (transform only, GPU-composited) */
 @keyframes marquee-h {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
 }
 
 @keyframes marquee-v {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-50%); }
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(0, -50%, 0); }
 }

@@ -6,11 +6,11 @@ export default function SecurityGrid() {
   return (
     <section
       id="security"
-      className="border-t border-neutral-200 bg-neutral-50 py-24"
+      className="bg-neutral-50 py-section"
       aria-labelledby="security-heading"
     >
       <div className="mx-auto max-w-content px-content lg:px-8">
-        <p className="mb-4 text-center text-sm font-medium uppercase tracking-wider text-brand-orange">
+        <p className="section-label mb-4 text-center">
           Security & compliance
         </p>
         <h2
@@ -27,7 +27,7 @@ export default function SecurityGrid() {
           {securityItems.map((item, i) => (
             <li key={i}>
               <article
-                className="flex h-full flex-col rounded-xl border border-neutral-200 bg-white p-6 transition-all duration-200 hover:border-neutral-300 hover:shadow-medium focus-within:ring-2 focus-within:ring-brand-orange/20 sm:p-8"
+                className="flex h-full flex-col rounded-xl border border-neutral-200 bg-white p-6 transition-all duration-300 hover:-translate-y-0.5 hover:border-neutral-300 hover:shadow-medium focus-within:ring-2 focus-within:ring-brand-orange/20 sm:p-8"
                 style={{ contain: "layout" }}
               >
                 <SecurityIcon name={item.icon} />
@@ -45,13 +45,13 @@ export default function SecurityGrid() {
         <div className="mt-16 flex flex-wrap justify-center gap-4">
           <Link
             href="/pricing"
-            className="inline-flex items-center justify-center rounded-lg bg-brand-orange px-6 py-3 text-base font-medium text-white shadow-soft transition-all hover:bg-brand-orange-hover hover:shadow-medium focus-visible:bg-brand-orange-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange focus-visible:ring-offset-2"
+            className="inline-flex items-center justify-center rounded-xl bg-brand-accent px-7 py-3.5 text-[15px] font-semibold text-white shadow-soft transition-all hover:bg-brand-accent-hover hover:shadow-medium focus-visible:bg-brand-accent-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2"
           >
             See pricing
           </Link>
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center rounded-lg border border-neutral-300 bg-white px-6 py-3 text-base font-medium text-neutral-700 transition-colors hover:border-neutral-400 hover:bg-neutral-50 focus-visible:border-brand-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange focus-visible:ring-offset-2"
+            className="inline-flex items-center justify-center rounded-xl border border-neutral-300 bg-white px-7 py-3.5 text-[15px] font-semibold text-neutral-700 transition-colors hover:border-neutral-400 hover:bg-neutral-50 focus-visible:border-brand-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2"
           >
             Talk to us
           </Link>

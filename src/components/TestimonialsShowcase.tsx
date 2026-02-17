@@ -14,94 +14,185 @@ import {
   type FilterRole,
 } from "@/data/testimonials";
 
-function TestimonialCard({
+/* ------------------------------------------------------------------ */
+/*  Helpers                                                            */
+/* ------------------------------------------------------------------ */
+
+function getInitials(name: string): string {
+  const parts = name.trim().split(/\s+/);
+  if (parts.length === 0) return "";
+  if (parts.length === 1) return parts[0][0].toUpperCase();
+  return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+}
+
+/* ------------------------------------------------------------------ */
+/*  Avatar                                                             */
+/* ------------------------------------------------------------------ */
+
+function Avatar({
   testimonial,
-  variant,
-  isSelected,
-  onClick,
+  size = "md",
 }: {
   testimonial: Testimonial;
-  variant: "featured" | "compact";
-  isSelected?: boolean;
-  onClick?: () => void;
+  size?: "sm" | "md";
 }) {
-  const card = (
-    <article
-        className={`rounded-xl border bg-white text-left shadow-soft transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange focus-visible:ring-offset-2 ${
-        isSelected
-          ? "border-brand-orange ring-2 ring-brand-orange/20"
-          : "border-neutral-200 hover:shadow-medium"
-      } ${onClick ? "cursor-pointer" : ""}`}
-      onClick={onClick}
-      tabIndex={onClick ? 0 : undefined}
-      onKeyDown={
-        onClick
-          ? (e) => {
-              if (e.key === "Enter" || e.key === " ") {
-                e.preventDefault();
-                onClick();
-              }
-            }
-          : undefined
-      }
-      role={onClick ? "button" : undefined}
-      aria-pressed={onClick ? isSelected : undefined}
+  const dim = size === "sm" ? "h-8 w-8" : "h-12 w-12";
+  const px = size === "sm" ? 32 : 48;
+  const textSize = size === "sm" ? "text-xs" : "text-sm";
+
+  if (testimonial.avatar) {
+    return (
+      <div className={`${dim} shrink-0 overflow-hidden rounded-full`} aria-hidden>
+        <Image
+          src={testimonial.avatar}
+          alt=""
+          width={px}
+          height={px}
+          className="h-full w-full object-cover"
+        />
+      </div>
+    );
+  }
+
+  return (
+    <div
+      className={`${dim} flex shrink-0 items-center justify-center rounded-full bg-brand-accent/10 font-semibold ${textSize} text-brand-accent`}
+      aria-hidden
     >
-      <blockquote className="p-6 sm:p-8">
-        <p
-          className={`text-neutral-700 ${
-            variant === "featured"
-              ? "text-lg sm:text-xl leading-relaxed"
-              : "text-sm sm:text-base line-clamp-3"
-          }`}
-        >
+      {getInitials(testimonial.name)}
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Featured Card                                                      */
+/* ------------------------------------------------------------------ */
+
+function FeaturedCard({ testimonial }: { testimonial: Testimonial }) {
+  return (
+    <article className="relative mx-auto max-w-3xl rounded-2xl border border-neutral-200 bg-white p-8 shadow-medium sm:p-12">
+      {/* Decorative opening quote */}
+      <span
+        className="pointer-events-none absolute left-6 top-4 select-none font-serif text-8xl leading-none text-brand-accent/20 sm:left-8 sm:top-2 sm:text-9xl"
+        aria-hidden="true"
+      >
+        &ldquo;
+      </span>
+
+      <blockquote className="relative z-10">
+        <p className="text-xl font-light leading-relaxed text-neutral-700 sm:text-2xl">
           &ldquo;{testimonial.quote}&rdquo;
         </p>
       </blockquote>
-      <footer className="flex items-center gap-3 border-t border-neutral-100 px-6 py-4 sm:px-8">
-        <div
-          className="h-10 w-10 shrink-0 overflow-hidden rounded-full bg-neutral-200"
-          aria-hidden
-        >
-          {testimonial.avatar ? (
-            <Image
-              src={testimonial.avatar}
-              alt=""
-              width={40}
-              height={40}
-              className="h-full w-full object-cover"
-            />
-          ) : null}
-        </div>
+
+      <footer className="relative z-10 mt-8 flex items-center gap-4">
+        <Avatar testimonial={testimonial} size="md" />
         <div className="min-w-0">
-          <p className="font-medium text-neutral-900">{testimonial.name}</p>
-          <p className="truncate text-sm text-neutral-500">
+          <p className="font-semibold text-neutral-900">{testimonial.name}</p>
+          <p className="text-sm text-neutral-500">
             {testimonial.title}
             {testimonial.company ? `, ${testimonial.company}` : ""}
           </p>
         </div>
         {testimonial.companyLogo && (
-          <div className="ml-auto hidden h-8 w-16 shrink-0 sm:block">
+          <div className="ml-auto hidden h-8 w-20 shrink-0 sm:block">
             <Image
               src={testimonial.companyLogo}
               alt=""
-              width={64}
+              width={80}
               height={32}
-              className="h-full w-auto object-contain opacity-60"
+              className="h-full w-auto object-contain opacity-50"
             />
           </div>
         )}
       </footer>
     </article>
   );
-
-  return card;
 }
+
+/* ------------------------------------------------------------------ */
+/*  Compact (Side-Peek) Card                                           */
+/* ------------------------------------------------------------------ */
+
+function CompactCard({
+  testimonial,
+  onClick,
+}: {
+  testimonial: Testimonial;
+  onClick: () => void;
+}) {
+  return (
+    <article
+      className="cursor-pointer rounded-xl border border-neutral-200 bg-white p-6 shadow-soft transition-all hover:shadow-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2"
+      onClick={onClick}
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onClick();
+        }
+      }}
+      role="button"
+      aria-label={`View testimonial from ${testimonial.name}`}
+    >
+      <blockquote>
+        <p className="text-body line-clamp-2 text-neutral-600">
+          &ldquo;{testimonial.quote}&rdquo;
+        </p>
+      </blockquote>
+      <footer className="mt-4 flex items-center gap-3">
+        <Avatar testimonial={testimonial} size="sm" />
+        <div className="min-w-0">
+          <p className="text-sm font-semibold text-neutral-900">{testimonial.name}</p>
+          <p className="truncate text-xs text-neutral-500">
+            {testimonial.title}
+            {testimonial.company ? `, ${testimonial.company}` : ""}
+          </p>
+        </div>
+      </footer>
+    </article>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Arrow Button                                                       */
+/* ------------------------------------------------------------------ */
+
+function ArrowButton({
+  direction,
+  onClick,
+}: {
+  direction: "prev" | "next";
+  onClick: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-label={direction === "prev" ? "Previous testimonial" : "Next testimonial"}
+      className="flex h-10 w-10 items-center justify-center rounded-full border border-neutral-200 bg-white text-neutral-500 transition-colors hover:border-neutral-300 hover:text-neutral-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2"
+    >
+      <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d={direction === "prev" ? "M15 19l-7-7 7-7" : "M9 5l7 7-7 7"}
+        />
+      </svg>
+    </button>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Main Component                                                     */
+/* ------------------------------------------------------------------ */
 
 export default function TestimonialsShowcase() {
   const [selectedRole, setSelectedRole] = useState<FilterRole>("All");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [isPaused, setIsPaused] = useState(false);
   const regionRef = useRef<HTMLDivElement>(null);
 
   const filtered =
@@ -111,25 +202,43 @@ export default function TestimonialsShowcase() {
 
   const safeIndex = Math.min(currentIndex, Math.max(0, filtered.length - 1));
   const featured = filtered[safeIndex];
-  const secondary = filtered
-    .filter((_, i) => i !== safeIndex)
-    .slice(0, 3);
 
+  // Pick 2 side-peek cards (the next 2 after featured, wrapping around)
+  const peekCards: { testimonial: Testimonial; globalIndex: number }[] = [];
+  if (filtered.length > 1) {
+    for (let i = 1; i <= 2 && i < filtered.length; i++) {
+      const idx = (safeIndex + i) % filtered.length;
+      peekCards.push({ testimonial: filtered[idx], globalIndex: idx });
+    }
+  }
+
+  /* Navigation helpers */
   const goTo = useCallback(
     (i: number) => {
       if (filtered.length <= 0) return;
       setCurrentIndex(((i % filtered.length) + filtered.length) % filtered.length);
     },
-    [filtered.length]
+    [filtered.length],
   );
 
   const goPrev = useCallback(() => goTo(safeIndex - 1), [goTo, safeIndex]);
   const goNext = useCallback(() => goTo(safeIndex + 1), [goTo, safeIndex]);
 
+  /* Reset index on filter change */
   useEffect(() => {
     setCurrentIndex(0);
   }, [selectedRole]);
 
+  /* Autoplay – 6 s interval, pause on hover */
+  useEffect(() => {
+    if (isPaused || filtered.length <= 1) return;
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % filtered.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, [isPaused, filtered.length]);
+
+  /* Keyboard navigation */
   useEffect(() => {
     if (!regionRef.current) return;
     const el = regionRef.current;
@@ -148,6 +257,7 @@ export default function TestimonialsShowcase() {
     return () => el.removeEventListener("keydown", handleKeyDown);
   }, [goPrev, goNext]);
 
+  /* Touch swipe */
   const handleTouchStart = (e: React.TouchEvent) =>
     setTouchStart(e.touches[0].clientX);
   const handleTouchEnd = (e: React.TouchEvent) => {
@@ -163,13 +273,14 @@ export default function TestimonialsShowcase() {
   return (
     <section
       id="testimonials"
-      className="bg-white py-24"
+      className="bg-neutral-50 py-section"
       aria-labelledby="testimonials-heading"
     >
       <div className="mx-auto max-w-content px-content lg:px-8">
-        <p className="mb-4 text-center text-sm font-medium uppercase tracking-wider text-brand-orange">
-          Testimonials
-        </p>
+        {/* Label */}
+        <p className="section-label mb-4 text-center">What our customers say</p>
+
+        {/* Heading */}
         <h2
           id="testimonials-heading"
           className="mx-auto max-w-2xl text-center text-3xl font-semibold tracking-tight text-neutral-900 sm:text-4xl"
@@ -191,10 +302,10 @@ export default function TestimonialsShowcase() {
               aria-controls="testimonials-panel"
               id={`pill-${pill.id}`}
               onClick={() => setSelectedRole(pill.id)}
-              className={`rounded-full px-4 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange focus-visible:ring-offset-2 ${
+              className={`rounded-full px-4 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2 ${
                 selectedRole === pill.id
-                  ? "bg-brand-orange text-white"
-                  : "bg-neutral-100 text-neutral-600 hover:bg-neutral-200 hover:text-neutral-900"
+                  ? "border border-brand-accent bg-brand-accent text-white"
+                  : "border border-neutral-200 bg-white text-neutral-600 shadow-xs hover:border-neutral-300 hover:text-neutral-900"
               }`}
             >
               {pill.label}
@@ -202,7 +313,7 @@ export default function TestimonialsShowcase() {
           ))}
         </div>
 
-        {/* Live announcement for screen readers when testimonial changes */}
+        {/* Live announcement for screen readers */}
         <p className="sr-only" aria-live="polite" aria-atomic="true">
           {featured
             ? `Showing testimonial from ${featured.name}, ${featured.title} at ${featured.company}`
@@ -218,121 +329,66 @@ export default function TestimonialsShowcase() {
           aria-label="Testimonial carousel"
           aria-live="polite"
           className="mt-12"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
         >
-          {/* Mobile: single-card slider */}
-          <div className="lg:hidden">
-            {featured && (
-              <div className="relative">
-                <TestimonialCard testimonial={featured} variant="featured" />
-                <div className="mt-6 flex items-center justify-center gap-4">
-                  <button
-                    type="button"
-                    onClick={goPrev}
-                    aria-label="Previous testimonial"
-                    className="flex h-10 w-10 items-center justify-center rounded-lg border border-neutral-300 bg-white text-neutral-600 transition-colors hover:bg-neutral-50 focus-visible:border-brand-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange/20"
-                  >
-                    <svg
-                      className="h-5 w-5"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M15 19l-7-7 7-7"
-                      />
-                    </svg>
-                  </button>
-                  <span className="text-sm text-neutral-500">
-                    {safeIndex + 1} of {filtered.length}
-                  </span>
-                  <button
-                    type="button"
-                    onClick={goNext}
-                    aria-label="Next testimonial"
-                    className="flex h-10 w-10 items-center justify-center rounded-lg border border-neutral-300 bg-white text-neutral-600 transition-colors hover:bg-neutral-50 focus-visible:border-brand-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange/20"
-                  >
-                    <svg
-                      className="h-5 w-5"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
-                  </button>
-                </div>
-              </div>
-            )}
-          </div>
+          {/* Featured card */}
+          {featured && <FeaturedCard testimonial={featured} />}
 
-          {/* Desktop: featured + row of 3 */}
-          <div className="hidden lg:grid lg:grid-cols-[2fr_1fr] lg:gap-8">
-            {featured && (
-              <div className="min-w-0">
-                <TestimonialCard testimonial={featured} variant="featured" />
-              </div>
-            )}
-            <div className="flex flex-col gap-4">
-              {secondary.map((t, i) => {
-                const idx = filtered.indexOf(t);
-                return (
-                  <div key={idx} className="min-w-0">
-                    <TestimonialCard
-                      testimonial={t}
-                      variant="compact"
-                      isSelected={false}
-                      onClick={() => setCurrentIndex(idx)}
-                    />
-                  </div>
-                );
-              })}
+          {/* Side-peek cards – desktop only */}
+          {peekCards.length > 0 && (
+            <div className="mx-auto mt-6 hidden max-w-3xl grid-cols-2 gap-6 lg:grid">
+              {peekCards.map(({ testimonial, globalIndex }) => (
+                <CompactCard
+                  key={globalIndex}
+                  testimonial={testimonial}
+                  onClick={() => setCurrentIndex(globalIndex)}
+                />
+              ))}
             </div>
-          </div>
+          )}
 
-          {/* Desktop: prev/next for keyboard users */}
-          <div className="mt-8 hidden justify-center gap-2 lg:flex">
-            <button
-              type="button"
-              onClick={goPrev}
-              aria-label="Previous testimonial"
-              className="rounded-lg border border-neutral-300 bg-white px-4 py-2 text-sm font-medium text-neutral-600 transition-colors hover:bg-neutral-50 focus-visible:border-brand-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange/20"
-            >
-              Previous
-            </button>
-            <button
-              type="button"
-              onClick={goNext}
-              aria-label="Next testimonial"
-              className="rounded-lg border border-neutral-300 bg-white px-4 py-2 text-sm font-medium text-neutral-600 transition-colors hover:bg-neutral-50 focus-visible:border-brand-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange/20"
-            >
-              Next
-            </button>
-          </div>
+          {/* Navigation: arrows + dots */}
+          <div className="mt-8 flex items-center justify-center gap-4">
+            <ArrowButton direction="prev" onClick={goPrev} />
 
-          {/* Pagination dots for screen readers / optional visual */}
-          <div className="mt-6 flex justify-center gap-1.5" aria-hidden>
-            {filtered.map((_, i) => (
-              <button
-                key={i}
-                type="button"
-                onClick={() => goTo(i)}
-                aria-label={`Go to testimonial ${i + 1}`}
-                className={`h-2 rounded-full transition-colors ${
-                  i === safeIndex ? "w-6 bg-brand-orange" : "w-2 bg-neutral-300"
-                }`}
-              />
-            ))}
+            {/* Pagination dots */}
+            <div className="flex items-center gap-1.5" aria-hidden="true">
+              {filtered.map((_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  onClick={() => goTo(i)}
+                  aria-label={`Go to testimonial ${i + 1}`}
+                  className={`h-2 rounded-full transition-all ${
+                    i === safeIndex
+                      ? "w-6 bg-brand-accent"
+                      : "w-2 bg-neutral-300 hover:bg-neutral-400"
+                  }`}
+                />
+              ))}
+            </div>
+
+            <ArrowButton direction="next" onClick={goNext} />
           </div>
+        </div>
+
+        {/* Metrics strip */}
+        <div className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-3">
+          {[
+            { value: "98%", label: "Customer satisfaction" },
+            { value: "3x", label: "Faster reporting" },
+            { value: "50%", label: "Less manual work" },
+          ].map((stat) => (
+            <div key={stat.label} className="text-center">
+              <p className="text-3xl font-bold text-brand-gunmetal sm:text-4xl">
+                {stat.value}
+              </p>
+              <p className="mt-1 text-body-sm text-neutral-500">{stat.label}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>

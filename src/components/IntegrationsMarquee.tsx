@@ -5,15 +5,15 @@ import { integrationLogos } from "@/data/marquee";
 
 export default function IntegrationsMarquee() {
   return (
-    <section id="integrations" className="border-y border-neutral-200 bg-neutral-50/90 py-24">
-      <div className="mx-auto max-w-content px-content lg:px-8">
-        <p className="mb-4 text-sm font-medium uppercase tracking-wider text-brand-orange">
+    <section id="integrations" className="bg-white py-section">
+      <div className="mx-auto max-w-content px-content text-center lg:px-8">
+        <p className="section-label mb-4">
           Integrations
         </p>
-        <h2 className="text-2xl font-semibold tracking-tight text-neutral-900 sm:text-3xl">
+        <h2 className="mx-auto text-center text-2xl font-semibold tracking-tight text-neutral-900 sm:text-3xl">
           Integrate your systems
         </h2>
-        <p className="mt-3 max-w-2xl text-neutral-600">
+        <p className="mx-auto mt-3 max-w-2xl text-center text-neutral-600">
           Connect your ERP, CRM, and finance tools. Stratavor pulls data from
           Xero, QuickBooks, Stripe, and more—so insights stay current.
         </p>

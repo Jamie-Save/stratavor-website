@@ -20,7 +20,7 @@ const footerLinks = {
 
 export default function Footer() {
   return (
-    <footer className="border-t border-neutral-200 bg-white">
+    <footer className="bg-brand-gunmetal text-white/70">
       <div className="mx-auto max-w-content px-content py-16 lg:px-8">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-2">
@@ -33,14 +33,14 @@ export default function Footer() {
                 className="h-8 w-auto object-contain"
               />
             </Link>
-            <p className="mt-4 max-w-xs text-sm text-neutral-600">
+            <p className="mt-4 max-w-xs text-sm text-white/50">
               Devour the data. Deliver the strategy.
             </p>
           </div>
 
           {Object.entries(footerLinks).map(([heading, links]) => (
             <div key={heading}>
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-neutral-500">
+              <h3 className="text-caption font-semibold uppercase tracking-widest text-white/40">
                 {heading}
               </h3>
               <ul className="mt-4 space-y-3">
@@ -48,7 +48,7 @@ export default function Footer() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-sm text-neutral-600 transition-colors hover:text-neutral-900 focus-visible:text-neutral-900"
+                      className="text-sm text-white/60 transition-colors hover:text-white focus-visible:text-white"
                     >
                       {link.label}
                     </Link>
@@ -59,8 +59,8 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="mt-16 flex flex-col gap-4 border-t border-neutral-200 pt-8 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-sm text-neutral-500">
+        <div className="mt-16 flex flex-col gap-4 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-sm text-white/40">
             © {new Date().getFullYear()} Stratavor. All rights reserved.
           </p>
         </div>
