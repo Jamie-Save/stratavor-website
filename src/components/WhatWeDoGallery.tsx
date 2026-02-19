@@ -133,12 +133,13 @@ export default function WhatWeDoGallery() {
               transitionDuration: `${duration}ms`,
             }}
           >
-            <div className="relative w-full overflow-hidden rounded-2xl border-2 border-brand-orange/35 bg-white shadow-medium ring-4 ring-brand-orange/10 aspect-[4/3]">
+            <div className="overflow-hidden rounded-2xl border-2 border-brand-orange/35 bg-white shadow-medium ring-4 ring-brand-orange/10">
               <Image
                 src={whatWeDoImages[centerIdx].src}
                 alt={whatWeDoImages[centerIdx].alt}
-                fill
-                className="object-contain"
+                width={1200}
+                height={750}
+                className="block h-auto w-full"
                 sizes="(max-width: 640px) 95vw, (max-width: 1024px) 85vw, 1200px"
                 priority
               />
