@@ -195,7 +195,7 @@ export default function WhatWeDoGallery() {
             onClick={() => goTo(i)}
             className={`rounded-full transition-all ${
               i === centerIndex
-                ? "h-2 w-6 bg-brand-orange"
+                ? "h-2 w-6 bg-brand-gunmetal"
                 : "h-2 w-2 bg-neutral-300 hover:bg-neutral-400"
             }`}
           />

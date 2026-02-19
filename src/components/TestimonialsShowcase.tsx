@@ -302,9 +302,9 @@ export default function TestimonialsShowcase() {
               aria-controls="testimonials-panel"
               id={`pill-${pill.id}`}
               onClick={() => setSelectedRole(pill.id)}
-              className={`rounded-full px-4 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2 ${
+              className={`rounded-full px-4 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gunmetal focus-visible:ring-offset-2 ${
                 selectedRole === pill.id
-                  ? "border border-brand-accent bg-brand-accent text-white"
+                  ? "border border-brand-gunmetal bg-brand-gunmetal text-white"
                   : "border border-neutral-200 bg-white text-neutral-600 shadow-xs hover:border-neutral-300 hover:text-neutral-900"
               }`}
             >
@@ -364,7 +364,7 @@ export default function TestimonialsShowcase() {
                   aria-label={`Go to testimonial ${i + 1}`}
                   className={`h-2 rounded-full transition-all ${
                     i === safeIndex
-                      ? "w-6 bg-brand-accent"
+                      ? "w-6 bg-brand-gunmetal"
                       : "w-2 bg-neutral-300 hover:bg-neutral-400"
                   }`}
                 />

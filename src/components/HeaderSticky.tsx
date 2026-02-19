@@ -129,7 +129,7 @@ export default function HeaderSticky() {
       className={`sticky top-0 z-50 w-full border-b transition-all duration-200 ${
         isScrolled
           ? "border-neutral-200/60 bg-white/80 shadow-header-scrolled backdrop-blur-xl backdrop-saturate-[1.8]"
-          : "border-transparent bg-transparent"
+          : "border-transparent bg-white"
       }`}
       role="banner"
     >
@@ -137,15 +137,15 @@ export default function HeaderSticky() {
         {/* Logo: left */}
         <Link
           href="/"
-          className="relative flex h-9 shrink-0 focus-visible:rounded-lg"
+          className="relative flex h-11 shrink-0 focus-visible:rounded-lg"
           aria-label="Stratavor home"
         >
           <Image
             src="/images/stratavor-logo.svg"
             alt="Stratavor"
-            width={140}
-            height={44}
-            className="h-9 w-auto object-contain"
+            width={170}
+            height={56}
+            className="h-11 w-auto object-contain"
             priority
           />
         </Link>
