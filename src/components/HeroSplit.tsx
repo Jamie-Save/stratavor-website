@@ -46,7 +46,7 @@ export default function HeroSplit() {
               Free Trial
             </Link>
             <Link
-              href="#demo"
+              href="/demo"
               className="inline-flex items-center justify-center rounded-xl border border-neutral-200 bg-white px-7 py-3.5 text-[15px] font-semibold text-brand-gunmetal transition-colors hover:border-brand-accent/30 hover:bg-brand-accent-light focus-visible:border-brand-accent focus-visible:ring-2 focus-visible:ring-brand-accent/20"
             >
               See Live Preview

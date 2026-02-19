@@ -21,7 +21,7 @@ export default function ThreeCtaBand() {
             See Pricing
           </Link>
           <Link
-            href="#demo"
+            href="/demo"
             className="inline-flex w-full items-center justify-center rounded-xl bg-white px-7 py-3.5 text-[15px] font-semibold text-brand-gunmetal shadow-soft transition-colors hover:bg-neutral-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand-gunmetal sm:w-auto"
           >
             See Live Preview
