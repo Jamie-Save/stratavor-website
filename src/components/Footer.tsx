@@ -26,11 +26,11 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <Link href="/" className="inline-block focus-visible:rounded-lg">
               <Image
-                src="/images/stratavor-logo.svg"
+                src="/images/stratavor-logo-white.png"
                 alt="Stratavor"
-                width={140}
-                height={44}
-                className="h-8 w-auto object-contain"
+                width={180}
+                height={56}
+                className="h-10 w-auto object-contain"
               />
             </Link>
             <p className="mt-4 max-w-xs text-sm text-white/50">
