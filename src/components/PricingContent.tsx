@@ -86,7 +86,7 @@ export function PricingContent() {
     }
     const base = billing === "monthly" ? tier.monthly : tier.yearlyPerMonth;
     const addon = tier.addon;
-    if (!addon || tier.id === "strategy") return base;
+    if (!addon) return base;
     const checked = addonChecked[tier.id as AddonTierId];
     if (!checked) return base;
     const addonPerMonth = billing === "monthly" ? addon.monthly : Math.round(addon.monthly * YEARLY_DISCOUNT);
