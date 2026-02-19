@@ -16,6 +16,14 @@ export default function WhatWeDoGallery() {
   const [centerIndex, setCenterIndex] = useState(0);
   const total = whatWeDoImages.length;
   const [prevIdx, centerIdx, nextIdx] = getIndices(centerIndex, total);
+  const validIndices =
+    total > 0 &&
+    Number.isInteger(prevIdx) &&
+    Number.isInteger(centerIdx) &&
+    Number.isInteger(nextIdx) &&
+    prevIdx >= 0 &&
+    centerIdx >= 0 &&
+    nextIdx >= 0;
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
@@ -69,6 +77,10 @@ export default function WhatWeDoGallery() {
   }, []);
 
   const duration = prefersReducedMotion ? 0 : 500;
+
+  if (!validIndices) {
+    return null;
+  }
 
   return (
     <div
@@ -127,13 +139,13 @@ export default function WhatWeDoGallery() {
 
           {/* Center card - full width, full image visible (no cropping) */}
           <div
-            className="relative z-10 shrink-0 transition-all ease-out"
+            className="group relative z-10 shrink-0 transition-all ease-out"
             style={{
               width: "min(960px, 90vw)",
               transitionDuration: `${duration}ms`,
             }}
           >
-            <div className="overflow-hidden rounded-2xl border-2 border-brand-orange/35 bg-white shadow-medium ring-4 ring-brand-orange/10">
+            <div className="overflow-hidden rounded-2xl border-2 border-transparent bg-white shadow-medium ring-4 ring-transparent transition-colors duration-200 group-hover:border-brand-gunmetal/40 group-hover:ring-brand-gunmetal/20">
               <Image
                 src={whatWeDoImages[centerIdx].src}
                 alt={whatWeDoImages[centerIdx].alt}

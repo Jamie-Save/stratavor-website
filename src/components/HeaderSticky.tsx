@@ -56,7 +56,7 @@ function NavDropdown({
         role="menu"
         aria-orientation="vertical"
         aria-labelledby="resources-trigger"
-        className={`absolute left-1/2 top-full z-50 mt-1 -translate-x-1/2 overflow-hidden rounded-lg border border-neutral-200 bg-white py-1 shadow-large origin-top transition-all duration-150 ${
+        className={`absolute left-1/2 top-full z-50 -mt-1.5 -translate-x-1/2 overflow-hidden rounded-lg border border-neutral-200 bg-white py-1 shadow-large origin-top transition-all duration-150 ${
           open ? "scale-100 opacity-100" : "pointer-events-none scale-95 opacity-0"
         }`}
       >
@@ -65,7 +65,7 @@ function NavDropdown({
             key={item.href}
             href={item.href}
             role="menuitem"
-            className="block whitespace-nowrap px-4 py-2 text-sm text-neutral-600 transition-colors hover:bg-neutral-50 hover:text-neutral-900"
+            className="block min-w-[180px] whitespace-nowrap px-5 py-3 text-sm text-neutral-600 transition-colors hover:bg-neutral-50 hover:text-neutral-900"
           >
             {item.label}
           </Link>
@@ -164,7 +164,7 @@ export default function HeaderSticky() {
                 href={link.href}
                 className="text-sm font-medium text-neutral-600 transition-colors hover:text-brand-gunmetal focus-visible:text-brand-gunmetal"
               >
-                <span className="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-brand-accent after:transition-all after:duration-300 hover:after:w-full">
+                <span className="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-brand-gunmetal after:transition-all after:duration-300 hover:after:w-full">
                   {link.label}
                 </span>
               </Link>
