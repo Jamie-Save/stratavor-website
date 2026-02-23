@@ -26,16 +26,13 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <Link href="/" className="inline-block focus-visible:rounded-lg">
               <Image
-                src="/images/stratavor-logo-white.png"
+                src="/images/stratavor-logo-white.svg"
                 alt="Stratavor"
-                width={180}
-                height={56}
-                className="h-10 w-auto object-contain"
+                width={220}
+                height={70}
+                className="h-14 w-auto object-contain"
               />
             </Link>
-            <p className="mt-4 max-w-xs text-sm text-white/50">
-              Devour the data. Deliver the strategy.
-            </p>
           </div>
 
           {Object.entries(footerLinks).map(([heading, links]) => (

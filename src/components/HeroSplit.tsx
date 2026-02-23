@@ -35,9 +35,6 @@ export default function HeroSplit() {
             Turn your data into board-ready strategy. Financial snapshots, risk
             registers, OKRs, and AI commentary—all connected to your systems.
           </p>
-          <p className="mt-3 text-lg font-semibold text-brand-gunmetal">
-            Devour the data. Deliver the strategy.
-          </p>
           <div className="mt-10 flex flex-wrap gap-4">
             <Link
               href="/pricing"

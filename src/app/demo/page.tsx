@@ -43,7 +43,7 @@ export default function DemoPage() {
         >
           <div className="mx-auto flex w-full max-w-content flex-col px-content lg:px-8">
             <div className="relative overflow-hidden rounded-2xl border border-neutral-200/90 bg-white shadow-large ring-1 ring-neutral-200/50">
-              <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/20" aria-hidden />
+              <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/20" aria-hidden />
               <iframe
                 src={POWERBI_EMBED_URL}
                 title="Stratavor Power BI report – Live preview"
