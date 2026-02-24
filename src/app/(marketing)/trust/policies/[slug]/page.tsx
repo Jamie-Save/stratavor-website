@@ -1,6 +1,4 @@
 import { notFound } from "next/navigation";
-import HeaderSticky from "@/components/HeaderSticky";
-import Footer from "@/components/Footer";
 import { PolicyPageLayout } from "@/components/PolicyPageLayout";
 import { getPolicyContent } from "@/data/trust-policy-content";
 import { TRUST_DOCUMENTS } from "@/data/trust-policies";
@@ -36,12 +34,8 @@ export default async function PolicyPage({
   if (!content) notFound();
 
   return (
-    <>
-      <HeaderSticky />
-      <main id="main-content" tabIndex={-1} className="min-h-screen bg-white">
-        <PolicyPageLayout title={content.title} sections={content.sections} />
-      </main>
-      <Footer />
-    </>
+    <div className="min-h-screen bg-white">
+      <PolicyPageLayout title={content.title} sections={content.sections} />
+    </div>
   );
 }

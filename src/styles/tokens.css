@@ -20,6 +20,9 @@
   --accent-light: #FEF3EE;
   --accent-glow: rgba(232, 104, 58, 0.15);
 
+  /* Section labels – clean traffic light red */
+  --label-red: #E53935;
+
   /* Neutrals – refined cool grays */
   --neutral-50: #F8F9FA;
   --neutral-100: #F1F3F5;

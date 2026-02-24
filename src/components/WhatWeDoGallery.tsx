@@ -134,6 +134,11 @@ export default function WhatWeDoGallery() {
                 className="object-cover"
                 sizes="240px"
               />
+              {whatWeDoImages[prevIdx].bullet && (
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent px-3 py-2">
+                  <p className="text-xs font-medium text-white line-clamp-2">{whatWeDoImages[prevIdx].bullet}</p>
+                </div>
+              )}
             </div>
           </div>
 
@@ -145,7 +150,7 @@ export default function WhatWeDoGallery() {
               transitionDuration: `${duration}ms`,
             }}
           >
-            <div className="overflow-hidden rounded-2xl border-2 border-transparent bg-white shadow-medium ring-4 ring-transparent transition-colors duration-200 group-hover:border-brand-gunmetal/40 group-hover:ring-brand-gunmetal/20">
+            <div className="relative overflow-hidden rounded-2xl border-2 border-transparent bg-white shadow-medium ring-4 ring-transparent transition-colors duration-200 group-hover:border-brand-gunmetal/40 group-hover:ring-brand-gunmetal/20">
               <Image
                 src={whatWeDoImages[centerIdx].src}
                 alt={whatWeDoImages[centerIdx].alt}
@@ -155,6 +160,11 @@ export default function WhatWeDoGallery() {
                 sizes="(max-width: 640px) 95vw, (max-width: 1024px) 85vw, 1200px"
                 priority
               />
+              {whatWeDoImages[centerIdx].bullet && (
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent px-5 py-4">
+                  <p className="text-sm font-medium text-white sm:text-base">{whatWeDoImages[centerIdx].bullet}</p>
+                </div>
+              )}
             </div>
           </div>
 
@@ -179,6 +189,11 @@ export default function WhatWeDoGallery() {
                 className="object-cover"
                 sizes="240px"
               />
+              {whatWeDoImages[nextIdx].bullet && (
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent px-3 py-2">
+                  <p className="text-xs font-medium text-white line-clamp-2">{whatWeDoImages[nextIdx].bullet}</p>
+                </div>
+              )}
             </div>
           </div>
         </div>

@@ -24,7 +24,10 @@ export default function Footer() {
       <div className="mx-auto max-w-content px-content py-16 lg:px-8">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-2">
-            <Link href="/" className="inline-block focus-visible:rounded-lg">
+            <Link
+              href="/"
+              className="inline-block focus-visible:rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-gunmetal"
+            >
               <Image
                 src="/images/stratavor-logo-white.svg"
                 alt="Stratavor"
@@ -45,7 +48,7 @@ export default function Footer() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-sm text-white/60 transition-colors hover:text-white focus-visible:text-white"
+                      className="text-sm text-white/60 transition-colors hover:text-white focus-visible:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-gunmetal"
                     >
                       {link.label}
                     </Link>

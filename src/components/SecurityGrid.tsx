@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { securityItems } from "@/data/security";
 import { SecurityIcon } from "./SecurityIcons";
 
@@ -15,11 +14,11 @@ export default function SecurityGrid() {
         </p>
         <h2
           id="security-heading"
-          className="mx-auto max-w-2xl text-center text-3xl font-semibold tracking-tight text-neutral-900 sm:text-4xl"
+          className="mx-auto max-w-2xl text-center text-3xl font-semibold tracking-tight text-brand-gunmetal sm:text-4xl"
         >
           Enterprise-grade security
         </h2>
-        <p className="mx-auto mt-6 max-w-xl text-center text-lg text-neutral-600">
+        <p className="mx-auto mt-6 max-w-xl text-center text-body-lg text-neutral-600">
           Built for teams who demand control, auditability, and compliance by design.
         </p>
 
@@ -27,7 +26,7 @@ export default function SecurityGrid() {
           {securityItems.map((item, i) => (
             <li key={i}>
               <article
-                className="flex h-full flex-col rounded-xl border border-neutral-200 bg-white p-6 transition-all duration-300 hover:-translate-y-0.5 hover:border-neutral-300 hover:shadow-medium focus-within:ring-2 focus-within:ring-brand-orange/20 sm:p-8"
+                className="flex h-full flex-col rounded-xl border border-neutral-200 bg-white p-6 transition-all duration-300 hover:-translate-y-0.5 hover:border-neutral-300 hover:shadow-medium focus-within:ring-2 focus-within:ring-brand-gunmetal/20 sm:p-8"
                 style={{ contain: "layout" }}
               >
                 <SecurityIcon name={item.icon} />
@@ -41,21 +40,6 @@ export default function SecurityGrid() {
             </li>
           ))}
         </ul>
-
-        <div className="mt-16 flex flex-wrap justify-center gap-4">
-          <Link
-            href="/pricing"
-            className="inline-flex items-center justify-center rounded-xl bg-brand-gunmetal px-7 py-3.5 text-[15px] font-semibold text-white shadow-soft transition-all hover:bg-brand-gunmetal-dark hover:shadow-medium focus-visible:bg-brand-gunmetal-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gunmetal focus-visible:ring-offset-2"
-          >
-            See pricing
-          </Link>
-          <Link
-            href="/contact"
-            className="inline-flex items-center justify-center rounded-xl border border-neutral-300 bg-white px-7 py-3.5 text-[15px] font-semibold text-neutral-700 transition-colors hover:border-neutral-400 hover:bg-neutral-50 focus-visible:border-brand-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2"
-          >
-            Talk to us
-          </Link>
-        </div>
       </div>
     </section>
   );

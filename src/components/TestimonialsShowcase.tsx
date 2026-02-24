@@ -56,7 +56,7 @@ function Avatar({
 
   return (
     <div
-      className={`${dim} flex shrink-0 items-center justify-center rounded-full bg-brand-accent/10 font-semibold ${textSize} text-brand-accent`}
+      className={`${dim} flex shrink-0 items-center justify-center rounded-full font-semibold ${textSize} bg-[rgba(229,57,53,0.1)] text-[var(--label-red)]`}
       aria-hidden
     >
       {getInitials(testimonial.name)}
@@ -283,7 +283,7 @@ export default function TestimonialsShowcase() {
         {/* Heading */}
         <h2
           id="testimonials-heading"
-          className="mx-auto max-w-2xl text-center text-3xl font-semibold tracking-tight text-neutral-900 sm:text-4xl"
+          className="mx-auto max-w-2xl text-center text-3xl font-semibold tracking-tight text-brand-gunmetal sm:text-4xl"
         >
           Loved by teams who ship
         </h2>

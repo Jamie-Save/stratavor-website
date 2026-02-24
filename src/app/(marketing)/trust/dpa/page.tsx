@@ -1,5 +1,3 @@
-import HeaderSticky from "@/components/HeaderSticky";
-import Footer from "@/components/Footer";
 import { PolicyPageLayout } from "@/components/PolicyPageLayout";
 import { getPolicyContent } from "@/data/trust-policy-content";
 import type { Metadata } from "next";
@@ -15,12 +13,8 @@ export default function DPAPage() {
   if (!content) return null;
 
   return (
-    <>
-      <HeaderSticky />
-      <main id="main-content" tabIndex={-1} className="min-h-screen bg-white">
-        <PolicyPageLayout title={content.title} sections={content.sections} />
-      </main>
-      <Footer />
-    </>
+    <div className="min-h-screen bg-white">
+      <PolicyPageLayout title={content.title} sections={content.sections} />
+    </div>
   );
 }

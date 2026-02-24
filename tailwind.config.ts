@@ -22,6 +22,7 @@ const config: Config = {
           orange: "var(--accent)",
           "orange-hover": "var(--accent-hover)",
           "orange-light": "var(--accent-light)",
+          "label-red": "var(--label-red)",
         },
         neutral: {
           50: "var(--neutral-50)",

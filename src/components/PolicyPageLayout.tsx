@@ -33,7 +33,7 @@ export function PolicyPageLayout({ title, sections }: PolicyPageLayoutProps) {
                 {section.heading}
               </h2>
             )}
-            <div className="prose prose-neutral mt-4 max-w-none text-neutral-700">
+            <div className="mt-4 max-w-none text-neutral-700">
               {section.content.split(/\n\n+/).map((para, j) =>
                 para.trim() ? (
                   <p key={j} className="mb-4 last:mb-0">

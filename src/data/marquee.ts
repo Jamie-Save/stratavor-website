@@ -14,6 +14,7 @@ export type LogoItem = {
 export type ImageItem = {
   src: string;
   alt: string;
+  bullet?: string;
 };
 
 // TODO: Add real logo files to public/images/logos/trusted/ and set src
@@ -37,9 +38,9 @@ export const integrationLogos: LogoItem[] = [
 ];
 
 export const whatWeDoImages: ImageItem[] = [
-  { src: "/images/what-we-do/what-we-do-1.png", alt: "Stratavor OKRs & Initiatives" },
-  { src: "/images/what-we-do/what-we-do-2.png", alt: "Stratavor Data & Settings" },
-  { src: "/images/what-we-do/what-we-do-3.png", alt: "Stratavor Strategic Insights" },
-  { src: "/images/what-we-do/what-we-do-4.png", alt: "Stratavor Data & Settings - Configuration" },
-  { src: "/images/what-we-do/what-we-do-5.png", alt: "Stratavor Strategic Insights - AI Dashboard" },
+  { src: "/images/what-we-do/what-we-do-1.png", alt: "Stratavor OKRs & Initiatives", bullet: "Board-ready financials with AI narrative on what matters." },
+  { src: "/images/what-we-do/what-we-do-2.png", alt: "Stratavor Data & Settings", bullet: "Risk register & OKRs: monitor risks and track objectives in one place." },
+  { src: "/images/what-we-do/what-we-do-3.png", alt: "Stratavor Strategic Insights", bullet: "Strategic profile: ambition, posture, and priorities for AI recommendations." },
+  { src: "/images/what-we-do/what-we-do-4.png", alt: "Stratavor Data & Settings - Configuration", bullet: "Connect your systems. One source of truth for data and settings." },
+  { src: "/images/what-we-do/what-we-do-5.png", alt: "Stratavor Strategic Insights - AI Dashboard", bullet: "AI insights and traceability—without the spreadsheet sprawl." },
 ];

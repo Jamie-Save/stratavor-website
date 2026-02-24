@@ -44,7 +44,7 @@ export function TrustContent() {
           >
             Confidence built on accountability.
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-center text-lg text-neutral-600">
+          <p className="mx-auto mt-6 max-w-2xl text-center text-body-lg text-neutral-600">
             A single source of truth for Stratavor&apos;s security, privacy, and governance
             commitments, written clearly and maintained with the rigor due diligence expects.
           </p>

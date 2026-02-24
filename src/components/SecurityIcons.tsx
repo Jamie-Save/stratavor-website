@@ -109,7 +109,7 @@ const icons: Record<IconName, React.ReactNode> = {
 
 export function SecurityIcon({ name }: { name: IconName }) {
   return (
-    <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-brand-orange/10 text-brand-orange">
+    <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-brand-gunmetal/10 text-brand-gunmetal">
       {icons[name]}
     </span>
   );

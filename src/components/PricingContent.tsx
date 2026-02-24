@@ -109,7 +109,7 @@ export function PricingContent() {
           >
             Start with truth.<br />Add judgement.
           </h1>
-          <p className="mt-6 text-lg text-neutral-600 sm:text-xl">
+          <p className="mt-6 text-body-lg text-neutral-600">
             An intelligence architecture designed for scale.
           </p>
 
@@ -243,7 +243,7 @@ export function PricingContent() {
           >
             Compare Capabilities
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-center text-neutral-600">
+          <p className="mx-auto mt-4 max-w-xl text-center text-body-lg text-neutral-600">
             Choose the depth of intelligence your organization requires.
           </p>
           <div className="mt-12 overflow-x-auto rounded-xl border border-neutral-200">
@@ -284,7 +284,7 @@ export function PricingContent() {
           >
             Bespoke Strategy
           </h2>
-          <p className="mx-auto mt-6 max-w-2xl text-center text-lg text-neutral-600">
+          <p className="mx-auto mt-6 max-w-2xl text-center text-body-lg text-neutral-600">
             High-touch engagements for pricing architecture, capital allocation, and business model
             transformation. Scoped for impact.
           </p>

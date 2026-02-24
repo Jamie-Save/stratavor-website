@@ -21,7 +21,7 @@
   }
 
   :focus-visible {
-    @apply outline-2 outline-offset-2 outline-brand-accent;
+    @apply outline-2 outline-offset-2 outline-brand-gunmetal;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -40,9 +40,10 @@
     -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
   }
 
-  /* Section label */
+  /* Section label – clean traffic light red */
   .section-label {
-    @apply text-caption font-semibold uppercase tracking-widest text-brand-accent;
+    @apply text-caption font-semibold uppercase tracking-widest;
+    color: var(--label-red);
   }
 }
 

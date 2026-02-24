@@ -24,7 +24,7 @@ export default function HeroSplit() {
         }}
       />
 
-      <div className="mx-auto grid max-w-content grid-cols-1 gap-12 px-content py-24 lg:grid-cols-2 lg:gap-16 lg:py-32 lg:px-8">
+      <div className="mx-auto grid max-w-content grid-cols-1 gap-12 px-content pt-12 pb-20 lg:grid-cols-2 lg:gap-16 lg:pt-16 lg:pb-28 lg:px-8">
         {/* LEFT COLUMN */}
         <div className="flex flex-col justify-center">
           <p className="section-label mb-4">Strategic Intelligence Platform</p>
@@ -55,7 +55,7 @@ export default function HeroSplit() {
         </div>
 
         {/* RIGHT COLUMN: Carousel */}
-        <div id="demo" className="flex items-center scroll-mt-20">
+        <div className="flex items-center">
           <HeroCarousel />
         </div>
       </div>

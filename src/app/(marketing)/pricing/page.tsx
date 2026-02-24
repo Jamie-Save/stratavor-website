@@ -1,5 +1,3 @@
-import HeaderSticky from "@/components/HeaderSticky";
-import Footer from "@/components/Footer";
 import { PricingContent } from "@/components/PricingContent";
 import type { Metadata } from "next";
 
@@ -10,13 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function PricingPage() {
-  return (
-    <>
-      <HeaderSticky />
-      <main id="main-content" tabIndex={-1}>
-        <PricingContent />
-      </main>
-      <Footer />
-    </>
-  );
+  return <PricingContent />;
 }

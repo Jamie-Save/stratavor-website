@@ -194,7 +194,7 @@ export default function Marquee(props: MarqueeProps) {
           type="button"
           onClick={() => setIsPaused((p) => !p)}
           aria-label={paused ? "Play marquee" : "Pause marquee"}
-          className="absolute right-0 top-0 z-10 flex h-7 w-7 shrink-0 items-center justify-center rounded text-neutral-500 transition-colors hover:text-neutral-700 focus-visible:text-neutral-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange"
+          className="absolute right-0 top-0 z-10 flex h-7 w-7 shrink-0 items-center justify-center rounded text-neutral-500 transition-colors hover:text-neutral-700 focus-visible:text-neutral-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gunmetal"
         >
           {paused ? (
             <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24">

@@ -1,5 +1,3 @@
-import HeaderSticky from "@/components/HeaderSticky";
-import Footer from "@/components/Footer";
 import { TrustContent } from "@/components/TrustContent";
 import type { Metadata } from "next";
 
@@ -10,13 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function TrustPage() {
-  return (
-    <>
-      <HeaderSticky />
-      <main id="main-content" tabIndex={-1}>
-        <TrustContent />
-      </main>
-      <Footer />
-    </>
-  );
+  return <TrustContent />;
 }
