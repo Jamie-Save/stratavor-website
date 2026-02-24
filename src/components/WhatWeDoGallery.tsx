@@ -46,6 +46,24 @@ export default function WhatWeDoGallery() {
     setCenterIndex(((i % total) + total) % total);
   }, [total]);
 
+  const goPrev = useCallback(() => {
+    setCenterIndex((i) => (i - 1 + total) % total);
+  }, [total]);
+
+  const handleCenterImageClick = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      const rect = e.currentTarget.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const mid = rect.width / 2;
+      if (x < mid) {
+        goPrev();
+      } else {
+        goNext();
+      }
+    },
+    [goNext, goPrev]
+  );
+
   useEffect(() => {
     if (prefersReducedMotion || isHovered || isFocused) {
       if (timerRef.current) {
@@ -142,13 +160,15 @@ export default function WhatWeDoGallery() {
             </div>
           </div>
 
-          {/* Center card - full width, full image visible (no cropping) */}
+          {/* Center card - full width, full image visible (no cropping); click left/right to navigate */}
           <div
-            className="group relative z-10 shrink-0 transition-all ease-out"
+            className="group relative z-10 shrink-0 cursor-pointer transition-all ease-out"
             style={{
               width: "min(960px, 90vw)",
               transitionDuration: `${duration}ms`,
             }}
+            onClick={handleCenterImageClick}
+            aria-label="Click left for previous image, right for next image"
           >
             <div className="relative overflow-hidden rounded-2xl border-2 border-transparent bg-white shadow-medium ring-4 ring-transparent transition-colors duration-200 group-hover:border-brand-gunmetal/40 group-hover:ring-brand-gunmetal/20">
               <Image

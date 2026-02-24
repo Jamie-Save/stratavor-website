@@ -34,9 +34,11 @@ type MarqueeProps =
 function LogoSlot({
   item,
   variant,
+  grayscale,
 }: {
   item: MarqueeItemLogo;
   variant: "trusted" | "integrations";
+  grayscale?: boolean;
 }) {
   const base =
     "flex shrink-0 items-center justify-center text-sm font-medium text-neutral-500";
@@ -45,6 +47,13 @@ function LogoSlot({
     "h-14 w-36 rounded-lg border border-neutral-200 bg-white px-8 text-neutral-600";
 
   const imgH = variant === "integrations" ? "h-9" : "h-8";
+  // When grayscale is undefined, use default behavior (grayscale with hover:color). When set, force one or the other.
+  const imgFilter =
+    grayscale === undefined
+      ? "grayscale transition-all duration-300"
+      : grayscale
+        ? "grayscale transition-all duration-300"
+        : "grayscale-0 transition-all duration-300";
 
   if (item.src) {
     return (
@@ -56,7 +65,7 @@ function LogoSlot({
           alt={item.alt}
           width={120}
           height={40}
-          className={`${imgH} w-auto object-contain grayscale transition-all duration-300 hover:grayscale-0`}
+          className={`${imgH} w-auto object-contain ${imgFilter}`}
         />
       </div>
     );
@@ -149,27 +158,24 @@ export default function Marquee(props: MarqueeProps) {
 
   if (direction === "horizontal") {
     const logos = items as MarqueeItemLogo[];
+    const isIntegrations = variant === "integrations";
+    // Horizontal marquee never pauses on hover/focus so logos keep rolling
+    const scrollStyle = {
+      animation: prefersReducedMotion ? "none" : "marquee-h 30s linear infinite",
+    };
+    const stripClasses =
+      "flex gap-8 whitespace-nowrap will-change-transform";
+
     return (
-      <div
-        ref={containerRef}
-        className="relative flex items-center gap-3"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        onFocusCapture={() => setIsFocused(true)}
-        onBlurCapture={handleFocusOut}
-      >
+      <div ref={containerRef} className="relative flex items-center gap-3">
         <div className="marquee-mask min-w-0 flex-1 overflow-hidden">
-          <div
-            className="flex gap-8 whitespace-nowrap will-change-transform"
-            style={{
-              animation: paused ? "none" : "marquee-h 30s linear infinite",
-            }}
-          >
+          <div className={stripClasses} style={scrollStyle}>
             {duplicated.map((item, i) => (
               <LogoSlot
-                key={`${i}`}
+                key={i}
                 item={item as MarqueeItemLogo}
                 variant={variant as "trusted" | "integrations"}
+                grayscale={isIntegrations ? false : true}
               />
             ))}
           </div>

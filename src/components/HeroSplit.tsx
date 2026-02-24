@@ -24,14 +24,12 @@ export default function HeroSplit() {
         }}
       />
 
-      <div className="mx-auto grid max-w-content grid-cols-1 gap-12 px-content pt-12 pb-20 lg:grid-cols-2 lg:gap-16 lg:pt-16 lg:pb-28 lg:px-8">
-        {/* LEFT COLUMN */}
-        <div className="flex flex-col justify-center">
+      <div className="mx-auto grid max-w-content grid-cols-1 gap-12 px-content pt-12 pb-20 lg:grid-cols-[auto_1fr] lg:gap-16 lg:pt-16 lg:pb-28 lg:px-8">
+        {/* LEFT COLUMN – narrow so text lines up with buttons; carousel gets remaining space */}
+        <div className="flex max-w-sm flex-col justify-center">
+          <h1 className="sr-only">Stratavor</h1>
           <p className="section-label mb-4">Strategic Intelligence Platform</p>
-          <h1 className="text-display font-semibold tracking-tight text-brand-gunmetal lg:text-display-lg">
-            Stratavor
-          </h1>
-          <p className="text-body-lg mt-6 max-w-xl text-neutral-500">
+          <p className="text-body-lg mt-1 max-w-sm text-neutral-500">
             Turn your data into board-ready strategy. Financial snapshots, risk
             registers, OKRs, and AI commentary—all connected to your systems.
           </p>

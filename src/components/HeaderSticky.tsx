@@ -128,8 +128,8 @@ export default function HeaderSticky() {
     <header
       className={`sticky top-0 z-50 w-full border-b transition-all duration-200 ${
         isScrolled
-          ? "border-neutral-200/60 bg-white/80 shadow-header-scrolled backdrop-blur-xl backdrop-saturate-[1.8]"
-          : "border-transparent bg-white"
+          ? "border-neutral-200/50 bg-white/70 shadow-header-scrolled backdrop-blur-xl backdrop-saturate-[1.8]"
+          : "border-transparent bg-white/90"
       }`}
       role="banner"
     >
