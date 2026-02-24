@@ -35,7 +35,7 @@ function NavDropdown({
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
-        className="flex items-center gap-1 text-sm font-medium text-neutral-600 transition-colors hover:text-brand-gunmetal focus-visible:text-brand-gunmetal"
+        className="flex items-center gap-1.5 text-base font-medium text-neutral-600 transition-colors hover:text-brand-gunmetal focus-visible:text-brand-gunmetal"
         aria-expanded={open}
         aria-haspopup="true"
         aria-controls="resources-menu"
@@ -43,7 +43,7 @@ function NavDropdown({
       >
         {label}
         <svg
-          className={`h-4 w-4 transition-transform ${open ? "rotate-180" : ""}`}
+          className={`h-6 w-6 transition-transform ${open ? "rotate-180" : ""}`}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -56,7 +56,7 @@ function NavDropdown({
         role="menu"
         aria-orientation="vertical"
         aria-labelledby="resources-trigger"
-        className={`absolute left-1/2 top-full z-50 -mt-1.5 -translate-x-1/2 overflow-hidden rounded-lg border border-neutral-200 bg-white py-1 shadow-large origin-top transition-all duration-150 ${
+        className={`absolute left-1/2 top-full z-50 -mt-2 -translate-x-1/2 overflow-hidden rounded-xl border border-neutral-200 bg-white py-2 shadow-large origin-top transition-all duration-150 ${
           open ? "scale-100 opacity-100" : "pointer-events-none scale-95 opacity-0"
         }`}
       >
@@ -65,7 +65,7 @@ function NavDropdown({
             key={item.href}
             href={item.href}
             role="menuitem"
-            className="block min-w-[180px] whitespace-nowrap px-5 py-3 text-sm text-neutral-600 transition-colors hover:bg-neutral-50 hover:text-neutral-900"
+            className="block min-w-[270px] whitespace-nowrap px-6 py-4 text-base text-neutral-600 transition-colors hover:bg-neutral-50 hover:text-neutral-900"
           >
             {item.label}
           </Link>
@@ -133,26 +133,26 @@ export default function HeaderSticky() {
       }`}
       role="banner"
     >
-      <div className="mx-auto flex max-w-content items-center justify-between gap-6 px-content py-4 lg:px-8">
+      <div className="mx-auto flex max-w-content items-center justify-between gap-9 px-content py-6 lg:px-8">
         {/* Logo: left */}
         <Link
           href="/"
-          className="relative flex h-11 shrink-0 focus-visible:rounded-lg"
+          className="relative flex h-16 shrink-0 focus-visible:rounded-lg"
           aria-label="Stratavor home"
         >
           <Image
             src="/images/stratavor-logo.svg"
             alt="Stratavor"
-            width={170}
-            height={56}
-            className="h-11 w-auto object-contain"
+            width={255}
+            height={84}
+            className="h-16 w-auto object-contain"
             priority
           />
         </Link>
 
         {/* Nav: center (desktop) */}
         <nav
-          className="hidden flex-1 items-center justify-center gap-8 md:flex"
+          className="hidden flex-1 items-center justify-center gap-10 md:flex"
           aria-label="Main"
         >
           {navLinks.map((link) =>
@@ -162,7 +162,7 @@ export default function HeaderSticky() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm font-medium text-neutral-600 transition-colors hover:text-brand-gunmetal focus-visible:text-brand-gunmetal"
+                className="text-base font-medium text-neutral-600 transition-colors hover:text-brand-gunmetal focus-visible:text-brand-gunmetal"
               >
                 <span className="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-brand-gunmetal after:transition-all after:duration-300 hover:after:w-full">
                   {link.label}
@@ -173,19 +173,19 @@ export default function HeaderSticky() {
         </nav>
 
         {/* Right: CTAs (desktop) | Hamburger + Free Trial (mobile) */}
-        <div className="flex items-center gap-3 md:gap-4">
+        <div className="flex items-center gap-4 md:gap-6">
           {/* Hamburger: mobile only */}
           <button
             ref={hamburgerRef}
             type="button"
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-neutral-600 transition-colors hover:bg-neutral-100 hover:text-neutral-900 focus-visible:bg-neutral-100 focus-visible:text-neutral-900 md:hidden"
+            className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl text-neutral-600 transition-colors hover:bg-neutral-100 hover:text-neutral-900 focus-visible:bg-neutral-100 focus-visible:text-neutral-900 md:hidden"
             aria-expanded={mobileOpen}
             aria-controls="mobile-menu"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
           >
             <svg
-              className="h-5 w-5"
+              className="h-7 w-7"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -212,7 +212,7 @@ export default function HeaderSticky() {
           {/* Login: desktop only */}
           <Link
             href="/login"
-            className="hidden shrink-0 text-sm font-medium text-neutral-600 transition-colors hover:text-brand-gunmetal focus-visible:text-brand-gunmetal md:inline-flex"
+            className="hidden shrink-0 text-base font-medium text-neutral-600 transition-colors hover:text-brand-gunmetal focus-visible:text-brand-gunmetal md:inline-flex"
           >
             Login
           </Link>
@@ -220,7 +220,7 @@ export default function HeaderSticky() {
           {/* Free Trial */}
           <Link
             href="/pricing"
-            className="shrink-0 rounded-lg bg-brand-accent px-5 py-2.5 text-sm font-medium text-white shadow-soft transition-all hover:bg-brand-accent-hover hover:shadow-medium focus-visible:bg-brand-accent-hover focus-visible:ring-2 focus-visible:ring-brand-accent/30"
+            className="shrink-0 rounded-xl bg-brand-accent px-6 py-3.5 text-base font-medium text-white shadow-soft transition-all hover:bg-brand-accent-hover hover:shadow-medium focus-visible:bg-brand-accent-hover focus-visible:ring-2 focus-visible:ring-brand-accent/30"
           >
             Free Trial
           </Link>
@@ -239,11 +239,11 @@ export default function HeaderSticky() {
         }`}
       >
         <nav aria-label="Mobile">
-          <ul className="flex flex-col px-content py-4">
+          <ul className="flex flex-col px-content py-6">
             {navLinks.map((link) =>
               "children" in link ? (
                 <li key={link.label}>
-                  <p className="px-4 py-2 text-xs font-semibold uppercase tracking-wider text-neutral-500">
+                  <p className="px-5 py-3 text-sm font-semibold uppercase tracking-wider text-neutral-500">
                     {link.label}
                   </p>
                   {link.children.map((child) => (
@@ -251,7 +251,7 @@ export default function HeaderSticky() {
                       key={child.href}
                       href={child.href}
                       onClick={closeMenu}
-                      className="block rounded-lg py-2 pl-6 pr-4 text-sm text-neutral-600 transition-colors hover:bg-neutral-100 hover:text-neutral-900"
+                      className="block rounded-xl py-3 pl-8 pr-5 text-base text-neutral-600 transition-colors hover:bg-neutral-100 hover:text-neutral-900"
                     >
                       {child.label}
                     </Link>
@@ -262,18 +262,18 @@ export default function HeaderSticky() {
                   <Link
                     href={link.href}
                     onClick={closeMenu}
-                    className="block rounded-lg px-4 py-3 text-sm font-medium text-neutral-600 transition-colors hover:bg-neutral-100 hover:text-neutral-900 focus-visible:bg-neutral-100 focus-visible:text-neutral-900"
+                    className="block rounded-xl px-5 py-4 text-base font-medium text-neutral-600 transition-colors hover:bg-neutral-100 hover:text-neutral-900 focus-visible:bg-neutral-100 focus-visible:text-neutral-900"
                   >
                     {link.label}
                   </Link>
                 </li>
               )
             )}
-            <li className="mt-2 border-t border-neutral-200 pt-2">
+            <li className="mt-3 border-t border-neutral-200 pt-3">
               <Link
                 href="/login"
                 onClick={closeMenu}
-                className="block rounded-lg px-4 py-3 text-sm font-medium text-neutral-600 transition-colors hover:bg-neutral-100 hover:text-neutral-900 focus-visible:bg-neutral-100 focus-visible:text-neutral-900"
+                className="block rounded-xl px-5 py-4 text-base font-medium text-neutral-600 transition-colors hover:bg-neutral-100 hover:text-neutral-900 focus-visible:bg-neutral-100 focus-visible:text-neutral-900"
               >
                 Login
               </Link>
