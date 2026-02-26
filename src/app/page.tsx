@@ -2,6 +2,8 @@ import HeaderSticky from "@/components/HeaderSticky";
 import Footer from "@/components/Footer";
 import HeroSplit from "@/components/HeroSplit";
 import TrustedByMarquee from "@/components/TrustedByMarquee";
+import ProblemSolutionSection from "@/components/ProblemSolutionSection";
+import OutcomeGrid from "@/components/OutcomeGrid";
 import WhatWeDo from "@/components/WhatWeDo";
 import IntegrationsMarquee from "@/components/IntegrationsMarquee";
 import TestimonialsShowcase from "@/components/TestimonialsShowcase";
@@ -16,6 +18,8 @@ export default function Home() {
       <main id="main-content" tabIndex={-1}>
         <HeroSplit />
         <TrustedByMarquee />
+        <ProblemSolutionSection />
+        <OutcomeGrid />
         <WhatWeDo />
         <IntegrationsMarquee />
         <TestimonialsShowcase />

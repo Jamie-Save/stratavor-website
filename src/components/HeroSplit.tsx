@@ -27,18 +27,19 @@ export default function HeroSplit() {
       <div className="mx-auto grid max-w-content grid-cols-1 gap-12 px-content pt-12 pb-20 lg:grid-cols-[auto_1fr] lg:gap-16 lg:pt-16 lg:pb-28 lg:px-8">
         {/* LEFT COLUMN – narrow so text lines up with buttons; carousel gets remaining space */}
         <div className="flex max-w-sm flex-col justify-center">
-          <h1 className="sr-only">Stratavor</h1>
           <p className="section-label mb-4">Strategic Intelligence Platform</p>
-          <p className="text-body-lg mt-1 max-w-sm text-neutral-500">
-            Turn your data into board-ready strategy. Financial snapshots, risk
-            registers, OKRs, and AI commentary—all connected to your systems.
+          <h1 className="text-display font-bold leading-tight tracking-tight text-brand-gunmetal lg:text-display-lg">
+            Make Your Financial Data Speak Strategy.
+          </h1>
+          <p className="text-body-lg mt-6 max-w-sm text-neutral-600">
+            Connect QuickBooks, Xero, NetSuite, Stripe and more. Stratavor turns your raw financial data into strategic insights, AI-powered commentary, and executive clarity.
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
             <Link
               href="/pricing"
               className="inline-flex items-center justify-center rounded-xl bg-brand-accent px-7 py-3.5 text-[15px] font-semibold text-white shadow-soft transition-all hover:bg-brand-accent-hover hover:shadow-medium focus-visible:bg-brand-accent-hover focus-visible:shadow-medium"
             >
-              Free Trial
+              Start Free Trial
             </Link>
             <Link
               href="/demo"
@@ -48,7 +49,7 @@ export default function HeroSplit() {
             </Link>
           </div>
           <p className="mt-4 text-sm text-neutral-500">
-            No credit card required. Full access for 14 days.
+            Instant Access for 14 days.
           </p>
         </div>
 
