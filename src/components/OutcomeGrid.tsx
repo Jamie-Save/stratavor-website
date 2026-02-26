@@ -5,7 +5,7 @@ const outcomes = [
       "Turn manual reporting into automated, audit-ready outputs. Stratavor surfaces the numbers that matter so you spend less time building decks and more time on strategy.",
     icon: (
       <svg
-        className="h-6 w-6 shrink-0 text-brand-gunmetal"
+        className="h-6 w-6 shrink-0 text-inherit"
         fill="none"
         stroke="currentColor"
         strokeWidth={1.5}
@@ -26,7 +26,7 @@ const outcomes = [
       "Ask your data questions in plain language. Get clear, contextual explanations of what changed and why—so you can explain variances to the board without digging through spreadsheets.",
     icon: (
       <svg
-        className="h-6 w-6 shrink-0 text-brand-gunmetal"
+        className="h-6 w-6 shrink-0 text-inherit"
         fill="none"
         stroke="currentColor"
         strokeWidth={1.5}
@@ -47,7 +47,7 @@ const outcomes = [
       "Connect QuickBooks, Xero, NetSuite, Stripe and more in one place. One source of truth across your systems so your strategic view is always current and consistent.",
     icon: (
       <svg
-        className="h-6 w-6 shrink-0 text-brand-gunmetal"
+        className="h-6 w-6 shrink-0 text-inherit"
         fill="none"
         stroke="currentColor"
         strokeWidth={1.5}
@@ -81,16 +81,16 @@ export default function OutcomeGrid() {
           {outcomes.map((item, i) => (
             <li key={i}>
               <article
-                className="flex h-full flex-col rounded-xl border border-neutral-200 bg-white p-6 shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:border-neutral-300 hover:shadow-medium focus-within:ring-2 focus-within:ring-brand-gunmetal/20 sm:p-8"
+                className="group flex h-full flex-col rounded-xl border border-neutral-200 bg-white p-6 shadow-soft transition-all duration-300 hover:-translate-y-2 hover:border-brand-gunmetal hover:bg-brand-gunmetal hover:shadow-large focus-within:ring-2 focus-within:ring-brand-gunmetal/20 sm:p-8"
                 style={{ contain: "layout" }}
               >
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-neutral-100 text-brand-gunmetal">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-neutral-100 text-brand-gunmetal transition-colors duration-300 group-hover:bg-white/20 group-hover:text-white">
                   {item.icon}
                 </div>
-                <h3 className="mt-5 font-semibold text-neutral-900">
+                <h3 className="mt-5 font-semibold text-neutral-900 transition-colors duration-300 group-hover:text-white">
                   {item.title}
                 </h3>
-                <p className="mt-2 flex-1 text-sm text-neutral-600">
+                <p className="mt-2 flex-1 text-sm text-neutral-600 transition-colors duration-300 group-hover:text-white">
                   {item.description}
                 </p>
               </article>

@@ -10,6 +10,7 @@ const iconSize = 24;
 const icons: Record<IconName, React.ReactNode> = {
   shield: (
     <svg
+      className="text-inherit"
       width={iconSize}
       height={iconSize}
       viewBox="0 0 24 24"
@@ -25,6 +26,7 @@ const icons: Record<IconName, React.ReactNode> = {
   ),
   cert: (
     <svg
+      className="text-inherit"
       width={iconSize}
       height={iconSize}
       viewBox="0 0 24 24"
@@ -41,6 +43,7 @@ const icons: Record<IconName, React.ReactNode> = {
   ),
   gavel: (
     <svg
+      className="text-inherit"
       width={iconSize}
       height={iconSize}
       viewBox="0 0 24 24"
@@ -57,6 +60,7 @@ const icons: Record<IconName, React.ReactNode> = {
   ),
   lock: (
     <svg
+      className="text-inherit"
       width={iconSize}
       height={iconSize}
       viewBox="0 0 24 24"
@@ -73,6 +77,7 @@ const icons: Record<IconName, React.ReactNode> = {
   ),
   users: (
     <svg
+      className="text-inherit"
       width={iconSize}
       height={iconSize}
       viewBox="0 0 24 24"
@@ -91,6 +96,7 @@ const icons: Record<IconName, React.ReactNode> = {
   ),
   trace: (
     <svg
+      className="text-inherit"
       width={iconSize}
       height={iconSize}
       viewBox="0 0 24 24"
@@ -107,9 +113,9 @@ const icons: Record<IconName, React.ReactNode> = {
   ),
 };
 
-export function SecurityIcon({ name }: { name: IconName }) {
+export function SecurityIcon({ name, className = "" }: { name: IconName; className?: string }) {
   return (
-    <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-brand-gunmetal/10 text-brand-gunmetal">
+    <span className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-brand-gunmetal/10 text-brand-gunmetal ${className}`.trim()}>
       {icons[name]}
     </span>
   );

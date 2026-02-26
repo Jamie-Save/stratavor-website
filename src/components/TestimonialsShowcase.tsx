@@ -375,18 +375,23 @@ export default function TestimonialsShowcase() {
           </div>
         </div>
 
-        {/* Metrics strip */}
-        <div className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-3">
+        {/* Metrics strip – bold, in-your-face with hover pop */}
+        <div className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-3 sm:gap-8">
           {[
             { value: "98%", label: "Customer satisfaction" },
             { value: "3x", label: "Faster reporting" },
             { value: "50%", label: "Less manual work" },
           ].map((stat) => (
-            <div key={stat.label} className="text-center">
-              <p className="text-3xl font-bold text-brand-gunmetal sm:text-4xl">
+            <div
+              key={stat.label}
+              className="group relative rounded-2xl border-2 border-neutral-200 bg-white px-8 py-10 text-center shadow-soft transition-all duration-300 hover:-translate-y-2 hover:border-brand-gunmetal hover:bg-brand-gunmetal hover:shadow-large sm:px-10 sm:py-12"
+            >
+              <p className="text-5xl font-bold tracking-tight text-brand-gunmetal transition-colors duration-300 group-hover:text-white sm:text-6xl lg:text-7xl">
                 {stat.value}
               </p>
-              <p className="mt-1 text-body-sm text-neutral-500">{stat.label}</p>
+              <p className="mt-3 text-base font-semibold text-neutral-600 transition-colors duration-300 group-hover:text-white sm:text-lg">
+                {stat.label}
+              </p>
             </div>
           ))}
         </div>

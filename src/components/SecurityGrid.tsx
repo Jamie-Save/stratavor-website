@@ -26,14 +26,17 @@ export default function SecurityGrid() {
           {securityItems.map((item, i) => (
             <li key={i}>
               <article
-                className="flex h-full flex-col rounded-xl border border-neutral-200 bg-white p-6 transition-all duration-300 hover:-translate-y-0.5 hover:border-neutral-300 hover:shadow-medium focus-within:ring-2 focus-within:ring-brand-gunmetal/20 sm:p-8"
+                className="group flex h-full flex-col rounded-xl border border-neutral-200 bg-white p-6 transition-all duration-300 hover:-translate-y-2 hover:border-brand-gunmetal hover:bg-brand-gunmetal hover:shadow-large focus-within:ring-2 focus-within:ring-brand-gunmetal/20 sm:p-8"
                 style={{ contain: "layout" }}
               >
-                <SecurityIcon name={item.icon} />
-                <h3 className="mt-5 font-semibold text-neutral-900">
+                <SecurityIcon
+                  name={item.icon}
+                  className="transition-colors duration-300 group-hover:bg-white/20 group-hover:text-white"
+                />
+                <h3 className="mt-5 font-semibold text-neutral-900 transition-colors duration-300 group-hover:text-white">
                   {item.title}
                 </h3>
-                <p className="mt-2 flex-1 text-sm text-neutral-600">
+                <p className="mt-2 flex-1 text-sm text-neutral-600 transition-colors duration-300 group-hover:text-white">
                   {item.description}
                 </p>
               </article>
