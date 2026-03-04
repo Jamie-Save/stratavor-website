@@ -16,14 +16,23 @@ export default function Home() {
     <>
       <HeaderSticky />
       <main id="main-content" tabIndex={-1}>
+        {/* 1. Outcome-led hero */}
         <HeroSplit />
+        {/* 2. Social proof strip */}
         <TrustedByMarquee />
+        {/* 3. Problem → solution with product visual */}
         <ProblemSolutionSection />
+        {/* 4. Core capabilities */}
         <OutcomeGrid />
+        {/* 5. Platform deep-dive */}
         <WhatWeDo />
+        {/* 6. Integration ecosystem */}
         <IntegrationsMarquee />
+        {/* 7. Customer proof */}
         <TestimonialsShowcase />
+        {/* 8. Security & compliance */}
         <SecurityGrid />
+        {/* 9. Final CTA split */}
         <ThreeCtaBand />
         <TaglineStrip />
       </main>

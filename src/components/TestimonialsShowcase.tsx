@@ -272,7 +272,7 @@ export default function TestimonialsShowcase() {
 
   return (
     <section
-      id="testimonials"
+      id="customers"
       className="bg-neutral-50 py-section"
       aria-labelledby="testimonials-heading"
     >

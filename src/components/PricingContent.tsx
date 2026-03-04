@@ -223,7 +223,7 @@ export function PricingContent() {
                   })}
                 </ul>
                 <Link
-                  href="/contact"
+                  href={`/contact?intent=sales`}
                   className="mt-8 inline-flex w-full items-center justify-center rounded-xl bg-brand-gunmetal px-6 py-3.5 text-[15px] font-semibold text-white shadow-soft transition-all hover:bg-brand-gunmetal-dark hover:shadow-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gunmetal focus-visible:ring-offset-2"
                 >
                   {tier.cta}
@@ -290,8 +290,8 @@ export function PricingContent() {
           </p>
           <div className="mt-10 flex justify-center">
             <Link
-              href="/contact"
-              className="inline-flex items-center justify-center rounded-xl bg-brand-accent px-7 py-3.5 text-[15px] font-semibold text-white shadow-soft transition-all hover:bg-brand-accent-hover hover:shadow-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2"
+              href="/contact?intent=sales"
+              className="inline-flex items-center justify-center rounded-xl bg-brand-gunmetal px-7 py-3.5 text-[15px] font-semibold text-white shadow-soft transition-all hover:bg-brand-gunmetal-dark hover:shadow-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gunmetal focus-visible:ring-offset-2"
             >
               Request Strategic Consultation
             </Link>

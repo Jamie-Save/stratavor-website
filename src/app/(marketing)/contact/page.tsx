@@ -1,20 +1,21 @@
 import type { Metadata } from "next";
+import { ContactForm } from "@/components/ContactForm";
 
 export const metadata: Metadata = {
   title: "Contact | Stratavor",
-  description: "Get in touch with Stratavor for demos, support, or partnership.",
+  description: "Talk to sales, book a demo, or request a security review. Get in touch with the Stratavor team.",
 };
 
-export default function ContactPage() {
+export default async function ContactPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ intent?: string }>;
+}) {
+  const params = await searchParams;
   return (
-    <section className="min-h-screen bg-white py-section">
+    <section className="bg-neutral-50 py-section">
       <div className="mx-auto max-w-content px-content lg:px-8">
-        <h1 className="text-center text-3xl font-semibold tracking-tight text-brand-gunmetal sm:text-4xl">
-          Contact us
-        </h1>
-        <p className="mx-auto mt-6 max-w-2xl text-center text-body-lg text-neutral-600">
-          This page is coming soon. For now, use the Free Trial or See Pricing options to get started.
-        </p>
+        <ContactForm intent={params.intent} />
       </div>
     </section>
   );

@@ -34,17 +34,92 @@
 }
 
 @layer components {
-  /* Edge fade mask for marquees */
+  /* ── Edge fade mask for marquees ── */
   .marquee-mask {
     mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
     -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
   }
 
-
-  /* Section label – clean traffic light red */
+  /* ── Section label ── */
   .section-label {
     @apply text-caption font-semibold uppercase tracking-widest;
     color: var(--label-red);
+  }
+
+  /* ── Button primitives ── */
+  .btn {
+    @apply inline-flex items-center justify-center font-semibold transition-all;
+    @apply rounded-xl text-[15px] px-7 py-3.5;
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2;
+  }
+
+  .btn-primary {
+    @apply btn bg-brand-gunmetal text-white shadow-soft;
+    @apply hover:bg-brand-gunmetal-dark hover:shadow-medium;
+    @apply focus-visible:ring-brand-gunmetal;
+  }
+
+  .btn-trial {
+    @apply btn bg-brand-accent text-white shadow-soft;
+    @apply hover:bg-brand-accent-hover hover:shadow-medium;
+    @apply focus-visible:ring-brand-accent;
+  }
+
+  .btn-secondary {
+    @apply btn bg-brand-gunmetal text-white shadow-soft;
+    @apply hover:bg-brand-gunmetal-dark hover:shadow-medium;
+    @apply focus-visible:ring-brand-gunmetal;
+  }
+
+  .btn-outline {
+    @apply btn border border-neutral-200 bg-white text-brand-gunmetal;
+    @apply hover:border-brand-gunmetal hover:bg-brand-gunmetal hover:text-white;
+    @apply focus-visible:ring-brand-gunmetal;
+  }
+
+  .btn-ghost {
+    @apply btn bg-transparent text-neutral-600;
+    @apply hover:bg-neutral-100 hover:text-neutral-900;
+    @apply focus-visible:ring-brand-gunmetal;
+  }
+
+  .btn-inverse {
+    @apply btn border border-white/30 bg-transparent text-white;
+    @apply hover:bg-white/10;
+    @apply focus-visible:ring-offset-brand-gunmetal;
+    --tw-ring-color: rgba(255, 255, 255, 0.4);
+  }
+
+  /* ── Card primitive ── */
+  .card {
+    @apply rounded-xl border border-neutral-200 bg-white shadow-soft transition-all;
+  }
+
+  .card-interactive {
+    @apply card;
+    @apply hover:border-neutral-300 hover:shadow-medium;
+  }
+
+  .card-lift {
+    @apply card;
+    @apply duration-300 hover:-translate-y-1 hover:shadow-medium;
+  }
+
+  /* ── Section header ── */
+  .section-heading {
+    @apply mx-auto max-w-2xl text-center text-3xl font-semibold tracking-tight text-brand-gunmetal sm:text-4xl;
+  }
+
+  .section-subheading {
+    @apply mx-auto mt-6 max-w-xl text-center text-body-lg text-neutral-600;
+  }
+
+  /* ── Input primitive ── */
+  .input {
+    @apply w-full rounded-xl border border-neutral-200 bg-white px-4 py-3 text-neutral-800 shadow-xs transition-colors;
+    @apply placeholder:text-neutral-400;
+    @apply focus:border-brand-gunmetal focus:outline-none focus:ring-2;
+    --tw-ring-color: rgba(57, 84, 96, 0.2);
   }
 }
 

@@ -15,6 +15,8 @@ function NavDropdown({
 }) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const menuId = `${label.toLowerCase().replace(/\s+/g, "-")}-menu`;
+  const triggerId = `${label.toLowerCase().replace(/\s+/g, "-")}-trigger`;
 
   useEffect(() => {
     if (!open) return;
@@ -38,12 +40,12 @@ function NavDropdown({
         className="flex items-center gap-1.5 text-base font-medium text-neutral-600 transition-colors hover:text-brand-gunmetal focus-visible:text-brand-gunmetal"
         aria-expanded={open}
         aria-haspopup="true"
-        aria-controls="resources-menu"
-        id="resources-trigger"
+        aria-controls={menuId}
+        id={triggerId}
       >
         {label}
         <svg
-          className={`h-6 w-6 transition-transform ${open ? "rotate-180" : ""}`}
+          className={`h-5 w-5 transition-transform ${open ? "rotate-180" : ""}`}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -52,10 +54,10 @@ function NavDropdown({
         </svg>
       </button>
       <div
-        id="resources-menu"
+        id={menuId}
         role="menu"
         aria-orientation="vertical"
-        aria-labelledby="resources-trigger"
+        aria-labelledby={triggerId}
         className={`absolute left-1/2 top-full z-50 -mt-2 -translate-x-1/2 overflow-hidden rounded-xl border border-neutral-200 bg-white py-2 shadow-large origin-top transition-all duration-150 ${
           open ? "scale-100 opacity-100" : "pointer-events-none scale-95 opacity-0"
         }`}
@@ -80,16 +82,24 @@ type NavLink =
   | { label: string; children: { href: string; label: string }[] };
 
 const navLinks: NavLink[] = [
-  { href: "#what-we-do", label: "Product" },
+  {
+    label: "Solutions",
+    children: [
+      { href: "/#what-we-do", label: "Platform" },
+      { href: "/#solutions", label: "What We Deliver" },
+      { href: "/demo", label: "Live Demo" },
+    ],
+  },
   { href: "/pricing", label: "Pricing" },
   {
     label: "Resources",
     children: [
       { href: "/blog", label: "Blog" },
-      { href: "/trust", label: "Trust" },
-      { href: "/tools", label: "Tools" },
+      { href: "/tools", label: "Tools & Templates" },
+      { href: "/trust", label: "Trust Centre" },
     ],
   },
+  { href: "/about", label: "Company" },
 ];
 
 export default function HeaderSticky() {
@@ -211,18 +221,26 @@ export default function HeaderSticky() {
 
           {/* Login: desktop only */}
           <Link
-            href="/login"
-            className="hidden shrink-0 text-base font-medium text-neutral-600 transition-colors hover:text-brand-gunmetal focus-visible:text-brand-gunmetal md:inline-flex"
+            href="/contact?intent=login"
+            className="hidden shrink-0 text-sm font-medium text-neutral-500 transition-colors hover:text-brand-gunmetal focus-visible:text-brand-gunmetal md:inline-flex"
           >
-            Login
+            Sign in
+          </Link>
+
+          {/* Talk to Sales: desktop only */}
+          <Link
+            href="/contact?intent=sales"
+            className="hidden shrink-0 rounded-xl border border-neutral-200 bg-white px-5 py-2.5 text-sm font-semibold text-brand-gunmetal transition-all hover:border-brand-gunmetal hover:bg-brand-gunmetal hover:text-white focus-visible:ring-2 focus-visible:ring-brand-gunmetal/30 md:inline-flex"
+          >
+            Talk to Sales
           </Link>
 
           {/* Free Trial */}
           <Link
             href="/pricing"
-            className="shrink-0 rounded-xl bg-brand-accent px-6 py-3.5 text-base font-medium text-white shadow-soft transition-all hover:bg-brand-accent-hover hover:shadow-medium focus-visible:bg-brand-accent-hover focus-visible:ring-2 focus-visible:ring-brand-accent/30"
+            className="shrink-0 rounded-xl bg-brand-accent px-5 py-2.5 text-sm font-semibold text-white shadow-soft transition-all hover:bg-brand-accent-hover hover:shadow-medium focus-visible:bg-brand-accent-hover focus-visible:ring-2 focus-visible:ring-brand-accent/30"
           >
-            Free Trial
+            Start Free Trial
           </Link>
         </div>
       </div>
@@ -271,11 +289,11 @@ export default function HeaderSticky() {
             )}
             <li className="mt-3 border-t border-neutral-200 pt-3">
               <Link
-                href="/login"
+                href="/contact?intent=login"
                 onClick={closeMenu}
                 className="block rounded-xl px-5 py-4 text-base font-medium text-neutral-600 transition-colors hover:bg-neutral-100 hover:text-neutral-900 focus-visible:bg-neutral-100 focus-visible:text-neutral-900"
               >
-                Login
+                Customer login
               </Link>
             </li>
           </ul>

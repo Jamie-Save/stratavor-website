@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Titillium_Web } from "next/font/google";
+import { AnalyticsScript } from "@/components/Analytics";
+import { OrganizationJsonLd, SoftwareApplicationJsonLd } from "@/components/StructuredData";
 import "./globals.css";
 
 const titillium = Titillium_Web({
@@ -10,9 +12,31 @@ const titillium = Titillium_Web({
 });
 
 export const metadata: Metadata = {
-  title: "Stratavor | Strategic Intelligence & FP&A Platform",
+  title: {
+    default: "Stratavor | Strategic Intelligence & FP&A Platform",
+    template: "%s | Stratavor",
+  },
   description:
-    "Stratavor turns your data into board-ready insights. Reporting snapshots, risk management, OKRs, and AI-powered commentary—connected to your systems.",
+    "Stratavor turns your financial data into board-ready insights. AI-powered reporting, variance narratives, and strategic intelligence — connected to your systems.",
+  metadataBase: new URL("https://stratavor.com"),
+  openGraph: {
+    type: "website",
+    locale: "en_IE",
+    siteName: "Stratavor",
+    title: "Stratavor | Strategic Intelligence Platform",
+    description:
+      "Transform financial data into board-ready insights with AI-powered commentary and strategic intelligence.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Stratavor | Strategic Intelligence Platform",
+    description:
+      "Transform financial data into board-ready insights with AI-powered commentary.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
@@ -30,6 +54,9 @@ export default function RootLayout({
           Skip to content
         </a>
         {children}
+        <AnalyticsScript />
+        <OrganizationJsonLd />
+        <SoftwareApplicationJsonLd />
       </body>
     </html>
   );

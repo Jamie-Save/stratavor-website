@@ -23,7 +23,7 @@ const outcomes = [
   {
     title: "AI-Powered Variance Narratives",
     description:
-      "Ask your data questions in plain language. Get clear, contextual explanations of what changed and why—so you can explain variances to the board without digging through spreadsheets.",
+      "Ask your data questions in plain language. Get clear, contextual explanations of what changed and why — so you can explain variances to the board without digging through spreadsheets.",
     icon: (
       <svg
         className="h-6 w-6 shrink-0 text-inherit"
@@ -67,30 +67,32 @@ const outcomes = [
 export default function OutcomeGrid() {
   return (
     <section
+      id="solutions"
       className="bg-neutral-50 py-section"
       aria-labelledby="outcome-grid-heading"
     >
       <div className="mx-auto max-w-content px-content lg:px-8">
-        <h2
-          id="outcome-grid-heading"
-          className="mx-auto max-w-2xl text-center text-3xl font-semibold tracking-tight text-brand-gunmetal sm:text-4xl"
-        >
+        <p className="section-label mb-4 text-center">Solutions</p>
+        <h2 id="outcome-grid-heading" className="section-heading">
           What Stratavor Delivers
         </h2>
+        <p className="section-subheading">
+          Three core capabilities that transform how finance teams report, explain, and connect.
+        </p>
         <ul className="mt-16 grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-3">
           {outcomes.map((item, i) => (
             <li key={i}>
               <article
-                className="group flex h-full flex-col rounded-xl border border-neutral-200 bg-white p-6 shadow-soft transition-all duration-300 hover:-translate-y-2 hover:border-brand-gunmetal hover:bg-brand-gunmetal hover:shadow-large focus-within:ring-2 focus-within:ring-brand-gunmetal/20 sm:p-8"
+                className="group card-lift flex h-full flex-col p-6 sm:p-8 duration-normal hover:border-brand-gunmetal hover:bg-brand-gunmetal hover:shadow-large"
                 style={{ contain: "layout" }}
               >
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-neutral-100 text-brand-gunmetal transition-colors duration-300 group-hover:bg-white/20 group-hover:text-white">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-neutral-100 text-brand-gunmetal transition-colors duration-normal group-hover:bg-white/20 group-hover:text-white">
                   {item.icon}
                 </div>
-                <h3 className="mt-5 font-semibold text-neutral-900 transition-colors duration-300 group-hover:text-white">
+                <h3 className="mt-5 font-semibold text-neutral-900 transition-colors duration-normal group-hover:text-white">
                   {item.title}
                 </h3>
-                <p className="mt-2 flex-1 text-sm text-neutral-600 transition-colors duration-300 group-hover:text-white">
+                <p className="mt-2 flex-1 text-sm text-neutral-600 transition-colors duration-normal group-hover:text-white">
                   {item.description}
                 </p>
               </article>

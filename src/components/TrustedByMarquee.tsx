@@ -6,21 +6,19 @@ import { trustedByLogos } from "@/data/marquee";
 export default function TrustedByMarquee() {
   return (
     <section
-      className="bg-neutral-50 py-6"
+      className="border-y border-neutral-200/60 bg-white py-8"
       aria-label="Trusted by"
     >
-      <div className="mx-auto max-w-content px-content text-center lg:px-8">
-        <p className="section-label mb-4 text-center">
-          Trusted by
+      <div className="mx-auto max-w-content px-content lg:px-8">
+        <p className="mb-6 text-center text-xs font-semibold uppercase tracking-widest text-neutral-400">
+          Trusted by finance leaders at
         </p>
-        <div className="mt-6">
-          <Marquee
-            direction="horizontal"
-            items={trustedByLogos}
-            variant="trusted"
-            showPlayPause
-          />
-        </div>
+        <Marquee
+          direction="horizontal"
+          items={trustedByLogos}
+          variant="trusted"
+          showPlayPause={false}
+        />
       </div>
     </section>
   );

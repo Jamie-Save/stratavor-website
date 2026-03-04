@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { securityItems } from "@/data/security";
 import { SecurityIcon } from "./SecurityIcons";
 
@@ -9,16 +10,11 @@ export default function SecurityGrid() {
       aria-labelledby="security-heading"
     >
       <div className="mx-auto max-w-content px-content lg:px-8">
-        <p className="section-label mb-4 text-center">
-          Security & compliance
-        </p>
-        <h2
-          id="security-heading"
-          className="mx-auto max-w-2xl text-center text-3xl font-semibold tracking-tight text-brand-gunmetal sm:text-4xl"
-        >
+        <p className="section-label mb-4 text-center">Security &amp; compliance</p>
+        <h2 id="security-heading" className="section-heading">
           Enterprise-grade security
         </h2>
-        <p className="mx-auto mt-6 max-w-xl text-center text-body-lg text-neutral-600">
+        <p className="section-subheading">
           Built for teams who demand control, auditability, and compliance by design.
         </p>
 
@@ -26,23 +22,29 @@ export default function SecurityGrid() {
           {securityItems.map((item, i) => (
             <li key={i}>
               <article
-                className="group flex h-full flex-col rounded-xl border border-neutral-200 bg-white p-6 transition-all duration-300 hover:-translate-y-2 hover:border-brand-gunmetal hover:bg-brand-gunmetal hover:shadow-large focus-within:ring-2 focus-within:ring-brand-gunmetal/20 sm:p-8"
+                className="group card-lift flex h-full flex-col p-6 sm:p-8 duration-normal hover:border-brand-gunmetal hover:bg-brand-gunmetal hover:shadow-large"
                 style={{ contain: "layout" }}
               >
                 <SecurityIcon
                   name={item.icon}
-                  className="transition-colors duration-300 group-hover:bg-white/20 group-hover:text-white"
+                  className="transition-colors duration-normal group-hover:bg-white/20 group-hover:text-white"
                 />
-                <h3 className="mt-5 font-semibold text-neutral-900 transition-colors duration-300 group-hover:text-white">
+                <h3 className="mt-5 font-semibold text-neutral-900 transition-colors duration-normal group-hover:text-white">
                   {item.title}
                 </h3>
-                <p className="mt-2 flex-1 text-sm text-neutral-600 transition-colors duration-300 group-hover:text-white">
+                <p className="mt-2 flex-1 text-sm text-neutral-600 transition-colors duration-normal group-hover:text-white">
                   {item.description}
                 </p>
               </article>
             </li>
           ))}
         </ul>
+
+        <div className="mt-12 text-center">
+          <Link href="/trust" className="btn-outline">
+            Visit Trust Centre
+          </Link>
+        </div>
       </div>
     </section>
   );

@@ -18,10 +18,6 @@ const config: Config = {
           accent: "var(--accent)",
           "accent-hover": "var(--accent-hover)",
           "accent-light": "var(--accent-light)",
-          // Keep backward compat aliases
-          orange: "var(--accent)",
-          "orange-hover": "var(--accent-hover)",
-          "orange-light": "var(--accent-light)",
           "label-red": "var(--label-red)",
         },
         neutral: {
@@ -35,6 +31,21 @@ const config: Config = {
           700: "var(--neutral-700)",
           800: "var(--neutral-800)",
           900: "var(--neutral-900)",
+        },
+        surface: {
+          primary: "var(--surface-primary)",
+          secondary: "var(--surface-secondary)",
+          tertiary: "var(--surface-tertiary)",
+          inverse: "var(--surface-inverse)",
+          accent: "var(--surface-accent)",
+        },
+        semantic: {
+          success: "var(--success)",
+          "success-light": "var(--success-light)",
+          info: "var(--info)",
+          "info-light": "var(--info-light)",
+          warning: "var(--warning)",
+          "warning-light": "var(--warning-light)",
         },
       },
       maxWidth: {
@@ -67,13 +78,13 @@ const config: Config = {
       },
       fontSize: {
         "display-lg": ["3.5rem", { lineHeight: "1.1", letterSpacing: "-0.025em", fontWeight: "700" }],
-        "display": ["2.75rem", { lineHeight: "1.15", letterSpacing: "-0.02em", fontWeight: "700" }],
+        display: ["2.75rem", { lineHeight: "1.15", letterSpacing: "-0.02em", fontWeight: "700" }],
         "heading-lg": ["2rem", { lineHeight: "1.2", letterSpacing: "-0.015em", fontWeight: "600" }],
-        "heading": ["1.5rem", { lineHeight: "1.3", letterSpacing: "-0.01em", fontWeight: "600" }],
+        heading: ["1.5rem", { lineHeight: "1.3", letterSpacing: "-0.01em", fontWeight: "600" }],
         "body-lg": ["1.125rem", { lineHeight: "1.6" }],
-        "body": ["1rem", { lineHeight: "1.6" }],
+        body: ["1rem", { lineHeight: "1.6" }],
         "body-sm": ["0.875rem", { lineHeight: "1.5" }],
-        "caption": ["0.75rem", { lineHeight: "1.4", letterSpacing: "0.02em" }],
+        caption: ["0.75rem", { lineHeight: "1.4", letterSpacing: "0.02em" }],
       },
       keyframes: {
         marquee: {
@@ -84,13 +95,26 @@ const config: Config = {
           "0%": { opacity: "0", transform: "translateY(12px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
+        "fade-in": {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
       },
       animation: {
         marquee: "marquee 30s linear infinite",
         "fade-in-up": "fade-in-up 0.6s var(--ease-out-expo) both",
+        "fade-in": "fade-in 0.4s var(--ease-out-expo) both",
       },
       transitionTimingFunction: {
         "out-expo": "var(--ease-out-expo)",
+        "out-quart": "var(--ease-out-quart)",
+      },
+      transitionDuration: {
+        instant: "var(--duration-instant)",
+        fast: "var(--duration-fast)",
+        normal: "var(--duration-normal)",
+        slow: "var(--duration-slow)",
+        emphasis: "var(--duration-emphasis)",
       },
     },
   },
