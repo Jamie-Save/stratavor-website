@@ -1,5 +1,6 @@
 import Link from "next/link";
 import HeroCarousel from "./HeroCarousel";
+import { LIVE_DEMO_URL } from "@/data/demo-config";
 
 export default function HeroSplit() {
   return (
@@ -42,10 +43,12 @@ export default function HeroSplit() {
               Start Free Trial
             </Link>
             <Link
-              href="/contact?intent=sales"
+              href={LIVE_DEMO_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center justify-center rounded-xl border border-neutral-200 bg-white px-7 py-3.5 text-[15px] font-semibold text-brand-gunmetal transition-all duration-300 hover:border-brand-gunmetal hover:bg-brand-gunmetal hover:text-white focus-visible:border-brand-gunmetal focus-visible:bg-brand-gunmetal focus-visible:text-white focus-visible:ring-2 focus-visible:ring-brand-gunmetal/20"
             >
-              Talk to Sales
+              See Live Preview
             </Link>
           </div>
           <p className="mt-4 text-sm text-neutral-500">

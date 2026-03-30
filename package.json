@@ -3,10 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "predev": "node scripts/ensure-next-junction.cjs",
+    "prebuild": "node scripts/ensure-next-junction.cjs",
+    "prestart": "node scripts/ensure-next-junction.cjs",
+    "dev": "cross-env NODE_OPTIONS=--preserve-symlinks next dev",
+    "dev:turbo": "cross-env NODE_OPTIONS=--preserve-symlinks next dev --turbo",
+    "dev:clean": "node scripts/clean-next-all.cjs && node scripts/ensure-next-junction.cjs && cross-env NODE_OPTIONS=--preserve-symlinks next dev",
+    "dev:clean:local-next": "cross-env STRATAVOR_NEXT_NO_JUNCTION=1 node scripts/clean-next-all.cjs && cross-env STRATAVOR_NEXT_NO_JUNCTION=1 node scripts/ensure-next-junction.cjs && cross-env STRATAVOR_NEXT_NO_JUNCTION=1 NODE_OPTIONS=--preserve-symlinks next dev",
+    "build": "cross-env NODE_OPTIONS=--preserve-symlinks next build",
+    "start": "cross-env NODE_OPTIONS=--preserve-symlinks next start",
+    "preview": "npm run build && node scripts/preview-available-port.cjs",
+    "fix:app-routes": "node scripts/remove-stale-app-junctions.cjs",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "next": "^15.0.0",
@@ -17,6 +26,8 @@
     "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
+    "autoprefixer": "^10.4.20",
+    "cross-env": "^7.0.3",
     "eslint": "^9.0.0",
     "eslint-config-next": "^15.0.0",
     "postcss": "^8.4.0",

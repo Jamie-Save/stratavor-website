@@ -1,4 +1,4 @@
-import type { PolicySection } from "@/components/PolicyPageLayout";
+import type { PolicySection } from "@/types/policy";
 
 function sect(heading: string, content: string): PolicySection {
   return { heading, content };

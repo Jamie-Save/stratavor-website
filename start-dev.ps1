@@ -1,22 +1,9 @@
-# Stratavor - Start dev server (tries to find Node if not in PATH)
-$nodePaths = @(
-    "C:\Program Files\nodejs",
-    "${env:ProgramFiles}\nodejs",
-    "${env:ProgramFiles(x86)}\nodejs",
-    "$env:LOCALAPPDATA\Programs\node"
-)
+# Stratavor - Start dev server (next dev)
+$here = $PSScriptRoot
+. (Join-Path $here "scripts\ensure-node.ps1")
+. (Join-Path $here "scripts\ensure-next-junction.ps1")
 
-$found = $false
-foreach ($path in $nodePaths) {
-    if (Test-Path "$path\node.exe") {
-        $env:Path = "$path;$env:Path"
-        $found = $true
-        Write-Host "Using Node at: $path"
-        break
-    }
-}
-
-if (-not $found) {
+if (-not (Import-StratavorNodePath)) {
     Write-Host ""
     Write-Host "Node.js was not found. Please install it first:" -ForegroundColor Yellow
     Write-Host "  1. Go to https://nodejs.org/"
@@ -26,5 +13,9 @@ if (-not $found) {
     exit 1
 }
 
-Set-Location $PSScriptRoot
+Set-Location $here
+Ensure-StratavorNextJunction -ProjectRoot $here
+Write-Host ""
+Write-Host "Tip: If you see 404 on some routes (e.g. / vs /pricing), run: npm run dev:clean:local-next" -ForegroundColor DarkGray
+Write-Host ""
 npm run dev

@@ -15,12 +15,7 @@ export default function IntegrationsMarquee() {
           Xero, QuickBooks, Stripe, and more—so insights stay current.
         </p>
         <div className="mt-10">
-          <Marquee
-            direction="horizontal"
-            items={integrationLogos}
-            variant="integrations"
-            showPlayPause
-          />
+          <Marquee items={integrationLogos} variant="integrations" />
         </div>
       </div>
     </section>

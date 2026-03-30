@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { LIVE_DEMO_URL } from "@/data/demo-config";
 
 export const metadata: Metadata = {
   title: "About | Stratavor",
@@ -83,10 +84,12 @@ export default function AboutPage() {
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link
-              href="/contact?intent=sales"
+              href={LIVE_DEMO_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center justify-center rounded-xl bg-white px-7 py-3.5 text-[15px] font-semibold text-brand-gunmetal shadow-soft transition-all hover:bg-neutral-100 hover:shadow-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand-gunmetal"
             >
-              Talk to Sales
+              See Live Preview
             </Link>
             <Link
               href="/trust"

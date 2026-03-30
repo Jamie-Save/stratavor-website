@@ -13,12 +13,7 @@ export default function TrustedByMarquee() {
         <p className="mb-6 text-center text-xs font-semibold uppercase tracking-widest text-neutral-400">
           Trusted by finance leaders at
         </p>
-        <Marquee
-          direction="horizontal"
-          items={trustedByLogos}
-          variant="trusted"
-          showPlayPause={false}
-        />
+        <Marquee items={trustedByLogos} variant="trusted" />
       </div>
     </section>
   );

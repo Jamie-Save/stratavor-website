@@ -1,11 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
+import { LIVE_DEMO_URL } from "@/data/demo-config";
 
 const footerLinks = {
   Platform: [
     { href: "/#what-we-do", label: "Features" },
     { href: "/#integrations", label: "Integrations" },
-    { href: "/demo", label: "Live Demo" },
+    { href: LIVE_DEMO_URL, label: "Live Demo", external: true },
+    { href: "/power-bi", label: "Power BI" },
     { href: "/pricing", label: "Pricing" },
   ],
   Resources: [
@@ -15,7 +17,7 @@ const footerLinks = {
   ],
   Company: [
     { href: "/about", label: "About" },
-    { href: "/contact?intent=sales", label: "Talk to Sales" },
+    { href: LIVE_DEMO_URL, label: "See Live Preview", external: true },
     { href: "/contact", label: "Contact" },
   ],
   Legal: [
@@ -59,6 +61,7 @@ export default function Footer() {
                   <li key={link.href + link.label}>
                     <Link
                       href={link.href}
+                      {...("external" in link && link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                       className="text-sm text-white/60 transition-colors hover:text-white focus-visible:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-gunmetal"
                     >
                       {link.label}

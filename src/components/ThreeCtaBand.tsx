@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { CONTACT_DEMO_URL } from "@/data/contact-links";
+import { LIVE_DEMO_URL } from "@/data/demo-config";
 
 export default function ThreeCtaBand() {
   return (
@@ -24,13 +26,15 @@ export default function ThreeCtaBand() {
             Start Free Trial
           </Link>
           <Link
-            href="/contact?intent=sales"
+            href={LIVE_DEMO_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex w-full items-center justify-center rounded-xl border border-white/30 bg-transparent px-7 py-3.5 text-[15px] font-semibold text-white transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-gunmetal sm:w-auto"
           >
-            Talk to Sales
+            See Live Preview
           </Link>
           <Link
-            href="/contact?intent=demo"
+            href={CONTACT_DEMO_URL}
             className="inline-flex w-full items-center justify-center rounded-xl border border-white/30 bg-transparent px-7 py-3.5 text-[15px] font-semibold text-white transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-gunmetal sm:w-auto"
           >
             Book a Demo

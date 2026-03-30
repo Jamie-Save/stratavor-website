@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
+import { CONTACT_SECURITY_URL } from "@/data/contact-links";
 import {
   TRUST_DOCUMENTS,
   TRUST_CATEGORIES,
@@ -56,7 +57,7 @@ export function TrustContent() {
               Browse policies
             </Link>
             <Link
-              href="/contact?intent=security"
+              href={CONTACT_SECURITY_URL}
               className="inline-flex items-center justify-center rounded-xl border border-neutral-300 bg-white px-6 py-3 text-[15px] font-semibold text-neutral-700 transition-colors hover:border-neutral-400 hover:bg-neutral-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gunmetal focus-visible:ring-offset-2"
             >
               Request a security review

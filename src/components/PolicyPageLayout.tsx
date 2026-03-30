@@ -1,9 +1,5 @@
 import Link from "next/link";
-
-export interface PolicySection {
-  heading: string;
-  content: string;
-}
+import type { PolicySection } from "@/types/policy";
 
 interface PolicyPageLayoutProps {
   title: string;

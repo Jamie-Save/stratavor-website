@@ -5,102 +5,10 @@ import Image from "next/image";
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { useScrollState } from "@/hooks/useScrollState";
 import { useFocusTrap } from "@/hooks/useFocusTrap";
-
-function NavDropdown({
-  label,
-  items,
-}: {
-  label: string;
-  items: { href: string; label: string }[];
-}) {
-  const [open, setOpen] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-  const menuId = `${label.toLowerCase().replace(/\s+/g, "-")}-menu`;
-  const triggerId = `${label.toLowerCase().replace(/\s+/g, "-")}-trigger`;
-
-  useEffect(() => {
-    if (!open) return;
-    const handleClickOutside = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
-    };
-    window.addEventListener("click", handleClickOutside);
-    return () => window.removeEventListener("click", handleClickOutside);
-  }, [open]);
-
-  return (
-    <div
-      ref={ref}
-      className="relative"
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
-    >
-      <button
-        type="button"
-        onClick={() => setOpen((o) => !o)}
-        className="flex items-center gap-1.5 text-base font-medium text-neutral-600 transition-colors hover:text-brand-gunmetal focus-visible:text-brand-gunmetal"
-        aria-expanded={open}
-        aria-haspopup="true"
-        aria-controls={menuId}
-        id={triggerId}
-      >
-        {label}
-        <svg
-          className={`h-5 w-5 transition-transform ${open ? "rotate-180" : ""}`}
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-        </svg>
-      </button>
-      <div
-        id={menuId}
-        role="menu"
-        aria-orientation="vertical"
-        aria-labelledby={triggerId}
-        className={`absolute left-1/2 top-full z-50 -mt-2 -translate-x-1/2 overflow-hidden rounded-xl border border-neutral-200 bg-white py-2 shadow-large origin-top transition-all duration-150 ${
-          open ? "scale-100 opacity-100" : "pointer-events-none scale-95 opacity-0"
-        }`}
-      >
-        {items.map((item) => (
-          <Link
-            key={item.href}
-            href={item.href}
-            role="menuitem"
-            className="block min-w-[270px] whitespace-nowrap px-6 py-4 text-base text-neutral-600 transition-colors hover:bg-neutral-50 hover:text-neutral-900"
-          >
-            {item.label}
-          </Link>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-type NavLink =
-  | { href: string; label: string }
-  | { label: string; children: { href: string; label: string }[] };
-
-const navLinks: NavLink[] = [
-  {
-    label: "Solutions",
-    children: [
-      { href: "/#what-we-do", label: "Platform" },
-      { href: "/#solutions", label: "What We Deliver" },
-      { href: "/demo", label: "Live Demo" },
-    ],
-  },
-  { href: "/pricing", label: "Pricing" },
-  {
-    label: "Resources",
-    children: [
-      { href: "/blog", label: "Blog" },
-      { href: "/tools", label: "Tools & Templates" },
-      { href: "/trust", label: "Trust Centre" },
-    ],
-  },
-  { href: "/about", label: "Company" },
-];
+import { CONTACT_LOGIN_URL } from "@/data/contact-links";
+import { LIVE_DEMO_URL } from "@/data/demo-config";
+import { MARKETING_NAV_LINKS } from "@/data/nav";
+import { NavDropdown } from "@/components/nav/NavDropdown";
 
 export default function HeaderSticky() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -165,7 +73,7 @@ export default function HeaderSticky() {
           className="hidden flex-1 items-center justify-center gap-10 md:flex"
           aria-label="Main"
         >
-          {navLinks.map((link) =>
+          {MARKETING_NAV_LINKS.map((link) =>
             "children" in link ? (
               <NavDropdown key={link.label} label={link.label} items={link.children} />
             ) : (
@@ -221,18 +129,20 @@ export default function HeaderSticky() {
 
           {/* Login: desktop only */}
           <Link
-            href="/contact?intent=login"
+            href={CONTACT_LOGIN_URL}
             className="hidden shrink-0 text-sm font-medium text-neutral-500 transition-colors hover:text-brand-gunmetal focus-visible:text-brand-gunmetal md:inline-flex"
           >
             Sign in
           </Link>
 
-          {/* Talk to Sales: desktop only */}
+          {/* See Live Preview: desktop only */}
           <Link
-            href="/contact?intent=sales"
+            href={LIVE_DEMO_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="hidden shrink-0 rounded-xl border border-neutral-200 bg-white px-5 py-2.5 text-sm font-semibold text-brand-gunmetal transition-all hover:border-brand-gunmetal hover:bg-brand-gunmetal hover:text-white focus-visible:ring-2 focus-visible:ring-brand-gunmetal/30 md:inline-flex"
           >
-            Talk to Sales
+            See Live Preview
           </Link>
 
           {/* Free Trial */}
@@ -258,7 +168,7 @@ export default function HeaderSticky() {
       >
         <nav aria-label="Mobile">
           <ul className="flex flex-col px-content py-6">
-            {navLinks.map((link) =>
+            {MARKETING_NAV_LINKS.map((link) =>
               "children" in link ? (
                 <li key={link.label}>
                   <p className="px-5 py-3 text-sm font-semibold uppercase tracking-wider text-neutral-500">
@@ -269,6 +179,7 @@ export default function HeaderSticky() {
                       key={child.href}
                       href={child.href}
                       onClick={closeMenu}
+                      {...(child.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                       className="block rounded-xl py-3 pl-8 pr-5 text-base text-neutral-600 transition-colors hover:bg-neutral-100 hover:text-neutral-900"
                     >
                       {child.label}
@@ -289,7 +200,7 @@ export default function HeaderSticky() {
             )}
             <li className="mt-3 border-t border-neutral-200 pt-3">
               <Link
-                href="/contact?intent=login"
+                href={CONTACT_LOGIN_URL}
                 onClick={closeMenu}
                 className="block rounded-xl px-5 py-4 text-base font-medium text-neutral-600 transition-colors hover:bg-neutral-100 hover:text-neutral-900 focus-visible:bg-neutral-100 focus-visible:text-neutral-900"
               >

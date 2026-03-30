@@ -86,25 +86,6 @@ const config: Config = {
         "body-sm": ["0.875rem", { lineHeight: "1.5" }],
         caption: ["0.75rem", { lineHeight: "1.4", letterSpacing: "0.02em" }],
       },
-      keyframes: {
-        marquee: {
-          "0%": { transform: "translateX(0)" },
-          "100%": { transform: "translateX(-50%)" },
-        },
-        "fade-in-up": {
-          "0%": { opacity: "0", transform: "translateY(12px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
-        },
-        "fade-in": {
-          "0%": { opacity: "0" },
-          "100%": { opacity: "1" },
-        },
-      },
-      animation: {
-        marquee: "marquee 30s linear infinite",
-        "fade-in-up": "fade-in-up 0.6s var(--ease-out-expo) both",
-        "fade-in": "fade-in 0.4s var(--ease-out-expo) both",
-      },
       transitionTimingFunction: {
         "out-expo": "var(--ease-out-expo)",
         "out-quart": "var(--ease-out-quart)",
