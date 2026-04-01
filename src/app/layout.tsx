@@ -1,14 +1,21 @@
 import type { Metadata } from "next";
-import { Titillium_Web } from "next/font/google";
+import { IBM_Plex_Sans, IBM_Plex_Serif } from "next/font/google";
 import { AnalyticsScript } from "@/components/Analytics";
 import { OrganizationJsonLd, SoftwareApplicationJsonLd } from "@/components/StructuredData";
 import "./globals.css";
 
-const titillium = Titillium_Web({
+const plexSans = IBM_Plex_Sans({
   subsets: ["latin"],
-  weight: ["300", "400", "600", "700"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
-  variable: "--font-titillium",
+  variable: "--font-plex-sans",
+});
+
+const plexSerif = IBM_Plex_Serif({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+  variable: "--font-plex-serif",
 });
 
 export const metadata: Metadata = {
@@ -45,7 +52,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={titillium.variable}>
+    <html lang="en" className={`${plexSans.variable} ${plexSerif.variable}`}>
       <head>
         <meta name="color-scheme" content="light" />
       </head>

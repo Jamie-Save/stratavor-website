@@ -12,6 +12,8 @@ export type MarqueeItemLogo = {
 type MarqueeProps = {
   items: MarqueeItemLogo[];
   variant?: "trusted" | "integrations";
+  /** Dark gunmetal band (trusted row on home). */
+  surface?: "light" | "dark";
 };
 
 // Logo slot: image or placeholder div (fixed aspect for no layout shift)
@@ -19,14 +21,21 @@ function LogoSlot({
   item,
   variant,
   grayscale,
+  surface,
 }: {
   item: MarqueeItemLogo;
   variant: "trusted" | "integrations";
   grayscale?: boolean;
+  surface?: "light" | "dark";
 }) {
   const base =
-    "flex shrink-0 items-center justify-center text-sm font-medium text-neutral-500";
-  const trusted = "h-12 w-32 rounded-lg bg-neutral-100 px-6";
+    surface === "dark" && variant === "trusted"
+      ? "flex shrink-0 items-center justify-center text-sm font-medium text-white/85"
+      : "flex shrink-0 items-center justify-center text-sm font-medium text-neutral-500";
+  const trusted =
+    surface === "dark"
+      ? "h-12 w-32 rounded-lg border border-white/15 bg-white/10 px-6"
+      : "h-12 w-32 rounded-lg bg-neutral-100 px-6";
   const integrations =
     "h-14 w-36 rounded-lg border border-neutral-200 bg-white px-8 text-neutral-600";
 
@@ -63,7 +72,11 @@ function LogoSlot({
   );
 }
 
-export default function Marquee({ items, variant = "trusted" }: MarqueeProps) {
+export default function Marquee({
+  items,
+  variant = "trusted",
+  surface = "light",
+}: MarqueeProps) {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -84,7 +97,7 @@ export default function Marquee({ items, variant = "trusted" }: MarqueeProps) {
         className="flex flex-wrap items-center justify-center gap-4"
       >
         {items.map((item, i) => (
-          <LogoSlot key={i} item={item} variant={variant} />
+          <LogoSlot key={i} item={item} variant={variant} surface={surface} />
         ))}
       </div>
     );
@@ -105,6 +118,7 @@ export default function Marquee({ items, variant = "trusted" }: MarqueeProps) {
               key={i}
               item={item}
               variant={variant}
+              surface={surface}
               grayscale={isIntegrations ? false : true}
             />
           ))}

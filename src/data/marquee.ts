@@ -2,7 +2,7 @@
  * TODO: Replace with real assets and data.
  * - trustedByLogos: Add logo files to public/images/logos/trusted/
  * - integrationLogos: Add logo files to public/images/logos/integrations/
- * - whatWeDoImages: Add image files to public/images/what-we-do/
+ * - whatWeDoImages: Product screenshots in public/hero/ (same set as the home hero carousel)
  */
 
 export type LogoItem = {
@@ -38,9 +38,24 @@ export const integrationLogos: LogoItem[] = [
 ];
 
 export const whatWeDoImages: ImageItem[] = [
-  { src: "/images/what-we-do/what-we-do-1.png", alt: "Stratavor OKRs & Initiatives", bullet: "Board-ready financials with AI narrative on what matters." },
-  { src: "/images/what-we-do/what-we-do-2.png", alt: "Stratavor Data & Settings", bullet: "Risk register & OKRs: monitor risks and track objectives in one place." },
-  { src: "/images/what-we-do/what-we-do-3.png", alt: "Stratavor Strategic Insights", bullet: "Strategic profile: ambition, posture, and priorities for AI recommendations." },
-  { src: "/images/what-we-do/what-we-do-4.png", alt: "Stratavor Data & Settings - Configuration", bullet: "Connect your systems. One source of truth for data and settings." },
-  { src: "/images/what-we-do/what-we-do-5.png", alt: "Stratavor Strategic Insights - AI Dashboard", bullet: "AI insights and traceability—without the spreadsheet sprawl." },
+  {
+    src: "/hero/intelligence-hub.png",
+    alt: "Stratavor Intelligence Hub dashboard with executive summary and KPI cards",
+  },
+  {
+    src: "/hero/reporting-snapshots.png",
+    alt: "Stratavor Reporting Snapshots library with report types and ready-to-view reports",
+  },
+  {
+    src: "/hero/risk-intelligence.png",
+    alt: "Stratavor Risk Intelligence risk register with scores and AI-suggested mitigations",
+  },
+  {
+    src: "/hero/dashboard-with-chat.png",
+    alt: "Stratavor dashboard with Ask Stratavor AI assistant panel open alongside reporting",
+  },
+  {
+    src: "/hero/ask-stratavor.png",
+    alt: "Ask Stratavor AI chat with suggested questions and input field",
+  },
 ];

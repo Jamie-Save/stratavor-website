@@ -7,7 +7,6 @@ import IntegrationsMarquee from "@/components/IntegrationsMarquee";
 import TestimonialsShowcase from "@/components/TestimonialsShowcase";
 import SecurityGrid from "@/components/SecurityGrid";
 import ThreeCtaBand from "@/components/ThreeCtaBand";
-import { TaglineStrip } from "@/components/TaglineStrip";
 
 export default function Home() {
   return (
@@ -21,7 +20,6 @@ export default function Home() {
       <TestimonialsShowcase />
       <SecurityGrid />
       <ThreeCtaBand />
-      <TaglineStrip />
     </>
   );
 }

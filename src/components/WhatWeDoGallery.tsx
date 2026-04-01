@@ -174,10 +174,10 @@ export default function WhatWeDoGallery() {
               <Image
                 src={whatWeDoImages[centerIdx].src}
                 alt={whatWeDoImages[centerIdx].alt}
-                width={1200}
-                height={750}
+                width={1024}
+                height={475}
                 className="block h-auto w-full"
-                sizes="(max-width: 640px) 95vw, (max-width: 1024px) 85vw, 1200px"
+                sizes="(max-width: 640px) 95vw, (max-width: 1024px) 85vw, 1024px"
                 priority
               />
               {whatWeDoImages[centerIdx].bullet && (
@@ -224,6 +224,7 @@ export default function WhatWeDoGallery() {
         {whatWeDoImages.map((_, i) => (
           <button
             key={i}
+            type="button"
             role="tab"
             aria-selected={i === centerIndex}
             aria-label={`Go to slide ${i + 1} of ${total}`}

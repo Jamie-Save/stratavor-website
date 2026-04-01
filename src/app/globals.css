@@ -54,15 +54,15 @@
   }
 
   .btn-primary {
-    @apply btn bg-brand-gunmetal text-white shadow-soft;
-    @apply hover:bg-brand-gunmetal-dark hover:shadow-medium;
-    @apply focus-visible:ring-brand-gunmetal;
+    @apply btn border-2 border-brand-gunmetal bg-brand-gunmetal text-white shadow-soft;
+    @apply hover:bg-white hover:text-brand-gunmetal hover:shadow-medium;
+    @apply focus-visible:ring-brand-gunmetal focus-visible:ring-offset-white;
   }
 
   .btn-outline {
     @apply btn border border-neutral-200 bg-white text-brand-gunmetal;
     @apply hover:border-brand-gunmetal hover:bg-brand-gunmetal hover:text-white;
-    @apply focus-visible:ring-brand-gunmetal;
+    @apply focus-visible:ring-brand-gunmetal focus-visible:ring-offset-white;
   }
 
   /* ── Card primitive ── */

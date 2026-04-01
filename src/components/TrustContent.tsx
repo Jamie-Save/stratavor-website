@@ -50,16 +50,10 @@ export function TrustContent() {
             commitments, written clearly and maintained with the rigor due diligence expects.
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <Link
-              href="#policies"
-              className="inline-flex items-center justify-center rounded-xl bg-brand-gunmetal px-6 py-3 text-[15px] font-semibold text-white shadow-soft transition-all hover:bg-brand-gunmetal-dark hover:shadow-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gunmetal focus-visible:ring-offset-2"
-            >
+            <Link href="#policies" className="btn-primary px-6 py-3 text-[15px]">
               Browse policies
             </Link>
-            <Link
-              href={CONTACT_SECURITY_URL}
-              className="inline-flex items-center justify-center rounded-xl border border-neutral-300 bg-white px-6 py-3 text-[15px] font-semibold text-neutral-700 transition-colors hover:border-neutral-400 hover:bg-neutral-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gunmetal focus-visible:ring-offset-2"
-            >
+            <Link href={CONTACT_SECURITY_URL} className="btn-outline px-6 py-3 text-[15px]">
               Request a security review
             </Link>
           </div>
@@ -97,10 +91,10 @@ export function TrustContent() {
               <button
                 type="button"
                 onClick={() => setCategory("All")}
-                className={`rounded-full px-4 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gunmetal focus-visible:ring-offset-2 ${
+                className={`rounded-full border-2 px-4 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gunmetal focus-visible:ring-offset-2 focus-visible:ring-offset-white ${
                   category === "All"
-                    ? "bg-brand-gunmetal text-white"
-                    : "bg-white text-neutral-600 shadow-xs hover:bg-neutral-100 hover:text-neutral-900"
+                    ? "border-brand-gunmetal bg-brand-gunmetal text-white hover:bg-white hover:text-brand-gunmetal"
+                    : "border-transparent bg-white text-brand-gunmetal shadow-xs hover:border-brand-gunmetal hover:bg-brand-gunmetal hover:text-white"
                 }`}
               >
                 All
@@ -110,10 +104,10 @@ export function TrustContent() {
                   key={cat}
                   type="button"
                   onClick={() => setCategory(cat)}
-                  className={`rounded-full px-4 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gunmetal focus-visible:ring-offset-2 ${
+                  className={`rounded-full border-2 px-4 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gunmetal focus-visible:ring-offset-2 focus-visible:ring-offset-white ${
                     category === cat
-                      ? "bg-brand-gunmetal text-white"
-                      : "bg-white text-neutral-600 shadow-xs hover:bg-neutral-100 hover:text-neutral-900"
+                      ? "border-brand-gunmetal bg-brand-gunmetal text-white hover:bg-white hover:text-brand-gunmetal"
+                      : "border-transparent bg-white text-brand-gunmetal shadow-xs hover:border-brand-gunmetal hover:bg-brand-gunmetal hover:text-white"
                   }`}
                 >
                   {cat}

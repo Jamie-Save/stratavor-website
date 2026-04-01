@@ -184,7 +184,7 @@ export function ContactForm({ intent = "general" }: { intent?: string }) {
           <button
             type="submit"
             disabled={sending}
-            className="inline-flex w-full items-center justify-center rounded-xl bg-brand-gunmetal px-7 py-3.5 text-[15px] font-semibold text-white shadow-soft transition-all hover:bg-brand-gunmetal-dark hover:shadow-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gunmetal focus-visible:ring-offset-2 disabled:opacity-60"
+            className="btn-primary w-full disabled:opacity-60"
           >
             {sending ? "Sending..." : "Submit enquiry"}
           </button>

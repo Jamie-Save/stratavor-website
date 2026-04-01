@@ -8,40 +8,39 @@ import {
   useCallback,
 } from "react";
 
-const SLIDE_COUNT = 5;
 const AUTO_ADVANCE_MS = 5000;
 
-const slides: { src: string; title: string; description: string }[] = [
+/** All hero screenshots are exported at this size (keeps layout tight, no letterboxing). */
+const HERO_IMG_WIDTH = 1024;
+const HERO_IMG_HEIGHT = 475;
+
+const slides: { src: string; alt: string }[] = [
   {
-    src: "/hero/slide-1.png",
-    title: "Lifetime Value, CAC & Payback",
-    description: "Connects retention and pricing to customer lifetime value and CAC payback.",
+    src: "/hero/intelligence-hub.png",
+    alt: "Stratavor Intelligence Hub dashboard with executive summary and KPI cards",
   },
   {
-    src: "/hero/slide-2.png",
-    title: "Revenue Churn, Expansion & NRR",
-    description: "Gross MRR churn, upsell expansion and net revenue retention in a single view.",
+    src: "/hero/reporting-snapshots.png",
+    alt: "Stratavor Reporting Snapshots library with report types and ready-to-view reports",
   },
   {
-    src: "/hero/slide-3.png",
-    title: "Insights & Commentary",
-    description: "AI-powered virtual analyst explains what changed, why it matters, and where to focus.",
+    src: "/hero/risk-intelligence.png",
+    alt: "Stratavor Risk Intelligence risk register with scores and AI-suggested mitigations",
   },
   {
-    src: "/hero/slide-4.png",
-    title: "Financial Snapshot",
-    description: "Executive-ready summaries with data sourced directly from your systems.",
+    src: "/hero/dashboard-with-chat.png",
+    alt: "Stratavor dashboard with Ask Stratavor AI assistant panel open alongside reporting",
   },
   {
-    src: "/hero/slide-5.png",
-    title: "Numbers That Matter",
-    description: "Headline financials and customer metrics with MoM and YoY movements, plus AI narrative.",
+    src: "/hero/ask-stratavor.png",
+    alt: "Ask Stratavor AI chat with suggested questions and input field",
   },
 ];
 
+const SLIDE_COUNT = slides.length;
+
 export default function HeroCarousel() {
   const [index, setIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
@@ -57,27 +56,26 @@ export default function HeroCarousel() {
     return () => mq.removeEventListener("change", handler);
   }, []);
 
-  const goTo = useCallback(
-    (i: number) => {
-      const next = ((i % SLIDE_COUNT) + SLIDE_COUNT) % SLIDE_COUNT;
-      setIndex(next);
-      if (liveRegionRef.current) {
-        liveRegionRef.current.textContent = `Slide ${next + 1} of ${SLIDE_COUNT}: ${slides[next].title}`;
-      }
-    },
-    []
-  );
+  const goTo = useCallback((i: number) => {
+    setIndex(((i % SLIDE_COUNT) + SLIDE_COUNT) % SLIDE_COUNT);
+  }, []);
 
-  const goNext = useCallback(() => goTo(index + 1), [index, goTo]);
-  const goPrev = useCallback(() => goTo(index - 1), [index, goTo]);
+  const goNext = useCallback(() => {
+    setIndex((i) => (i + 1) % SLIDE_COUNT);
+  }, []);
+
+  const goPrev = useCallback(() => {
+    setIndex((i) => (i - 1 + SLIDE_COUNT) % SLIDE_COUNT);
+  }, []);
 
   useEffect(() => {
-    if (
-      prefersReducedMotion ||
-      isPaused ||
-      isHovered ||
-      isFocused
-    ) {
+    if (liveRegionRef.current) {
+      liveRegionRef.current.textContent = `Slide ${index + 1} of ${SLIDE_COUNT}`;
+    }
+  }, [index]);
+
+  useEffect(() => {
+    if (prefersReducedMotion || isHovered || isFocused) {
       if (timerRef.current) {
         clearInterval(timerRef.current);
         timerRef.current = null;
@@ -88,16 +86,10 @@ export default function HeroCarousel() {
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
-  }, [prefersReducedMotion, isPaused, isHovered, isFocused, index, goNext]);
+  }, [prefersReducedMotion, isHovered, isFocused, goNext]);
 
-  const pauseForInteraction = useCallback(() => {
-    setIsHovered(true);
-    setIsFocused(true);
-  }, []);
-  const resumeAfterInteraction = useCallback(() => {
-    setIsHovered(false);
-    setIsFocused(false);
-  }, []);
+  const onCarouselMouseEnter = useCallback(() => setIsHovered(true), []);
+  const onCarouselMouseLeave = useCallback(() => setIsHovered(false), []);
 
   const handleFocusOut = useCallback((e: React.FocusEvent) => {
     if (!containerRef.current) return;
@@ -106,18 +98,27 @@ export default function HeroCarousel() {
     setIsFocused(false);
   }, []);
 
+  const handleCarouselClick = useCallback(
+    (e: React.MouseEvent) => {
+      if ((e.target as HTMLElement).closest("button")) return;
+      goNext();
+    },
+    [goNext],
+  );
+
   return (
     <div
       ref={containerRef}
-      className="group relative aspect-[16/9] w-full overflow-hidden rounded-2xl bg-neutral-800 shadow-large ring-1 ring-neutral-200/50"
+      className="group relative w-full cursor-pointer overflow-hidden rounded-2xl shadow-large ring-1 ring-neutral-200/80"
       role="region"
       aria-roledescription="carousel"
-      aria-label="Hero image carousel"
+      aria-label="Product screenshots. Click the image to advance to the next slide."
       tabIndex={0}
-      onMouseEnter={pauseForInteraction}
-      onMouseLeave={resumeAfterInteraction}
-      onFocusCapture={pauseForInteraction}
+      onMouseEnter={onCarouselMouseEnter}
+      onMouseLeave={onCarouselMouseLeave}
+      onFocusCapture={() => setIsFocused(true)}
       onBlurCapture={handleFocusOut}
+      onClick={handleCarouselClick}
       onKeyDown={(e) => {
         if (e.key === "ArrowLeft") {
           e.preventDefault();
@@ -137,35 +138,31 @@ export default function HeroCarousel() {
         className="sr-only"
       />
 
-      {/* Slides strip: right-to-left slide (enter from right, exit to left) */}
+      {/* Track width = N × viewport; each slide is 1/N of track so translate is by slide index */}
       <div
-        className={`flex h-full will-change-transform transition-transform ${
+        className={`flex will-change-transform transition-transform ${
           prefersReducedMotion ? "duration-0" : "duration-500 ease-out"
         }`}
-        style={{ transform: `translateX(-${index * 100}%)` }}
+        style={{
+          width: `${SLIDE_COUNT * 100}%`,
+          transform: `translateX(-${(index * 100) / SLIDE_COUNT}%)`,
+        }}
       >
         {slides.map((slide, i) => (
-          <div key={i} className="relative h-full w-full shrink-0">
+          <div
+            key={i}
+            className="shrink-0"
+            style={{ width: `${100 / SLIDE_COUNT}%` }}
+          >
             <Image
               src={slide.src}
-              alt=""
-              fill
-              className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+              alt={slide.alt}
+              width={HERO_IMG_WIDTH}
+              height={HERO_IMG_HEIGHT}
+              className="block h-auto w-full"
               sizes="(max-width: 1024px) 100vw, 50vw"
               priority={i === 0}
             />
-            {/* Hover overlay: gradient + text */}
-            <div
-              className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-t from-brand-gunmetal/80 via-brand-gunmetal/20 to-transparent p-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100"
-              aria-hidden
-            >
-              <p className="text-center text-lg font-semibold text-white">
-                {slide.title}
-              </p>
-              <p className="mt-2 max-w-md text-center text-sm text-white/90">
-                {slide.description}
-              </p>
-            </div>
           </div>
         ))}
       </div>
@@ -173,20 +170,22 @@ export default function HeroCarousel() {
       {/* Subtle inner vignette ring */}
       <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-inset ring-black/[0.04]" aria-hidden />
 
-      {/* Controls */}
-      <div className="absolute bottom-4 left-0 right-0 flex items-center justify-between px-4">
-        {/* Pagination dots */}
+      {/* Pagination pills: bottom-left, show on hover / focus */}
+      <div
+        className="pointer-events-none absolute bottom-3 left-3 rounded-full bg-black/40 px-2.5 py-2 opacity-0 backdrop-blur-sm transition-opacity duration-200 group-hover:pointer-events-auto group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:opacity-100"
+      >
         <div
           role="tablist"
-          aria-label="Slide thumbnails"
+          aria-label="Slides"
           className="flex items-center gap-2"
         >
           {slides.map((_, i) => (
             <button
               key={i}
+              type="button"
               role="tab"
               aria-selected={i === index}
-              aria-label={`Slide ${i + 1} of ${SLIDE_COUNT}: ${slides[i].title}`}
+              aria-label={`Go to slide ${i + 1} of ${SLIDE_COUNT}`}
               onClick={() => goTo(i)}
               className={`h-2.5 rounded-full transition-all ${
                 i === index
@@ -195,46 +194,6 @@ export default function HeroCarousel() {
               }`}
             />
           ))}
-        </div>
-
-        {/* Prev / Play-Pause / Next */}
-        <div className="flex items-center gap-1">
-          <button
-            type="button"
-            onClick={goPrev}
-            aria-label="Previous slide"
-            className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/15 backdrop-blur-sm text-white transition-colors hover:bg-white/25 focus-visible:bg-white/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-          >
-            <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-          <button
-            type="button"
-            onClick={() => setIsPaused((p) => !p)}
-            aria-label={isPaused ? "Play carousel" : "Pause carousel"}
-            className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/15 backdrop-blur-sm text-white transition-colors hover:bg-white/25 focus-visible:bg-white/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-          >
-            {isPaused ? (
-              <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            ) : (
-              <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" />
-              </svg>
-            )}
-          </button>
-          <button
-            type="button"
-            onClick={goNext}
-            aria-label="Next slide"
-            className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/15 backdrop-blur-sm text-white transition-colors hover:bg-white/25 focus-visible:bg-white/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-          >
-            <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
         </div>
       </div>
 

@@ -27,13 +27,16 @@ export function PricingCard({ plan, billing, currency }: PricingCardProps) {
     if (isDarkCard && plan.ctaStyle === "accent") {
       return "bg-brand-accent text-white hover:bg-brand-accent-hover hover:shadow-medium focus-visible:ring-brand-accent";
     }
+    if (isDarkCard && plan.ctaStyle !== "accent") {
+      return "border-2 border-white/30 bg-white text-brand-gunmetal hover:border-brand-gunmetal hover:bg-brand-gunmetal hover:text-white focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-gunmetal";
+    }
     if (!isDarkCard && plan.ctaStyle === "inverse-outline") {
-      return "border-2 border-brand-gunmetal/25 bg-white text-brand-gunmetal hover:border-brand-gunmetal/40 hover:bg-neutral-50 focus-visible:ring-brand-gunmetal";
+      return "border-2 border-neutral-200 bg-white text-brand-gunmetal hover:border-brand-gunmetal hover:bg-brand-gunmetal hover:text-white focus-visible:ring-brand-gunmetal";
     }
     if (plan.ctaStyle === "accent") {
       return "bg-brand-accent text-white hover:bg-brand-accent-hover hover:shadow-medium focus-visible:ring-brand-accent";
     }
-    return "border-2 border-brand-gunmetal/25 bg-white text-brand-gunmetal hover:border-brand-gunmetal/40 hover:bg-neutral-50 focus-visible:ring-brand-gunmetal";
+    return "border-2 border-neutral-200 bg-white text-brand-gunmetal hover:border-brand-gunmetal hover:bg-brand-gunmetal hover:text-white focus-visible:ring-brand-gunmetal";
   })();
 
   return (
@@ -106,7 +109,7 @@ export function PricingCard({ plan, billing, currency }: PricingCardProps) {
       <Link
         href={plan.ctaHref}
         {...(plan.ctaExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-        className={`mt-6 inline-flex w-full items-center justify-center rounded-xl px-6 py-3.5 text-[15px] font-semibold shadow-soft transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${ctaClasses}`}
+        className={`mt-6 inline-flex w-full items-center justify-center rounded-xl px-6 py-3.5 text-[15px] font-semibold shadow-soft transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${isDarkCard ? "focus-visible:ring-offset-brand-gunmetal" : "focus-visible:ring-offset-white"} ${ctaClasses}`}
       >
         {plan.cta}
       </Link>

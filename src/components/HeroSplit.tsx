@@ -46,7 +46,7 @@ export default function HeroSplit() {
               href={LIVE_DEMO_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-xl border border-neutral-200 bg-white px-7 py-3.5 text-[15px] font-semibold text-brand-gunmetal transition-all duration-300 hover:border-brand-gunmetal hover:bg-brand-gunmetal hover:text-white focus-visible:border-brand-gunmetal focus-visible:bg-brand-gunmetal focus-visible:text-white focus-visible:ring-2 focus-visible:ring-brand-gunmetal/20"
+              className="inline-flex items-center justify-center rounded-xl border border-neutral-200 bg-white px-7 py-3.5 text-[15px] font-semibold text-brand-gunmetal transition-all duration-300 hover:border-brand-gunmetal hover:bg-brand-gunmetal hover:text-white focus-visible:border-brand-gunmetal focus-visible:bg-brand-gunmetal focus-visible:text-white focus-visible:ring-2 focus-visible:ring-brand-gunmetal focus-visible:ring-offset-2 focus-visible:ring-offset-white"
             >
               See Live Preview
             </Link>

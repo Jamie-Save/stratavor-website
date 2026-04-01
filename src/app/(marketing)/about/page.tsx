@@ -87,13 +87,13 @@ export default function AboutPage() {
               href={LIVE_DEMO_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-xl bg-white px-7 py-3.5 text-[15px] font-semibold text-brand-gunmetal shadow-soft transition-all hover:bg-neutral-100 hover:shadow-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand-gunmetal"
+              className="inline-flex items-center justify-center rounded-xl border border-neutral-200 bg-white px-7 py-3.5 text-[15px] font-semibold text-brand-gunmetal shadow-soft transition-all hover:border-brand-gunmetal hover:bg-brand-gunmetal hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-gunmetal"
             >
               See Live Preview
             </Link>
             <Link
               href="/trust"
-              className="inline-flex items-center justify-center rounded-xl border border-white/30 bg-transparent px-7 py-3.5 text-[15px] font-semibold text-white transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-gunmetal"
+              className="inline-flex items-center justify-center rounded-xl border border-white/30 bg-transparent px-7 py-3.5 text-[15px] font-semibold text-white transition-colors hover:border-white hover:bg-white hover:text-brand-gunmetal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-gunmetal"
             >
               Visit Trust Centre
             </Link>

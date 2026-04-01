@@ -18,7 +18,7 @@ export function PilotSection() {
           <div className="flex shrink-0 justify-center md:justify-end">
             <Link
               href={CONTACT_PILOT_URL}
-              className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-3.5 text-[15px] font-semibold text-brand-gunmetal shadow-soft transition-all hover:-translate-y-0.5 hover:shadow-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand-gunmetal"
+              className="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-white px-8 py-3.5 text-[15px] font-semibold text-brand-gunmetal shadow-soft transition-all hover:-translate-y-0.5 hover:border-brand-gunmetal hover:bg-brand-gunmetal hover:text-white hover:shadow-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand-gunmetal"
             >
               Start your pilot
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden>

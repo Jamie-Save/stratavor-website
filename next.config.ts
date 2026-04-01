@@ -25,6 +25,9 @@ const nextConfig: NextConfig = {
         poll: 1500,
         aggregateTimeout: 500,
       };
+      // Filesystem pack cache + OneDrive/sync often yields ENOENT on *.pack.gz and broken chunks;
+      // HTML loads but /_next/static CSS/JS 404 → completely unstyled pages in the browser.
+      config.cache = false;
     }
     return config;
   },

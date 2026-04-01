@@ -70,7 +70,7 @@ function Avatar({
 
 function FeaturedCard({ testimonial }: { testimonial: Testimonial }) {
   return (
-    <article className="relative mx-auto max-w-3xl rounded-2xl border border-neutral-200 bg-white p-8 shadow-medium sm:p-12">
+    <article className="relative mx-auto max-w-3xl rounded-2xl border border-neutral-200/80 bg-white p-8 shadow-medium ring-1 ring-black/5 sm:p-12">
       {/* Decorative opening quote */}
       <span
         className="pointer-events-none absolute left-6 top-4 select-none font-serif text-8xl leading-none text-brand-accent/20 sm:left-8 sm:top-2 sm:text-9xl"
@@ -123,7 +123,7 @@ function CompactCard({
 }) {
   return (
     <article
-      className="cursor-pointer rounded-xl border border-neutral-200 bg-white p-6 shadow-soft transition-all hover:shadow-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2"
+      className="cursor-pointer rounded-xl border border-neutral-200/80 bg-white p-6 shadow-soft ring-1 ring-black/5 transition-all hover:shadow-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gunmetal focus-visible:ring-offset-2 focus-visible:ring-offset-brand-gunmetal"
       onClick={onClick}
       tabIndex={0}
       onKeyDown={(e) => {
@@ -170,7 +170,7 @@ function ArrowButton({
       type="button"
       onClick={onClick}
       aria-label={direction === "prev" ? "Previous testimonial" : "Next testimonial"}
-      className="flex h-10 w-10 items-center justify-center rounded-full border border-neutral-200 bg-white text-neutral-500 transition-colors hover:border-neutral-300 hover:text-neutral-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2"
+      className="flex h-10 w-10 items-center justify-center rounded-full border border-white/25 bg-white/10 text-white transition-colors hover:border-brand-gunmetal hover:bg-brand-gunmetal hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand-gunmetal"
     >
       <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path
@@ -273,17 +273,19 @@ export default function TestimonialsShowcase() {
   return (
     <section
       id="customers"
-      className="bg-neutral-50 py-section"
+      className="bg-gradient-to-b from-brand-gunmetal to-brand-gunmetal-dark py-section"
       aria-labelledby="testimonials-heading"
     >
       <div className="mx-auto max-w-content px-content lg:px-8">
         {/* Label */}
-        <p className="section-label mb-4 text-center">What our customers say</p>
+        <p className="mb-4 text-center text-caption font-semibold uppercase tracking-widest text-white/90">
+          What our customers say
+        </p>
 
         {/* Heading */}
         <h2
           id="testimonials-heading"
-          className="mx-auto max-w-2xl text-center text-3xl font-semibold tracking-tight text-brand-gunmetal sm:text-4xl"
+          className="mx-auto max-w-2xl text-center text-3xl font-semibold tracking-tight text-white sm:text-4xl"
         >
           Loved by teams who ship
         </h2>
@@ -297,15 +299,16 @@ export default function TestimonialsShowcase() {
           {filterPills.map((pill) => (
             <button
               key={pill.id}
+              type="button"
               role="tab"
               aria-selected={selectedRole === pill.id}
               aria-controls="testimonials-panel"
               id={`pill-${pill.id}`}
               onClick={() => setSelectedRole(pill.id)}
-              className={`rounded-full px-4 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gunmetal focus-visible:ring-offset-2 ${
+              className={`rounded-full px-4 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand-gunmetal ${
                 selectedRole === pill.id
-                  ? "border border-brand-gunmetal bg-brand-gunmetal text-white"
-                  : "border border-neutral-200 bg-white text-neutral-600 shadow-xs hover:border-neutral-300 hover:text-neutral-900"
+                  ? "border border-neutral-200 bg-white text-brand-gunmetal hover:border-brand-gunmetal hover:bg-brand-gunmetal hover:text-white"
+                  : "border border-white/25 bg-white/10 text-white/90 hover:border-brand-gunmetal hover:bg-brand-gunmetal hover:text-white"
               }`}
             >
               {pill.label}
@@ -355,7 +358,7 @@ export default function TestimonialsShowcase() {
             <ArrowButton direction="prev" onClick={goPrev} />
 
             {/* Pagination dots */}
-            <div className="flex items-center gap-1.5" aria-hidden="true">
+            <div className="flex items-center gap-1.5" role="group" aria-label="Testimonial slides">
               {filtered.map((_, i) => (
                 <button
                   key={i}
@@ -384,12 +387,12 @@ export default function TestimonialsShowcase() {
           ].map((stat) => (
             <div
               key={stat.label}
-              className="group relative rounded-2xl border-2 border-neutral-200 bg-white px-8 py-10 text-center shadow-soft transition-all duration-300 hover:-translate-y-2 hover:border-brand-gunmetal hover:bg-brand-gunmetal hover:shadow-large sm:px-10 sm:py-12"
+              className="group relative rounded-2xl border-2 border-neutral-200 bg-white px-8 py-10 text-center shadow-soft transition-all duration-300 hover:-translate-y-2 hover:border-brand-accent hover:shadow-large sm:px-10 sm:py-12"
             >
-              <p className="text-5xl font-bold tracking-tight text-brand-gunmetal transition-colors duration-300 group-hover:text-white sm:text-6xl lg:text-7xl">
+              <p className="text-5xl font-bold tracking-tight text-brand-gunmetal sm:text-6xl lg:text-7xl">
                 {stat.value}
               </p>
-              <p className="mt-3 text-base font-semibold text-neutral-600 transition-colors duration-300 group-hover:text-white sm:text-lg">
+              <p className="mt-3 text-base font-semibold text-neutral-600 sm:text-lg">
                 {stat.label}
               </p>
             </div>

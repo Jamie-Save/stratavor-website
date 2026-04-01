@@ -140,7 +140,7 @@ export default function HeaderSticky() {
             href={LIVE_DEMO_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden shrink-0 rounded-xl border border-neutral-200 bg-white px-5 py-2.5 text-sm font-semibold text-brand-gunmetal transition-all hover:border-brand-gunmetal hover:bg-brand-gunmetal hover:text-white focus-visible:ring-2 focus-visible:ring-brand-gunmetal/30 md:inline-flex"
+            className="hidden shrink-0 rounded-xl border border-neutral-200 bg-white px-5 py-2.5 text-sm font-semibold text-brand-gunmetal transition-all hover:border-brand-gunmetal hover:bg-brand-gunmetal hover:text-white focus-visible:ring-2 focus-visible:ring-brand-gunmetal focus-visible:ring-offset-2 focus-visible:ring-offset-white md:inline-flex"
           >
             See Live Preview
           </Link>

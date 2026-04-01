@@ -16,6 +16,6 @@ if (-not (Import-StratavorNodePath)) {
 Set-Location $here
 Ensure-StratavorNextJunction -ProjectRoot $here
 Write-Host ""
-Write-Host "Tip: If you see 404 on some routes (e.g. / vs /pricing), run: npm run dev:clean:local-next" -ForegroundColor DarkGray
+Write-Host "Tip: 404 routes, missing CSS, or __webpack_modules__ errors → stop dev, then: npm run dev:clean:local-next (or npm run dev:clean)" -ForegroundColor DarkGray
 Write-Host ""
 npm run dev

@@ -23,6 +23,7 @@ export function PricingToggle({ billing, onBillingChange, className = "" }: Pric
       >
         Monthly
       </span>
+      {/* iOS-style switch track: no gunmetal/white hover inversion (thumb stays white); subtle opacity on gunmetal only. */}
       <button
         type="button"
         role="switch"
@@ -31,7 +32,7 @@ export function PricingToggle({ billing, onBillingChange, className = "" }: Pric
         onClick={() => onBillingChange(isAnnual ? "monthly" : "annual")}
         className={
           "relative h-7 w-12 shrink-0 rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gunmetal focus-visible:ring-offset-2 " +
-          (isAnnual ? "bg-brand-gunmetal" : "bg-neutral-200")
+          (isAnnual ? "bg-brand-gunmetal hover:opacity-95" : "bg-neutral-200")
         }
       >
         <span
