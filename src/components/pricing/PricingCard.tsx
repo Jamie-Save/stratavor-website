@@ -12,23 +12,23 @@ export function PricingCard({ plan, billing, currency }: PricingCardProps) {
   /** Growth is the featured column: dark gunmetal surface + light text. Essentials & Enterprise are light cards. */
   const isDarkCard = plan.id === "growth";
 
-  const price =
-    plan.prices && plan.priceMonthly !== null && plan.priceAnnual !== null
+  const price = plan.prices
+    ? billing === "annual"
+      ? plan.prices[currency].annual
+      : plan.prices[currency].monthly
+    : plan.priceMonthly !== null && plan.priceAnnual !== null
       ? billing === "annual"
-        ? plan.prices[currency].annual
-        : plan.prices[currency].monthly
-      : plan.priceMonthly !== null && plan.priceAnnual !== null
-        ? billing === "annual"
-          ? plan.priceAnnual
-          : plan.priceMonthly
-        : null;
+        ? plan.priceAnnual
+        : plan.priceMonthly
+      : null;
 
   const ctaHref = plan.checkoutUrls ? plan.checkoutUrls[currency][billing] : plan.ctaHref;
   const ctaExternal = plan.checkoutUrls ? true : Boolean(plan.ctaExternal);
 
   const ctaClasses = (() => {
     if (isDarkCard && plan.ctaStyle === "accent") {
-      return "border-2 border-white bg-white text-brand-gunmetal hover:bg-neutral-100 hover:shadow-medium focus-visible:ring-white/60";
+      // Same hover inversion as light-card outline CTAs (Essentials / Enterprise).
+      return "border-2 border-white bg-white text-brand-gunmetal hover:border-brand-gunmetal hover:bg-brand-gunmetal hover:text-white focus-visible:ring-brand-gunmetal";
     }
     if (isDarkCard && plan.ctaStyle !== "accent") {
       return "border-2 border-white/30 bg-white text-brand-gunmetal hover:border-brand-gunmetal hover:bg-brand-gunmetal hover:text-white focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-gunmetal";

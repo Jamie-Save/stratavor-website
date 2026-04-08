@@ -8,7 +8,9 @@ export type BillingPeriod = "monthly" | "annual";
 export type MoneyByCurrency = Record<
   SupportedCurrency,
   {
+    /** Full monthly price when billed monthly. */
     monthly: number;
+    /** Equivalent per month when billed annually (15% off monthly). */
     annual: number;
   }
 >;
@@ -22,15 +24,15 @@ export type CheckoutUrlsByCurrency = Record<
   }
 >;
 
-/** Scale EUR list prices to USD/GBP using the same ratios as the legacy Finance Intelligence tier. */
-function eurScaledMoney(monthlyEur: number, annualEur: number): MoneyByCurrency {
-  const usdFactor = 649 / 590;
-  const gbpFactor = 519 / 590;
-  return {
-    EUR: { monthly: monthlyEur, annual: annualEur },
-    USD: { monthly: Math.round(monthlyEur * usdFactor), annual: Math.round(annualEur * usdFactor) },
-    GBP: { monthly: Math.round(monthlyEur * gbpFactor), annual: Math.round(annualEur * gbpFactor) },
-  };
+/** Annual billing: 15% off, still expressed as per-month figure on the card. */
+function pricesFromMonthly(monthlyByCurrency: Record<SupportedCurrency, number>): MoneyByCurrency {
+  const keys: SupportedCurrency[] = ["EUR", "USD", "GBP"];
+  return Object.fromEntries(
+    keys.map((code) => {
+      const monthly = monthlyByCurrency[code];
+      return [code, { monthly, annual: Math.round(monthly * (1 - 0.15)) }];
+    }),
+  ) as MoneyByCurrency;
 }
 
 export type PlanCtaStyle = "accent" | "outline" | "inverse-outline";
@@ -39,6 +41,7 @@ export interface PricingPlan {
   id: string;
   name: string;
   description: string;
+  /** Legacy single-currency fallback when `prices` is absent (e.g. Enterprise). */
   priceMonthly: number | null;
   priceAnnual: number | null;
   prices?: MoneyByCurrency;
@@ -63,9 +66,9 @@ export const PRICING_PLANS: PricingPlan[] = [
     id: "essentials",
     name: "Essentials",
     description: "For founders and lean finance teams",
-    priceMonthly: 199,
-    priceAnnual: 169,
-    prices: eurScaledMoney(199, 169),
+    priceMonthly: null,
+    priceAnnual: null,
+    prices: pricesFromMonthly({ EUR: 199, USD: 230, GBP: 175 }),
     capacityRows: [
       { label: "Core connectors", value: "1" },
       { label: "Custom integrations", value: "—" },
@@ -107,9 +110,9 @@ export const PRICING_PLANS: PricingPlan[] = [
     id: "growth",
     name: "Growth",
     description: "For mid-market finance teams and boards",
-    priceMonthly: 499,
-    priceAnnual: 419,
-    prices: eurScaledMoney(499, 419),
+    priceMonthly: null,
+    priceAnnual: null,
+    prices: pricesFromMonthly({ EUR: 499, USD: 575, GBP: 435 }),
     capacityRows: [
       { label: "Core connectors", value: "All available" },
       { label: "Custom integrations", value: "1 included" },
@@ -181,12 +184,16 @@ export const PRICING_PLANS: PricingPlan[] = [
   },
 ];
 
-const powerBiMoney = eurScaledMoney(149, 149);
+const powerBiMonthlyByCurrency: Record<SupportedCurrency, number> = {
+  EUR: 149,
+  USD: 172,
+  GBP: 131,
+};
 
 const powerBiPriceByCurrency: Record<SupportedCurrency, string> = {
-  EUR: `+${formatPlanPrice(powerBiMoney.EUR.monthly, "EUR")}/mo · any tier`,
-  USD: `+${formatPlanPrice(powerBiMoney.USD.monthly, "USD")}/mo · any tier`,
-  GBP: `+${formatPlanPrice(powerBiMoney.GBP.monthly, "GBP")}/mo · any tier`,
+  EUR: `+${formatPlanPrice(powerBiMonthlyByCurrency.EUR, "EUR")}/mo · any tier`,
+  USD: `+${formatPlanPrice(powerBiMonthlyByCurrency.USD, "USD")}/mo · any tier`,
+  GBP: `+${formatPlanPrice(powerBiMonthlyByCurrency.GBP, "GBP")}/mo · any tier`,
 };
 
 export interface AddOn {
