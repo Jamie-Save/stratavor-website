@@ -61,9 +61,9 @@ export default function HeaderSticky() {
           <Image
             src="/images/stratavor-logo.svg"
             alt="Stratavor"
-            width={255}
-            height={84}
-            className="h-16 w-auto object-contain"
+            width={544}
+            height={173}
+            className="h-14 w-auto max-w-[min(100%,20rem)] object-contain sm:h-16"
             priority
           />
         </Link>
