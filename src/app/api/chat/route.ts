@@ -6,6 +6,15 @@ import {
   type UIMessage,
 } from "ai";
 import { buildChatSystemPrompt } from "@/lib/chat-knowledge";
+import {
+  chatRouteLog,
+  enforceChatRateLimit,
+  getClientIp,
+  ipPrefixForLog,
+  isChatOriginAllowed,
+  MAX_CHAT_REQUEST_BYTES,
+  readChatJsonBody,
+} from "@/lib/chat-route-guards";
 
 export const maxDuration = 60;
 
@@ -25,27 +34,61 @@ function userMessageTooLong(messages: UIMessage[]): boolean {
 }
 
 export async function POST(req: Request) {
+  const ip = getClientIp(req);
+
+  if (!isChatOriginAllowed(req)) {
+    chatRouteLog({
+      source: "chat_api",
+      event: "reject",
+      status: 403,
+      reason: "origin",
+      ipPrefix: ipPrefixForLog(ip),
+    });
+    return Response.json({ error: "Forbidden" }, { status: 403 });
+  }
+
+  const rateLimited = await enforceChatRateLimit(ip);
+  if (rateLimited) return rateLimited;
+
   const apiKey = process.env.OPENAI_API_KEY;
   if (!apiKey) {
+    chatRouteLog({
+      source: "chat_api",
+      event: "misconfigured",
+      status: 503,
+      reason: "missing_openai_key",
+      ipPrefix: ipPrefixForLog(ip),
+    });
     return Response.json(
       { error: "Chat is not configured. Set OPENAI_API_KEY on the server." },
       { status: 503 },
     );
   }
 
-  let body: unknown;
-  try {
-    body = await req.json();
-  } catch {
-    return Response.json({ error: "Invalid JSON body" }, { status: 400 });
-  }
+  const parsed = await readChatJsonBody(req, MAX_CHAT_REQUEST_BYTES);
+  if (!parsed.ok) return parsed.response;
+  const body = parsed.body;
 
   if (!body || typeof body !== "object" || !("messages" in body)) {
+    chatRouteLog({
+      source: "chat_api",
+      event: "reject",
+      status: 400,
+      reason: "missing_messages",
+      ipPrefix: ipPrefixForLog(ip),
+    });
     return Response.json({ error: "Missing messages" }, { status: 400 });
   }
 
   const rawMessages = (body as { messages: unknown }).messages;
   if (!Array.isArray(rawMessages)) {
+    chatRouteLog({
+      source: "chat_api",
+      event: "reject",
+      status: 400,
+      reason: "messages_not_array",
+      ipPrefix: ipPrefixForLog(ip),
+    });
     return Response.json({ error: "messages must be an array" }, { status: 400 });
   }
 
@@ -54,6 +97,13 @@ export async function POST(req: Request) {
   });
 
   if (!validation.success) {
+    chatRouteLog({
+      source: "chat_api",
+      event: "reject",
+      status: 400,
+      reason: "invalid_payload",
+      ipPrefix: ipPrefixForLog(ip),
+    });
     return Response.json({ error: "Invalid message payload" }, { status: 400 });
   }
 
@@ -61,6 +111,13 @@ export async function POST(req: Request) {
   messages = messages.slice(-MAX_MESSAGES);
 
   if (userMessageTooLong(messages)) {
+    chatRouteLog({
+      source: "chat_api",
+      event: "reject",
+      status: 400,
+      reason: "message_too_long",
+      ipPrefix: ipPrefixForLog(ip),
+    });
     return Response.json(
       { error: `Each user message must be at most ${MAX_USER_MESSAGE_CHARS} characters.` },
       { status: 400 },
@@ -71,6 +128,13 @@ export async function POST(req: Request) {
   try {
     modelMessages = await convertToModelMessages(messages);
   } catch {
+    chatRouteLog({
+      source: "chat_api",
+      event: "reject",
+      status: 400,
+      reason: "convert_messages",
+      ipPrefix: ipPrefixForLog(ip),
+    });
     return Response.json({ error: "Could not convert messages" }, { status: 400 });
   }
 

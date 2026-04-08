@@ -10,6 +10,21 @@ const isOneDriveProject = cwdNormalized.includes("/onedrive/");
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          {
+            key: "Permissions-Policy",
+            value: "camera=(), microphone=(), geolocation=()",
+          },
+        ],
+      },
+    ];
+  },
   ...(lanOrigins.length > 0 ? { allowedDevOrigins: lanOrigins } : {}),
   // Avoids Next 15 devtools segment-explorer RSC errors (GET / 404 or 500) on some Windows/OneDrive setups.
   experimental: {
