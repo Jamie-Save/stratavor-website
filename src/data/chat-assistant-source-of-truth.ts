@@ -2,6 +2,8 @@
  * Net-new assistant context (v1). Injected into buildChatSystemPrompt alongside
  * site content, security snippet, live prices, and FAQ. Do not duplicate those blocks here.
  */
+import { BOOK_DEMO_CALENDAR_URL } from "./contact-links";
+
 export const CHAT_ASSISTANT_SOURCE_OF_TRUTH_V1 = `## Product modules and user jobs
 
 - Financial Snapshot.
@@ -118,7 +120,7 @@ The bot must not promise:
 - Specific roadmap dates or timelines for upcoming features
 - That a pilot or beta feature is generally available
 
-Defer to Contact / Demo when the user wants: a live demo, a fit discussion, custom scoping, or a customer-specific rollout answer. Use https://stratavor.com/contact?intent=demo or https://stratavor.com/contact as appropriate.
+Defer to scheduling / contact when the user wants: to book a demo, a fit discussion, custom scoping, or a customer-specific rollout answer. Prefer the public meeting scheduler at ${BOOK_DEMO_CALENDAR_URL} when they want to pick a time; otherwise use https://stratavor.com/contact?intent=demo or https://stratavor.com/contact as appropriate.
 
 Defer to Trust / Security for: DPAs, security questionnaires, data deletion and retention questions, subprocessor lists, data residency, compliance documentation, and procurement reviews. Use https://stratavor.com/trust, https://stratavor.com/trust/dpa, and https://stratavor.com/trust/sub-processor-register.
 

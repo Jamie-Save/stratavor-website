@@ -1,6 +1,5 @@
 import HeroSplit from "@/components/HeroSplit";
 import TrustedByMarquee from "@/components/TrustedByMarquee";
-import { HomeLiveDemoSection } from "@/components/HomeLiveDemoSection";
 import OutcomeGrid from "@/components/OutcomeGrid";
 import WhatWeDo from "@/components/WhatWeDo";
 import IntegrationsMarquee from "@/components/IntegrationsMarquee";
@@ -13,7 +12,6 @@ export default function Home() {
     <>
       <HeroSplit />
       <TrustedByMarquee />
-      <HomeLiveDemoSection />
       <OutcomeGrid />
       <WhatWeDo />
       <IntegrationsMarquee />

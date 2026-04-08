@@ -8,7 +8,7 @@ export const HOME_HERO = {
   subline:
     "Connect QuickBooks, Xero, NetSuite, Stripe and more. Stratavor turns your raw financial data into strategic insights, AI-powered commentary, and executive clarity.",
   primaryCtaLabel: "Start Free Trial",
-  secondaryCtaLabel: "See Live Preview",
+  secondaryCtaLabel: "Book a demo",
   trialNote: "14-day free trial. No credit card required.",
 } as const;
 
@@ -23,7 +23,7 @@ export const HOME_SOLUTIONS = {
   sectionLabel: "Solutions",
   heading: "What Stratavor Delivers",
   subheading:
-    "Three core capabilities that transform how finance teams report, explain, and connect.",
+    "Six capabilities that help finance teams report with confidence, explain what changed, and act before issues compound.",
 } as const;
 
 export const HOME_OUTCOMES: readonly { title: string; description: string }[] = [
@@ -42,6 +42,21 @@ export const HOME_OUTCOMES: readonly { title: string; description: string }[] = 
     description:
       "Connect QuickBooks, Xero, NetSuite, Stripe and more in one place. One source of truth across your systems so your strategic view is always current and consistent.",
   },
+  {
+    title: "Savings & initiative tracking",
+    description:
+      "See cost-saving and efficiency programmes in one view—owners, timelines, and impact versus plan—so leadership can sponsor initiatives without chasing spreadsheets.",
+  },
+  {
+    title: "Risk intelligence",
+    description:
+      "Surface concentrations, threshold breaches, and early-warning signals across financial and operational data. Give the board context on what could move the numbers, not just what already did.",
+  },
+  {
+    title: "Ask Stratavor anything",
+    description:
+      "Query connected data in natural language: drill into drivers, compare periods, or prep talking points. Built for exploration and follow-ups, alongside structured variance narratives.",
+  },
 ];
 
 export const HOME_INTEGRATIONS = {
@@ -53,9 +68,9 @@ export const HOME_INTEGRATIONS = {
 export const HOME_BOTTOM_CTA = {
   heading: "Ready to turn financial data into strategic clarity?",
   subline: "Join the finance leaders who stopped reporting and started explaining.",
-  livePreviewLabel: "See Live Preview",
   trialLabel: "Start Free Trial",
-  bookDemoLabel: "Book a Demo",
+  bookDemoLabel: "Book a demo",
+  contactUsLabel: "Contact us",
 } as const;
 
 export const ABOUT_PAGE = {

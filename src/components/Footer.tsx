@@ -1,12 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
-import { LIVE_DEMO_URL } from "@/data/demo-config";
+import { BOOK_DEMO_CALENDAR_URL } from "@/data/contact-links";
 
 const footerLinks = {
   Platform: [
     { href: "/#what-we-do", label: "Features" },
     { href: "/#integrations", label: "Integrations" },
-    { href: LIVE_DEMO_URL, label: "Live Demo", external: true },
+    { href: BOOK_DEMO_CALENDAR_URL, label: "Book a demo", external: true },
     { href: "/power-bi", label: "Power BI" },
     { href: "/pricing", label: "Pricing" },
   ],
@@ -17,7 +17,6 @@ const footerLinks = {
   ],
   Company: [
     { href: "/about", label: "About" },
-    { href: LIVE_DEMO_URL, label: "See Live Preview", external: true },
     { href: "/contact", label: "Contact" },
   ],
   Legal: [

@@ -14,13 +14,13 @@ import {
   TOOLS_PAGE,
 } from "@/data/marketing-copy";
 import {
+  BOOK_DEMO_CALENDAR_URL,
   CONTACT_DEMO_URL,
   CONTACT_GENERAL_URL,
   CONTACT_LOGIN_URL,
   CONTACT_PILOT_URL,
   CONTACT_SECURITY_URL,
 } from "@/data/contact-links";
-import { LIVE_DEMO_URL } from "@/data/demo-config";
 import { integrationLogos, whatWeDoImages } from "@/data/marquee";
 import { MARKETING_NAV_LINKS, type NavLink } from "@/data/nav";
 
@@ -53,8 +53,9 @@ function flattenNavLinks(links: NavLink[]): string[] {
 /** Contact form intents (same query params as /contact page). */
 function contactIntentLines(): string {
   return [
+    `Book a time (HubSpot scheduler): ${BOOK_DEMO_CALENDAR_URL}`,
     `Pilot / trial interest: ${absoluteUrl(CONTACT_PILOT_URL)}`,
-    `Book a demo: ${absoluteUrl(CONTACT_DEMO_URL)}`,
+    `Book a demo (contact form): ${absoluteUrl(CONTACT_DEMO_URL)}`,
     `Security / compliance pack: ${absoluteUrl(CONTACT_SECURITY_URL)}`,
     `Login help: ${absoluteUrl(CONTACT_LOGIN_URL)}`,
     `General: ${absoluteUrl(CONTACT_GENERAL_URL)}`,
@@ -87,7 +88,7 @@ Headline: ${HOME_HERO.headline}
 Body: ${HOME_HERO.subline}
 Note: ${HOME_HERO.trialNote}
 Primary CTA: ${HOME_HERO.primaryCtaLabel} → ${absoluteUrl("/pricing")}
-Secondary CTA: ${HOME_HERO.secondaryCtaLabel} → ${LIVE_DEMO_URL}
+Secondary CTA: ${HOME_HERO.secondaryCtaLabel} → ${BOOK_DEMO_CALENDAR_URL}
 
 ## Home page — What we do
 ${HOME_WHAT_WE_DO.sectionLabel}: ${HOME_WHAT_WE_DO.heading}
@@ -110,7 +111,7 @@ For which systems are core connectors vs roadmap, use the Pricing FAQ in the mai
 ## Home page — Closing call to action
 ${HOME_BOTTOM_CTA.heading}
 ${HOME_BOTTOM_CTA.subline}
-Actions: ${HOME_BOTTOM_CTA.livePreviewLabel} (${LIVE_DEMO_URL}), ${HOME_BOTTOM_CTA.trialLabel} (${absoluteUrl("/pricing")}), ${HOME_BOTTOM_CTA.bookDemoLabel} (${absoluteUrl(CONTACT_DEMO_URL)})
+Actions: ${HOME_BOTTOM_CTA.bookDemoLabel} (${BOOK_DEMO_CALENDAR_URL}), ${HOME_BOTTOM_CTA.trialLabel} (${absoluteUrl("/pricing")}), ${HOME_BOTTOM_CTA.contactUsLabel} (${absoluteUrl(CONTACT_GENERAL_URL)})
 
 ## About / company (https://stratavor.com/about)
 Headline: ${ABOUT_PAGE.heroHeadline}
@@ -137,8 +138,9 @@ ${toolsBlock}
 ## Primary navigation (marketing site)
 ${navBlock}
 
-## Live demo URL (external)
-${LIVE_DEMO_URL}
+## Book a demo
+Public meeting scheduler (pick a time): ${BOOK_DEMO_CALENDAR_URL}
+Form-based demo / sales enquiry: ${absoluteUrl(CONTACT_DEMO_URL)}
 
 ## Contact intents (use when directing users)
 ${contactIntentLines()}`;

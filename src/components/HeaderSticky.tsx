@@ -5,8 +5,8 @@ import Image from "next/image";
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { useScrollState } from "@/hooks/useScrollState";
 import { useFocusTrap } from "@/hooks/useFocusTrap";
-import { CONTACT_LOGIN_URL } from "@/data/contact-links";
-import { LIVE_DEMO_URL } from "@/data/demo-config";
+import { BOOK_DEMO_CALENDAR_URL, CONTACT_LOGIN_URL } from "@/data/contact-links";
+import { HOME_HERO } from "@/data/marketing-copy";
 import { MARKETING_NAV_LINKS } from "@/data/nav";
 import { NavDropdown } from "@/components/nav/NavDropdown";
 
@@ -135,14 +135,14 @@ export default function HeaderSticky() {
             Sign in
           </Link>
 
-          {/* See Live Preview: desktop only */}
+          {/* Book a demo: desktop only */}
           <Link
-            href={LIVE_DEMO_URL}
+            href={BOOK_DEMO_CALENDAR_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="hidden shrink-0 rounded-xl border border-neutral-200 bg-white px-5 py-2.5 text-sm font-semibold text-brand-gunmetal transition-all hover:border-brand-gunmetal hover:bg-brand-gunmetal hover:text-white focus-visible:ring-2 focus-visible:ring-brand-gunmetal focus-visible:ring-offset-2 focus-visible:ring-offset-white md:inline-flex"
           >
-            See Live Preview
+            {HOME_HERO.secondaryCtaLabel}
           </Link>
 
           {/* Free Trial */}

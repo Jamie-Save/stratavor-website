@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { LIVE_DEMO_URL } from "@/data/demo-config";
-import { ABOUT_PAGE } from "@/data/marketing-copy";
+import { BOOK_DEMO_CALENDAR_URL } from "@/data/contact-links";
+import { ABOUT_PAGE, HOME_HERO } from "@/data/marketing-copy";
 
 export const metadata: Metadata = {
   title: "About | Stratavor",
@@ -58,12 +58,12 @@ export default function AboutPage() {
           <p className="mx-auto mt-4 max-w-xl text-body-lg text-white/90">{ABOUT_PAGE.closingSubline}</p>
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link
-              href={LIVE_DEMO_URL}
+              href={BOOK_DEMO_CALENDAR_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center rounded-xl border border-neutral-200 bg-white px-7 py-3.5 text-[15px] font-semibold text-brand-gunmetal shadow-soft transition-all hover:border-brand-gunmetal hover:bg-brand-gunmetal hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-gunmetal"
             >
-              See Live Preview
+              {HOME_HERO.secondaryCtaLabel}
             </Link>
             <Link
               href="/trust"

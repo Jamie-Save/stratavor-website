@@ -1,6 +1,5 @@
 import Link from "next/link";
-import { CONTACT_DEMO_URL } from "@/data/contact-links";
-import { LIVE_DEMO_URL } from "@/data/demo-config";
+import { BOOK_DEMO_CALENDAR_URL, CONTACT_GENERAL_URL } from "@/data/contact-links";
 import { HOME_BOTTOM_CTA } from "@/data/marketing-copy";
 
 export default function ThreeCtaBand() {
@@ -19,12 +18,12 @@ export default function ThreeCtaBand() {
         <p className="mx-auto mt-4 max-w-xl text-body-lg text-brand-gunmetal/85">{HOME_BOTTOM_CTA.subline}</p>
         <div className="mt-10 flex flex-col items-stretch justify-center gap-4 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-6">
           <Link
-            href={LIVE_DEMO_URL}
+            href={BOOK_DEMO_CALENDAR_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-outline w-full sm:w-auto"
           >
-            {HOME_BOTTOM_CTA.livePreviewLabel}
+            {HOME_BOTTOM_CTA.bookDemoLabel}
           </Link>
           <Link
             href="/pricing"
@@ -32,8 +31,8 @@ export default function ThreeCtaBand() {
           >
             {HOME_BOTTOM_CTA.trialLabel}
           </Link>
-          <Link href={CONTACT_DEMO_URL} className="btn-outline w-full sm:w-auto">
-            {HOME_BOTTOM_CTA.bookDemoLabel}
+          <Link href={CONTACT_GENERAL_URL} className="btn-outline w-full sm:w-auto">
+            {HOME_BOTTOM_CTA.contactUsLabel}
           </Link>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import HeroCarousel from "./HeroCarousel";
-import { LIVE_DEMO_URL } from "@/data/demo-config";
+import { BOOK_DEMO_CALENDAR_URL } from "@/data/contact-links";
 import { HOME_HERO } from "@/data/marketing-copy";
 
 export default function HeroSplit() {
@@ -42,7 +42,7 @@ export default function HeroSplit() {
               {HOME_HERO.primaryCtaLabel}
             </Link>
             <Link
-              href={LIVE_DEMO_URL}
+              href={BOOK_DEMO_CALENDAR_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center rounded-xl border border-neutral-200 bg-white px-7 py-3.5 text-[15px] font-semibold text-brand-gunmetal transition-all duration-300 hover:border-brand-gunmetal hover:bg-brand-gunmetal hover:text-white focus-visible:border-brand-gunmetal focus-visible:bg-brand-gunmetal focus-visible:text-white focus-visible:ring-2 focus-visible:ring-brand-gunmetal focus-visible:ring-offset-2 focus-visible:ring-offset-white"
