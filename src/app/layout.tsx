@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Sans, IBM_Plex_Serif } from "next/font/google";
 import { AnalyticsScript } from "@/components/Analytics";
+import Footer from "@/components/Footer";
+import HeaderSticky from "@/components/HeaderSticky";
 import { OrganizationJsonLd, SoftwareApplicationJsonLd } from "@/components/StructuredData";
 import "./globals.css";
 
@@ -70,7 +72,11 @@ export default function RootLayout({
         >
           Skip to content
         </a>
-        {children}
+        <HeaderSticky />
+        <main id="main-content" tabIndex={-1}>
+          {children}
+        </main>
+        <Footer />
         <AnalyticsScript />
         <OrganizationJsonLd />
         <SoftwareApplicationJsonLd />

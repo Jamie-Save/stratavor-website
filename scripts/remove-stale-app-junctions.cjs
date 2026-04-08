@@ -1,5 +1,5 @@
 /**
- * Removes empty/broken junction folders under src/app that duplicate (marketing) routes.
+ * Removes empty/broken junction folders under src/app that shadow real routes (e.g. stale OneDrive links).
  * Those reparse points break Next.js App Router (e.g. GET / → 404 in dev).
  */
 const fs = require("fs");

@@ -23,9 +23,12 @@ export function PricingCard({ plan, billing, currency }: PricingCardProps) {
           : plan.priceMonthly
         : null;
 
+  const ctaHref = plan.checkoutUrls ? plan.checkoutUrls[currency][billing] : plan.ctaHref;
+  const ctaExternal = plan.checkoutUrls ? true : Boolean(plan.ctaExternal);
+
   const ctaClasses = (() => {
     if (isDarkCard && plan.ctaStyle === "accent") {
-      return "bg-brand-accent text-white hover:bg-brand-accent-hover hover:shadow-medium focus-visible:ring-brand-accent";
+      return "border-2 border-white bg-white text-brand-gunmetal hover:bg-neutral-100 hover:shadow-medium focus-visible:ring-white/60";
     }
     if (isDarkCard && plan.ctaStyle !== "accent") {
       return "border-2 border-white/30 bg-white text-brand-gunmetal hover:border-brand-gunmetal hover:bg-brand-gunmetal hover:text-white focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-gunmetal";
@@ -49,8 +52,8 @@ export function PricingCard({ plan, billing, currency }: PricingCardProps) {
     >
       {plan.mostPopular && plan.ribbonLabel && (
         <span
-          className={`absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white ${
-            isDarkCard ? "bg-brand-accent" : "bg-brand-gunmetal"
+          className={`absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wider ${
+            isDarkCard ? "bg-white text-brand-gunmetal shadow-soft" : "bg-brand-gunmetal text-white"
           }`}
         >
           {plan.ribbonLabel}
@@ -107,8 +110,8 @@ export function PricingCard({ plan, billing, currency }: PricingCardProps) {
         </div>
       </div>
       <Link
-        href={plan.ctaHref}
-        {...(plan.ctaExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+        href={ctaHref}
+        {...(ctaExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
         className={`mt-6 inline-flex w-full items-center justify-center rounded-xl px-6 py-3.5 text-[15px] font-semibold shadow-soft transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${isDarkCard ? "focus-visible:ring-offset-brand-gunmetal" : "focus-visible:ring-offset-white"} ${ctaClasses}`}
       >
         {plan.cta}
@@ -142,7 +145,7 @@ export function PricingCard({ plan, billing, currency }: PricingCardProps) {
             <li key={i} className={`flex gap-2 text-sm ${isDarkCard ? "text-neutral-300" : "text-neutral-700"}`}>
               <span
                 className={`mt-0.5 inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-full text-[10px] font-bold ${
-                  isDarkCard ? "bg-white/10 text-brand-accent-light" : "bg-brand-mist text-brand-gunmetal"
+                  isDarkCard ? "bg-white/15 text-white" : "bg-brand-mist text-brand-gunmetal"
                 }`}
                 aria-hidden
               >

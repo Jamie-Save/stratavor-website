@@ -13,6 +13,15 @@ export type MoneyByCurrency = Record<
   }
 >;
 
+/** HubSpot payment links per currency and billing period (Essentials / Growth). */
+export type CheckoutUrlsByCurrency = Record<
+  SupportedCurrency,
+  {
+    monthly: string;
+    annual: string;
+  }
+>;
+
 /** Scale EUR list prices to USD/GBP using the same ratios as the legacy Finance Intelligence tier. */
 function eurScaledMoney(monthlyEur: number, annualEur: number): MoneyByCurrency {
   const usdFactor = 649 / 590;
@@ -45,6 +54,8 @@ export interface PricingPlan {
   ribbonLabel?: string;
   customPriceLabel?: string;
   customPriceSubtext?: string;
+  /** When set, CTA opens HubSpot checkout for the selected currency and billing period. */
+  checkoutUrls?: CheckoutUrlsByCurrency;
 }
 
 export const PRICING_PLANS: PricingPlan[] = [
@@ -74,9 +85,23 @@ export const PRICING_PLANS: PricingPlan[] = [
       "Ask Stratavor (AI chatbot)",
       "Signals inbox + alerts",
     ],
-    cta: "Start free pilot",
+    cta: "Subscribe",
     ctaHref: CONTACT_PILOT_URL,
     ctaStyle: "outline",
+    checkoutUrls: {
+      EUR: {
+        monthly: "https://payments-eu1.hubspot.com/payments/9GyqXQ6m?referrer=PAYMENT_LINK",
+        annual: "https://payments-eu1.hubspot.com/payments/C9XpKcTZVGNQQFp?referrer=PAYMENT_LINK",
+      },
+      GBP: {
+        monthly: "https://payments-eu1.hubspot.com/payments/6mfq4ZTYdhfDwJ?referrer=PAYMENT_LINK",
+        annual: "https://payments-eu1.hubspot.com/payments/6jHqgmrKf?referrer=PAYMENT_LINK",
+      },
+      USD: {
+        monthly: "https://payments-eu1.hubspot.com/payments/wFh9yZHKWHcqRVtM?referrer=PAYMENT_LINK",
+        annual: "https://payments-eu1.hubspot.com/payments/6VXJ2GHTVwtc?referrer=PAYMENT_LINK",
+      },
+    },
   },
   {
     id: "growth",
@@ -103,11 +128,25 @@ export const PRICING_PLANS: PricingPlan[] = [
       "Quarterly review prep",
       "Report layout customisation",
     ],
-    cta: "Start free pilot",
+    cta: "Subscribe",
     ctaHref: CONTACT_PILOT_URL,
     ctaStyle: "accent",
     mostPopular: true,
     ribbonLabel: "Recommended",
+    checkoutUrls: {
+      EUR: {
+        monthly: "https://payments-eu1.hubspot.com/payments/7cRX9RDXxfWwyJw?referrer=PAYMENT_LINK",
+        annual: "https://payments-eu1.hubspot.com/payments/VF7JmSFM9?referrer=PAYMENT_LINK",
+      },
+      GBP: {
+        monthly: "https://payments-eu1.hubspot.com/payments/mbbjfR7KmMG2r?referrer=PAYMENT_LINK",
+        annual: "https://payments-eu1.hubspot.com/payments/zDnQysSfztjmjJ?referrer=PAYMENT_LINK",
+      },
+      USD: {
+        monthly: "https://payments-eu1.hubspot.com/payments/RHhvRs4NbJxRYwz7?referrer=PAYMENT_LINK",
+        annual: "https://payments-eu1.hubspot.com/payments/dkstnGRPGT?referrer=PAYMENT_LINK",
+      },
+    },
   },
   {
     id: "enterprise",

@@ -73,7 +73,25 @@ function main() {
     return;
   }
 
-  if (!isOneDriveProjectPath(normalized)) return;
+  // Repo copied/moved off OneDrive often still has `.next` as a junction to %LOCALAPPDATA%\…\<other-path-hash>\.next.
+  // That cache does not match the current `src/app` tree → header/layout render but every page returns 404 in dev.
+  if (!isOneDriveProjectPath(normalized)) {
+    const linkPath = path.join(root, ".next");
+    if (fs.existsSync(linkPath)) {
+      try {
+        fs.readlinkSync(linkPath);
+        fs.rmSync(linkPath, { recursive: true, force: true });
+        console.log(
+          "[stratavor] Non-OneDrive project: removed .next junction/symlink so Next uses a fresh local .next.",
+        );
+      } catch (err) {
+        if (err && err.code !== "EINVAL" && err.code !== "UNKNOWN") {
+          console.error("[stratavor] WARN: Could not remove stale .next redirect:", err.message);
+        }
+      }
+    }
+    return;
+  }
 
   if (process.platform !== "win32" && process.platform !== "linux") {
     return;

@@ -45,7 +45,7 @@ That removes the previous build output and junction/symlink setup, then rebuilds
 
 ### `GET /` returns 404 in `next dev` (but `npm run build` works)
 
-**Cause:** Extra folders under `src/app/` that are **Windows reparse points** (junctions/symlinks) to empty or stale targets—often created by OneDrive or manual links—can confuse the App Router. Real routes live under `src/app/(marketing)/…`; you should **not** have parallel `src/app/about`, `src/app/blog`, `src/app/trust`, etc.
+**Cause:** On OneDrive, a **route-group folder** such as `src/app/(marketing)` can be a **cloud reparse point**. Next.js may then fail to match any child routes and serve `/_not-found` for every URL. This repo keeps marketing pages **directly under** `src/app/` (e.g. `src/app/pricing/page.tsx`) so the App Router only scans normal folders. Separately, **empty** junctions named `about`, `blog`, `trust`, etc. next to real routes can still confuse resolution—remove those.
 
 **Fix:** From the repo root run:
 
@@ -58,9 +58,10 @@ That runs [`scripts/remove-stale-app-junctions.cjs`](../scripts/remove-stale-app
 ### Troubleshooting checklist
 
 1. **DevTools → Network:** open `/` and confirm `/_next/static/css/*.css` returns **200** and a **non-zero** response size. If it’s 404 or tiny/empty, the build output or server is still wrong.
-2. **One process per port:** stale `node` processes can serve an old build; stop extras or pick another port.
-3. **Browser:** test in **Chrome or Edge**. Some in-editor or “simple” browser previews mishandle localhost assets.
-4. **After `git pull`:** run `npm install` so `cross-env` and scripts stay in sync with `package.json`.
+2. **One process per port:** stale `node` processes can serve an old build; stop extras or pick another port. If `next dev` prints **“Port 3000 is in use … using 3001”**, your browser may still be on **3000** (a zombie server from another folder or a broken `.next`) → **404 with header**. Stop the process on 3000 (Task Manager or `Get-NetTCPConnection -LocalPort 3000`) or open the URL Next actually prints (e.g. **http://localhost:3001**).
+3. **After moving the repo:** delete the project’s **`.next`** folder, then run **`npm run dev`** again. `predev` also removes a stray **`.next` junction** left from OneDrive so the app does not read another path’s cache.
+4. **Browser:** test in **Chrome or Edge**. Some in-editor or “simple” browser previews mishandle localhost assets.
+5. **After `git pull`:** run `npm install` so `cross-env` and scripts stay in sync with `package.json`.
 
 ### Best long-term fix (you)
 
