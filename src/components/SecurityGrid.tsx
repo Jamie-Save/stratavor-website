@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { securityItems } from "@/data/security";
+import { SECURITY_HOME_SECTION, securityItems } from "@/data/security";
 import { SecurityIcon } from "./SecurityIcons";
 
 export default function SecurityGrid() {
@@ -10,13 +10,11 @@ export default function SecurityGrid() {
       aria-labelledby="security-heading"
     >
       <div className="mx-auto max-w-content px-content lg:px-8">
-        <p className="section-label mb-4 text-center">Security &amp; compliance</p>
+        <p className="section-label mb-4 text-center">{SECURITY_HOME_SECTION.label}</p>
         <h2 id="security-heading" className="section-heading">
-          Enterprise-grade security
+          {SECURITY_HOME_SECTION.heading}
         </h2>
-        <p className="section-subheading">
-          Built for teams who demand control, auditability, and compliance by design.
-        </p>
+        <p className="section-subheading">{SECURITY_HOME_SECTION.subheading}</p>
 
         <ul className="mt-16 grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
           {securityItems.map((item, i) => (
@@ -41,7 +39,7 @@ export default function SecurityGrid() {
         </ul>
 
         <div className="mt-12 text-center">
-          <Link href="/trust" className="btn-outline">
+          <Link href={SECURITY_HOME_SECTION.trustCentrePath} className="btn-outline">
             Visit Trust Centre
           </Link>
         </div>

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import HeroCarousel from "./HeroCarousel";
 import { LIVE_DEMO_URL } from "@/data/demo-config";
+import { HOME_HERO } from "@/data/marketing-copy";
 
 export default function HeroSplit() {
   return (
@@ -28,19 +29,17 @@ export default function HeroSplit() {
       <div className="mx-auto grid max-w-content grid-cols-1 gap-12 px-content pt-12 pb-20 lg:grid-cols-[auto_1fr] lg:gap-16 lg:pt-16 lg:pb-28 lg:px-8">
         {/* LEFT COLUMN – narrow so text lines up with buttons; carousel gets remaining space */}
         <div className="flex max-w-sm flex-col justify-center">
-          <p className="section-label mb-4">Strategic Intelligence Platform</p>
+          <p className="section-label mb-4">{HOME_HERO.sectionLabel}</p>
           <h1 className="text-display font-bold leading-tight tracking-tight text-brand-gunmetal lg:text-display-lg">
-            Make Your Financial Data Speak Strategy.
+            {HOME_HERO.headline}
           </h1>
-          <p className="text-body-lg mt-6 max-w-sm text-neutral-600">
-            Connect QuickBooks, Xero, NetSuite, Stripe and more. Stratavor turns your raw financial data into strategic insights, AI-powered commentary, and executive clarity.
-          </p>
+          <p className="text-body-lg mt-6 max-w-sm text-neutral-600">{HOME_HERO.subline}</p>
           <div className="mt-10 flex flex-wrap gap-4">
             <Link
               href="/pricing"
               className="inline-flex items-center justify-center rounded-xl bg-brand-accent px-7 py-3.5 text-[15px] font-semibold text-white shadow-soft transition-all hover:bg-brand-accent-hover hover:shadow-medium focus-visible:bg-brand-accent-hover focus-visible:shadow-medium"
             >
-              Start Free Trial
+              {HOME_HERO.primaryCtaLabel}
             </Link>
             <Link
               href={LIVE_DEMO_URL}
@@ -48,12 +47,10 @@ export default function HeroSplit() {
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center rounded-xl border border-neutral-200 bg-white px-7 py-3.5 text-[15px] font-semibold text-brand-gunmetal transition-all duration-300 hover:border-brand-gunmetal hover:bg-brand-gunmetal hover:text-white focus-visible:border-brand-gunmetal focus-visible:bg-brand-gunmetal focus-visible:text-white focus-visible:ring-2 focus-visible:ring-brand-gunmetal focus-visible:ring-offset-2 focus-visible:ring-offset-white"
             >
-              See Live Preview
+              {HOME_HERO.secondaryCtaLabel}
             </Link>
           </div>
-          <p className="mt-4 text-sm text-neutral-500">
-            14-day free trial. No credit card required.
-          </p>
+          <p className="mt-4 text-sm text-neutral-500">{HOME_HERO.trialNote}</p>
         </div>
 
         {/* RIGHT COLUMN: Carousel */}

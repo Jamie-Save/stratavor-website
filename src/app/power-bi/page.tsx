@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { POWER_BI_PAGE } from "@/data/marketing-copy";
 
 export const metadata: Metadata = {
   title: "Power BI | Stratavor",
@@ -17,17 +18,14 @@ export default function PowerBIPage() {
         aria-labelledby="powerbi-heading"
       >
         <div className="mx-auto max-w-content px-content lg:px-8">
-          <p className="section-label text-center">Power BI</p>
+          <p className="section-label text-center">{POWER_BI_PAGE.sectionLabel}</p>
           <h1
             id="powerbi-heading"
             className="mt-3 text-center text-3xl font-semibold tracking-tight text-brand-gunmetal sm:text-4xl"
           >
-            See your strategy in Power BI
+            {POWER_BI_PAGE.heading}
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-center text-body-lg leading-relaxed text-neutral-600">
-            Explore an interactive snapshot of how Stratavor turns your data into board-ready
-            insights. Drill down, filter, and experience the intelligence layer in action.
-          </p>
+          <p className="mx-auto mt-6 max-w-2xl text-center text-body-lg leading-relaxed text-neutral-600">{POWER_BI_PAGE.intro}</p>
         </div>
       </section>
 

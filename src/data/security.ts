@@ -1,6 +1,18 @@
 /**
- * Security section content - Stratavor security section replication
+ * Security section content - home page SecurityGrid and chat assistant context.
  */
+
+/** Intro copy for the home page security band (also fed to the site assistant). */
+export const SECURITY_HOME_SECTION = {
+  label: "Security & compliance",
+  heading: "Enterprise-grade security",
+  subheading:
+    "Built for teams who demand control, auditability, and compliance by design.",
+  /** In-app route for Trust Centre */
+  trustCentrePath: "/trust",
+  /** Canonical URL for chat / external references */
+  trustCentreUrl: "https://stratavor.com/trust",
+} as const;
 
 export type SecurityItem = {
   title: string;
@@ -46,3 +58,19 @@ export const securityItems: SecurityItem[] = [
     icon: "trace",
   },
 ];
+
+/** Plain-text block aligned with the home page security section for LLM context. */
+export function buildHomeSecurityChatContext(): string {
+  const bullets = securityItems
+    .map((item) => `- ${item.title}: ${item.description}`)
+    .join("\n");
+
+  return `${SECURITY_HOME_SECTION.label}
+${SECURITY_HOME_SECTION.heading}
+${SECURITY_HOME_SECTION.subheading}
+
+Points shown on the home page:
+${bullets}
+
+Official policies and customer documents: ${SECURITY_HOME_SECTION.trustCentreUrl} (same as ${SECURITY_HOME_SECTION.trustCentrePath} on this site).`;
+}
