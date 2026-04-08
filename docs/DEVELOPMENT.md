@@ -45,7 +45,7 @@ That removes the previous build output and junction/symlink setup, then rebuilds
 
 ### `GET /` returns 404 in `next dev` (but `npm run build` works)
 
-**Cause:** On OneDrive, a **route-group folder** such as `src/app/(marketing)` can be a **cloud reparse point**. Next.js may then fail to match any child routes and serve `/_not-found` for every URL. This repo keeps marketing pages **directly under** `src/app/` (e.g. `src/app/pricing/page.tsx`) so the App Router only scans normal folders. Separately, **empty** junctions named `about`, `blog`, `trust`, etc. next to real routes can still confuse resolution—remove those.
+**Cause:** On OneDrive, a **route-group folder** such as `src/app/(marketing)` can be a **cloud reparse point**. Next.js may then fail to match any child routes and serve `/_not-found` for every URL. This repo keeps marketing pages **directly under** `src/app/` (e.g. `src/app/pricing/page.tsx`) so the App Router only scans normal folders. Separately, **empty** junctions named `about`, `blog`, `trust`, etc. next to real routes can still confuse resolution; remove those.
 
 **Fix:** From the repo root run:
 
@@ -53,7 +53,7 @@ That removes the previous build output and junction/symlink setup, then rebuilds
 npm run fix:app-routes
 ```
 
-That runs [`scripts/remove-stale-app-junctions.cjs`](../scripts/remove-stale-app-junctions.cjs), which removes known empty junction names under `src/app` (it skips any folder that already has `page.tsx`). If removal still fails, close dev servers, pause OneDrive briefly, and run the script again—or remove the junction manually with `cmd /c rmdir "src\app\<name>"`.
+That runs [`scripts/remove-stale-app-junctions.cjs`](../scripts/remove-stale-app-junctions.cjs), which removes known empty junction names under `src/app` (it skips any folder that already has `page.tsx`). If removal still fails, close dev servers, pause OneDrive briefly, and run the script again, or remove the junction manually with `cmd /c rmdir "src\app\<name>"`.
 
 ### Troubleshooting checklist
 

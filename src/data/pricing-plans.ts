@@ -71,14 +71,14 @@ export const PRICING_PLANS: PricingPlan[] = [
     prices: pricesFromMonthly({ EUR: 199, USD: 230, GBP: 175 }),
     capacityRows: [
       { label: "Core connectors", value: "1" },
-      { label: "Custom integrations", value: "—" },
+      { label: "Custom integrations", value: "-" },
       { label: "Portal users", value: "3" },
       { label: "AI queries / month", value: "100" },
       { label: "Data history", value: "12 months" },
       { label: "Branded exports", value: "Your logo" },
       { label: "Support", value: "Email (48h)" },
     ],
-    includedHeading: "Full platform — no feature gates",
+    includedHeading: "Full platform, no feature gates",
     includedBullets: [
       "Intelligence Hub dashboard",
       "Financial Snapshot + PDF export",

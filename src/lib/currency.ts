@@ -20,7 +20,7 @@ export function initialCurrencyFromGeoHeaders(
 export function formatPlanPrice(amount: number, currency: SupportedCurrency): string {
   const code = coerceSupportedCurrency(currency);
   if (typeof amount !== "number" || !Number.isFinite(amount)) {
-    return "—";
+    return "-";
   }
   // Intentionally no cents for plan pricing.
   // Using en-US for consistent separators while keeping correct currency symbol.

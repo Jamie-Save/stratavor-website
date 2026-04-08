@@ -6,7 +6,7 @@ import { initialCurrencyFromGeoHeaders } from "@/lib/currency";
 export const metadata: Metadata = {
   title: "Pricing | Stratavor",
   description:
-    "Essentials, Growth, and Enterprise plans — every module and full AI at every tier. Compare capacity and start a 14-day free pilot with Growth access.",
+    "Essentials, Growth, and Enterprise plans: every module and full AI at every tier. Compare capacity and start a 14-day free pilot with Growth access.",
 };
 
 export default async function PricingPage() {

@@ -17,7 +17,7 @@ export default function WhatWeDo() {
         <p className="mx-auto mt-6 max-w-2xl text-center text-body-lg text-neutral-600">
           Stratavor unifies financial reporting, risk management, and strategic
           planning. Get executive-ready snapshots, AI insights, and
-          traceability—without the spreadsheet sprawl.
+          traceability, without the spreadsheet sprawl.
         </p>
 
         {/* Carousel - larger and centered */}

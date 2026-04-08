@@ -21,7 +21,7 @@ export function PricingHero() {
               <span className="font-medium italic text-brand-gunmetal/85">Nothing hidden.</span>
             </h1>
             <p className="mx-auto mt-6 max-w-xl text-body-lg text-neutral-600 lg:mx-0 lg:max-w-lg">
-              Every module, every report, full AI — included at every tier. Pricing scales on what you connect, not what
+              Every module, every report, full AI, included at every tier. Pricing scales on what you connect, not what
               you can access.
             </p>
             <div className="mt-10 flex justify-center lg:justify-start">

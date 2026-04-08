@@ -12,7 +12,7 @@ export default function IntegrationsMarquee() {
         </p>
         <p className="mx-auto max-w-2xl text-center text-body-lg text-neutral-600">
           Connect your ERP, CRM, and finance tools. Stratavor pulls data from
-          Xero, QuickBooks, Stripe, and more—so insights stay current.
+          Xero, QuickBooks, Stripe, and more, so insights stay current.
         </p>
         <div className="mt-10">
           <Marquee items={integrationLogos} variant="integrations" />

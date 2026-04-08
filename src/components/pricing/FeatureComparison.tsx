@@ -3,7 +3,7 @@ import { PRICING_COMPARISON } from "@/data/pricing-comparison";
 /** Base cell styles; row uses `group` + `hover:bg-brand-gunmetal` for group-hover text on gunmetal. */
 function cellClass(value: string): string {
   if (value === "✓") return "text-brand-gunmetal font-semibold group-hover:text-white";
-  if (value === "—") return "text-neutral-300 group-hover:text-neutral-400";
+  if (value === "-") return "text-neutral-300 group-hover:text-neutral-400";
   return "text-neutral-600 group-hover:text-white";
 }
 

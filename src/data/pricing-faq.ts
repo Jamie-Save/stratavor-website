@@ -9,19 +9,19 @@ export const PRICING_FAQ: PricingFAQItem[] = [
     id: "pilot",
     question: "What's included in the free pilot?",
     answer:
-      "Full Growth tier access for 14 days. Connect your Xero or QuickBooks, and see your real data across every module — Intelligence Hub, Financial Snapshot, Risk Intelligence, Cost Saving Hub, AI chatbot, and more. No credit card required. After 14 days, choose a plan or walk away — your data is deleted automatically.",
+      "Full Growth tier access for 14 days. Connect your Xero or QuickBooks, and see your real data across every module: Intelligence Hub, Financial Snapshot, Risk Intelligence, Cost Saving Hub, AI chatbot, and more. No credit card required. After 14 days, choose a plan or walk away. Your data is deleted automatically.",
   },
   {
     id: "connectors-vs-custom",
     question: "What are core connectors vs custom integrations?",
     answer:
-      "Core connectors are integrations built and maintained by Stratavor — currently Xero, QuickBooks Online, and HubSpot, with Deltek Vantagepoint, NetSuite, and Sage on the roadmap. Custom integrations are bespoke connections to systems we don't yet support, scoped and built specifically for your organisation.",
+      "Core connectors are integrations built and maintained by Stratavor, currently Xero, QuickBooks Online, and HubSpot, with Deltek Vantagepoint, NetSuite, and Sage on the roadmap. Custom integrations are bespoke connections to systems we don't yet support, scoped and built specifically for your organisation.",
   },
   {
     id: "upgrade",
     question: "Can I upgrade or downgrade at any time?",
     answer:
-      "Yes. Move between Essentials and Growth at any time — upgrades are immediate, downgrades take effect at the end of your billing cycle. Enterprise is scoped individually, so changes go through your account manager.",
+      "Yes. Move between Essentials and Growth at any time. Upgrades are immediate; downgrades take effect at the end of your billing cycle. Enterprise is scoped individually, so changes go through your account manager.",
   },
   {
     id: "cancel-data",

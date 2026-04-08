@@ -8,7 +8,7 @@ export function PilotSection() {
         <div className="flex flex-col items-stretch gap-10 overflow-hidden rounded-2xl border border-brand-gunmetal/10 bg-gradient-to-br from-brand-gunmetal via-brand-gunmetal to-brand-gunmetal-dark px-8 py-12 text-white shadow-medium md:flex-row md:items-center md:gap-12 md:px-12 md:py-14 lg:px-14">
           <div className="flex-1 text-center md:text-left">
             <h2 id="pilot-heading" className="font-heading text-2xl font-semibold tracking-tight text-white sm:text-3xl">
-              14-day free pilot — full Growth access
+              14-day free pilot: full Growth access
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-body text-neutral-300 md:mx-0">
               Connect your Xero or QuickBooks. See your real data in the portal. Every module, every report, full AI. No

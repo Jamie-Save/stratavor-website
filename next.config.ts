@@ -18,7 +18,7 @@ const nextConfig: NextConfig = {
   // OneDrive sync + default file watchers often yield stale / partial client chunks → "not in React Client Manifest" and GET / 404 in dev.
   webpack: (config, { dev }) => {
     if (dev && isOneDriveProject) {
-      // Do not pass absolute Windows paths to `ignored` — Watchpack turns them into regex and
+      // Do not pass absolute Windows paths to `ignored`: Watchpack turns them into regex and
       // backslashes break parsing (e.g. \Users, \savea), crashing dev before "Ready".
       config.watchOptions = {
         ...config.watchOptions,

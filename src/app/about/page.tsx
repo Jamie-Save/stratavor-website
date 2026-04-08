@@ -18,7 +18,7 @@ const values = [
   },
   {
     title: "Accountability at every layer",
-    description: "From data lineage to AI narratives, every insight is traceable. We don't ask you to trust the answer—we show you how we got there.",
+    description: "From data lineage to AI narratives, every insight is traceable. We don't ask you to trust the answer; we show you how we got there.",
   },
   {
     title: "Built for the boardroom",
@@ -51,7 +51,7 @@ export default function AboutPage() {
               Our mission
             </h2>
             <p className="mt-6 text-body-lg text-neutral-600">
-              We exist to give finance leaders the tools to move from reporting to interpreting. Stratavor connects your financial systems, applies contextual AI, and produces board-ready outputs that explain performance—not just display it.
+              We exist to give finance leaders the tools to move from reporting to interpreting. Stratavor connects your financial systems, applies contextual AI, and produces board-ready outputs that explain performance, not just display it.
             </p>
             <p className="mt-4 text-body-lg text-neutral-600">
               Founded in Ireland and built for global enterprise, Stratavor serves CFOs, FP&amp;A teams, and strategy leaders who need a single source of truth across their financial and operational data.

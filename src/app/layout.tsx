@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     template: "%s | Stratavor",
   },
   description:
-    "Stratavor turns your financial data into board-ready insights. AI-powered reporting, variance narratives, and strategic intelligence — connected to your systems.",
+    "Stratavor turns your financial data into board-ready insights. AI-powered reporting, variance narratives, and strategic intelligence, connected to your systems.",
   metadataBase: new URL("https://stratavor.com"),
   openGraph: {
     type: "website",

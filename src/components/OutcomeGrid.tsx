@@ -23,7 +23,7 @@ const outcomes = [
   {
     title: "AI-Powered Variance Narratives",
     description:
-      "Ask your data questions in plain language. Get clear, contextual explanations of what changed and why — so you can explain variances to the board without digging through spreadsheets.",
+      "Ask your data questions in plain language. Get clear, contextual explanations of what changed and why, so you can explain variances to the board without digging through spreadsheets.",
     icon: (
       <svg
         className="h-6 w-6 shrink-0 text-inherit"
