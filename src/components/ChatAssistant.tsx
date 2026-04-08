@@ -1,10 +1,85 @@
 "use client";
 
+import Link from "next/link";
 import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport } from "ai";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 
 const MAX_USER_MESSAGE_CHARS = 2000;
+const APP_SIGNIN_URL = process.env.NEXT_PUBLIC_APP_SIGNIN_URL?.trim() ?? "";
+
+type ChatCta = {
+  label: string;
+  href: string;
+  external?: boolean;
+};
+
+const ALWAYS_ON_CTAS: ChatCta[] = [
+  { label: "View Pricing", href: "/pricing" },
+  { label: "Book a Demo", href: "/demo" },
+  { label: "Trust & Security", href: "/trust" },
+  { label: "Contact Sales", href: "/contact" },
+];
+
+const INTENT_CTA_MAP: Record<string, ChatCta[]> = {
+  pricing: [
+    { label: "View Pricing", href: "/pricing" },
+    { label: "Book a Demo", href: "/demo" },
+  ],
+  security: [
+    { label: "Trust & Security", href: "/trust" },
+    { label: "Sub-processor Register", href: "/trust/sub-processor-register" },
+  ],
+  integrations: [
+    { label: "See Connectors", href: "/pricing#compare-heading" },
+    { label: "Book a Demo", href: "/demo" },
+  ],
+  signin: [{ label: "Sign in", href: APP_SIGNIN_URL, external: true }],
+};
+
+function normalizeForIntent(text: string): string {
+  return text.toLowerCase();
+}
+
+function inferIntent(text: string): keyof typeof INTENT_CTA_MAP | null {
+  const t = normalizeForIntent(text);
+  if (
+    /(pricing|price|plan|plans|tier|tiers|cost|quote|billing)/.test(t)
+  ) {
+    return "pricing";
+  }
+  if (
+    /(security|trust|compliance|privacy|gdpr|soc ?2|iso|sub-processor)/.test(t)
+  ) {
+    return "security";
+  }
+  if (
+    /(integration|integrations|connector|connectors|xero|quickbooks|hubspot|netsuite|sage)/.test(t)
+  ) {
+    return "integrations";
+  }
+  if (/(sign in|signin|log in|login|account access|access account)/.test(t)) {
+    return "signin";
+  }
+  return null;
+}
+
+function CtaChip({ cta }: { cta: ChatCta }) {
+  const className =
+    "inline-flex items-center rounded-full border border-neutral-300 bg-white px-3 py-1.5 text-xs font-medium text-brand-gunmetal transition hover:border-brand-gunmetal/40 hover:bg-neutral-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gunmetal/30";
+  if (cta.external) {
+    return (
+      <a href={cta.href} target="_blank" rel="noopener noreferrer" className={className}>
+        {cta.label}
+      </a>
+    );
+  }
+  return (
+    <Link href={cta.href} className={className}>
+      {cta.label}
+    </Link>
+  );
+}
 
 function messageText(message: { parts?: Array<{ type: string; text?: string }> }): string {
   if (!message.parts?.length) return "";
@@ -26,6 +101,13 @@ export default function ChatAssistant() {
   });
 
   const busy = status === "submitted" || status === "streaming";
+  const latestMessage = messages[messages.length - 1];
+  const latestText = latestMessage ? messageText(latestMessage) : "";
+  const intent = inferIntent(latestText);
+  const intentCtas = intent ? INTENT_CTA_MAP[intent].filter((cta) => cta.href) : [];
+  const alwaysOnCtas = APP_SIGNIN_URL
+    ? [...ALWAYS_ON_CTAS, { label: "Sign in", href: APP_SIGNIN_URL, external: true }]
+    : ALWAYS_ON_CTAS;
 
   useEffect(() => {
     if (!open) return;
@@ -95,6 +177,13 @@ export default function ChatAssistant() {
                 <p className="whitespace-pre-wrap break-words">{messageText(m)}</p>
               </div>
             ))}
+            {intentCtas.length > 0 ? (
+              <div className="flex flex-wrap gap-2 pt-1" aria-label="Suggested actions">
+                {intentCtas.map((cta) => (
+                  <CtaChip key={`intent-${cta.label}`} cta={cta} />
+                ))}
+              </div>
+            ) : null}
             {error ? (
               <p className="rounded-lg bg-red-50 px-3 py-2 text-xs text-red-800" role="alert">
                 {error.message || "Something went wrong. Try again in a moment."}
@@ -102,6 +191,11 @@ export default function ChatAssistant() {
             ) : null}
           </div>
           <form onSubmit={onSubmit} className="border-t border-neutral-200/80 p-3">
+            <div className="mb-3 flex flex-wrap gap-2" aria-label="Quick links">
+              {alwaysOnCtas.map((cta) => (
+                <CtaChip key={`always-${cta.label}`} cta={cta} />
+              ))}
+            </div>
             <label htmlFor={inputId} className="sr-only">
               Message
             </label>
