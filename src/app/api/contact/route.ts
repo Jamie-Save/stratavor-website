@@ -97,16 +97,16 @@ export async function POST(req: Request) {
   const source = str(o.source, 64);
   const tool = str(o.tool, 120);
 
-  if (!firstName || !lastName || !email || !company) {
-    return Response.json({ error: "First name, last name, email, and company are required." }, { status: 400 });
+  if (!email) {
+    return Response.json({ error: "Email is required." }, { status: 400 });
   }
 
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return Response.json({ error: "Please enter a valid email address." }, { status: 400 });
   }
 
-  if (!interest || !isHubSpotInterestValue(interest)) {
-    return Response.json({ error: "Please select what you are interested in." }, { status: 400 });
+  if (interest.length > 0 && !isHubSpotInterestValue(interest)) {
+    return Response.json({ error: "Please select a valid interest option." }, { status: 400 });
   }
 
   if (!INTENT_VALUES.includes(intent as (typeof INTENT_VALUES)[number])) {
@@ -136,14 +136,14 @@ export async function POST(req: Request) {
           ? metaLines.join("\n")
           : "";
 
-  const fields: HubSpotFormField[] = [
-    { name: fnField, value: firstName },
-    { name: lnField, value: lastName },
-    { name: emailField, value: email },
-    { name: companyField, value: company },
-  ];
-
-  fields.push({ name: interestField, value: interest });
+  // Match HubSpot: only send fields that have values (email always). Omit empty optional fields.
+  const fields: HubSpotFormField[] = [{ name: emailField, value: email }];
+  if (firstName) fields.push({ name: fnField, value: firstName });
+  if (lastName) fields.push({ name: lnField, value: lastName });
+  if (company) fields.push({ name: companyField, value: company });
+  if (interest && isHubSpotInterestValue(interest)) {
+    fields.push({ name: interestField, value: interest });
+  }
 
   if (messageField && messageCombined.length > 0) {
     fields.push({ name: messageField, value: messageCombined });

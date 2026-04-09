@@ -150,26 +150,24 @@ export function ContactForm({
           <div className="grid gap-6 sm:grid-cols-2">
             <div>
               <label htmlFor="first-name" className="block text-sm font-medium text-neutral-700">
-                First name
+                First name <span className="font-normal text-neutral-400">(optional)</span>
               </label>
               <input
                 id="first-name"
                 name="firstName"
                 type="text"
-                required
                 autoComplete="given-name"
                 className="mt-2 w-full rounded-xl border border-neutral-200 bg-white px-4 py-3 text-neutral-800 shadow-xs transition-colors placeholder:text-neutral-400 focus:border-brand-gunmetal focus:outline-none focus:ring-2 focus:ring-brand-gunmetal/20"
               />
             </div>
             <div>
               <label htmlFor="last-name" className="block text-sm font-medium text-neutral-700">
-                Last name
+                Last name <span className="font-normal text-neutral-400">(optional)</span>
               </label>
               <input
                 id="last-name"
                 name="lastName"
                 type="text"
-                required
                 autoComplete="family-name"
                 className="mt-2 w-full rounded-xl border border-neutral-200 bg-white px-4 py-3 text-neutral-800 shadow-xs transition-colors placeholder:text-neutral-400 focus:border-brand-gunmetal focus:outline-none focus:ring-2 focus:ring-brand-gunmetal/20"
               />
@@ -178,7 +176,8 @@ export function ContactForm({
 
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-neutral-700">
-              Work email
+              Work email <span className="text-brand-accent">*</span>
+              <span className="sr-only"> (required)</span>
             </label>
             <input
               id="email"
@@ -186,19 +185,19 @@ export function ContactForm({
               type="email"
               required
               autoComplete="email"
+              aria-required="true"
               className="mt-2 w-full rounded-xl border border-neutral-200 bg-white px-4 py-3 text-neutral-800 shadow-xs transition-colors placeholder:text-neutral-400 focus:border-brand-gunmetal focus:outline-none focus:ring-2 focus:ring-brand-gunmetal/20"
             />
           </div>
 
           <div>
             <label htmlFor="company" className="block text-sm font-medium text-neutral-700">
-              Company
+              Company <span className="font-normal text-neutral-400">(optional)</span>
             </label>
             <input
               id="company"
               name="company"
               type="text"
-              required
               autoComplete="organization"
               className="mt-2 w-full rounded-xl border border-neutral-200 bg-white px-4 py-3 text-neutral-800 shadow-xs transition-colors placeholder:text-neutral-400 focus:border-brand-gunmetal focus:outline-none focus:ring-2 focus:ring-brand-gunmetal/20"
             />
@@ -206,12 +205,11 @@ export function ContactForm({
 
           <div>
             <label htmlFor="interest" className="block text-sm font-medium text-neutral-700">
-              I&apos;m interested in
+              I&apos;m interested in <span className="font-normal text-neutral-400">(optional)</span>
             </label>
             <select
               id="interest"
               name="interest"
-              required
               defaultValue={
                 resolvedIntent === "demo"
                   ? "Personalized Demo"
@@ -221,9 +219,7 @@ export function ContactForm({
               }
               className="mt-2 w-full rounded-xl border border-neutral-200 bg-white px-4 py-3 text-neutral-800 shadow-xs transition-colors focus:border-brand-gunmetal focus:outline-none focus:ring-2 focus:ring-brand-gunmetal/20"
             >
-              <option value="" disabled>
-                Select an option
-              </option>
+              <option value="">Prefer not to say</option>
               {HUBSPOT_INTEREST_OPTIONS.map((label) => (
                 <option key={label} value={label}>
                   {label}
@@ -252,9 +248,15 @@ export function ContactForm({
             {sending ? "Sending..." : "Submit enquiry"}
           </button>
 
-          <p className="text-center text-xs text-neutral-400">
-            By submitting, you agree to our{" "}
-            <Link href="/trust/policies/customer-privacy" className="underline underline-offset-2 hover:text-neutral-600">
+          <p className="text-left text-sm leading-relaxed text-neutral-600">
+            Stratavor needs the contact information you provide to us to contact you about our products and
+            services. You may unsubscribe from these communications at any time. For information on how to
+            unsubscribe, as well as our privacy practices and commitment to protecting your privacy, please review
+            our{" "}
+            <Link
+              href="/trust/policies/customer-privacy"
+              className="font-medium text-brand-gunmetal underline underline-offset-2 hover:text-brand-accent"
+            >
               Privacy Policy
             </Link>
             .
