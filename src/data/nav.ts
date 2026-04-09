@@ -21,7 +21,7 @@ export const MARKETING_NAV_LINKS: NavLink[] = [
       { href: "/blog", label: "Blog" },
       { href: "/tools", label: "Tools & Templates" },
       { href: "/trust", label: "Trust Centre" },
+      { href: "/about", label: "Company" },
     ],
   },
-  { href: "/about", label: "Company" },
 ];

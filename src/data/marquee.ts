@@ -14,6 +14,10 @@ export type LogoItem = {
 export type ImageItem = {
   src: string;
   alt: string;
+  /** Short label for UI and chat context */
+  title: string;
+  /** On-page caption: what the screenshot shows and why it matters */
+  description: string;
   bullet?: string;
 };
 
@@ -41,21 +45,36 @@ export const whatWeDoImages: ImageItem[] = [
   {
     src: "/hero/intelligence-hub.png",
     alt: "Stratavor Intelligence Hub dashboard with executive summary and KPI cards",
+    title: "Intelligence Hub",
+    description:
+      "Your executive cockpit: KPI cards, summaries, and health signals in one place so leadership scans performance without opening five tools.",
   },
   {
     src: "/hero/reporting-snapshots.png",
     alt: "Stratavor Reporting Snapshots library with report types and ready-to-view reports",
+    title: "Reporting snapshots",
+    description:
+      "A library of ready-to-view report types—pick a snapshot, drill in, and share consistent narratives instead of rebuilding decks from scratch.",
   },
   {
     src: "/hero/risk-intelligence.png",
     alt: "Stratavor Risk Intelligence risk register with scores and AI-suggested mitigations",
+    title: "Risk intelligence",
+    description:
+      "A live risk register with scores and AI-suggested mitigations, so concentrations and threshold breaches surface before they hit the board deck.",
   },
   {
     src: "/hero/dashboard-with-chat.png",
     alt: "Stratavor dashboard with Ask Stratavor AI assistant panel open alongside reporting",
+    title: "Insights beside your data",
+    description:
+      "Keep reporting on screen while Ask Stratavor answers follow-ups in plain language—explore variances without losing your place in the numbers.",
   },
   {
     src: "/hero/ask-stratavor.png",
     alt: "Ask Stratavor AI chat with suggested questions and input field",
+    title: "Ask Stratavor",
+    description:
+      "Suggested questions and a natural-language input so anyone can probe drivers, periods, and talking points without writing SQL or pivot tables.",
   },
 ];

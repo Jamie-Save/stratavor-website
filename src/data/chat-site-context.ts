@@ -65,7 +65,10 @@ function contactIntentLines(): string {
 export function buildExtendedSiteContext(): string {
   const integrationNames = integrationLogos.map((l) => l.name).join(", ");
   const productSurfaces = whatWeDoImages
-    .map((img, i) => `${i + 1}. ${img.alt}`)
+    .map(
+      (img, i) =>
+        `${i + 1}. ${img.title}: ${img.description} (Alt for imagery: ${img.alt})`,
+    )
     .join("\n");
 
   const outcomesBlock = HOME_OUTCOMES.map(
