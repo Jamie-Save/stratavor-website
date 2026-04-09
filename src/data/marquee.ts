@@ -38,7 +38,7 @@ export const integrationLogos: LogoItem[] = [
   { src: "/images/logos/integrations/hubspot.png", alt: "HubSpot", name: "HubSpot" },
   { src: "/images/logos/integrations/google.png", alt: "Google", name: "Google" },
   { src: "/images/logos/integrations/xero.png", alt: "Xero", name: "Xero" },
-  { src: "/images/logos/integrations/quickbooks.svg", alt: "QuickBooks", name: "QuickBooks" },
+  { src: "/images/logos/integrations/quickbooks.png", alt: "QuickBooks", name: "QuickBooks" },
 ];
 
 export const whatWeDoImages: ImageItem[] = [
