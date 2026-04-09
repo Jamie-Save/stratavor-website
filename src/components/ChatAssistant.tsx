@@ -1,91 +1,20 @@
 "use client";
 
-import Link from "next/link";
 import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport } from "ai";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { AssistantMessageBody } from "@/components/ChatAssistantMessageBody";
-import { BOOK_DEMO_CALENDAR_URL } from "@/data/contact-links";
 
 const MAX_USER_MESSAGE_CHARS = 2000;
-const APP_SIGNIN_URL = process.env.NEXT_PUBLIC_APP_SIGNIN_URL?.trim() ?? "";
 
-type ChatCta = {
-  label: string;
-  href: string;
-  external?: boolean;
-};
-
-const ALWAYS_ON_CTAS: ChatCta[] = [
-  { label: "View Pricing", href: "/pricing" },
-  { label: "Book a Demo", href: BOOK_DEMO_CALENDAR_URL, external: true },
-  { label: "Trust & Security", href: "/trust" },
-  { label: "Contact Sales", href: "/contact" },
-];
-
-const INTENT_CTA_MAP: Record<string, ChatCta[]> = {
-  pricing: [
-    { label: "View Pricing", href: "/pricing" },
-    { label: "Book a Demo", href: BOOK_DEMO_CALENDAR_URL, external: true },
-  ],
-  security: [
-    { label: "Trust & Security", href: "/trust" },
-    { label: "Sub-processor Register", href: "/trust/sub-processor-register" },
-  ],
-  integrations: [
-    { label: "See Connectors", href: "/pricing#compare-heading" },
-    { label: "Book a Demo", href: BOOK_DEMO_CALENDAR_URL, external: true },
-  ],
-  signin: [{ label: "Sign in", href: APP_SIGNIN_URL, external: true }],
-};
-
-const SUGGESTED_PROMPTS: { label: string; text: string }[] = [
+/** Shown above the composer; clicking sends this text as the user message. */
+const RECOMMENDED_QUESTIONS: { label: string; text: string }[] = [
   { label: "Pricing & plans", text: "What are your pricing options and tiers?" },
   { label: "Security & trust", text: "How do you handle security and compliance?" },
   { label: "Integrations", text: "Which accounting and CRM connectors do you support?" },
   { label: "Book a demo", text: "I'd like to book a demo with your team." },
+  { label: "Contact sales", text: "How can I get in touch with your sales team?" },
 ];
-
-function normalizeForIntent(text: string): string {
-  return text.toLowerCase();
-}
-
-function inferIntent(text: string): keyof typeof INTENT_CTA_MAP | null {
-  const t = normalizeForIntent(text);
-  if (
-    /(pricing|price|plan|plans|tier|tiers|cost|quote|billing)/.test(t)
-  ) {
-    return "pricing";
-  }
-  if (
-    /(security|trust|compliance|privacy|gdpr|soc ?2|iso|sub-processor)/.test(t)
-  ) {
-    return "security";
-  }
-  if (
-    /(integration|integrations|connector|connectors|xero|quickbooks|hubspot|netsuite|sage)/.test(t)
-  ) {
-    return "integrations";
-  }
-  if (/(sign in|signin|log in|login|account access|access account)/.test(t)) {
-    return "signin";
-  }
-  return null;
-}
-
-function IconExternalLink({ className }: { className?: string }) {
-  return (
-    <svg className={className} width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden>
-      <path
-        d="M4.5 1.5H2a1 1 0 0 0-1 1V10a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V8M10 1.5H6m4 0v4m0-4L5.5 6.5"
-        stroke="currentColor"
-        strokeWidth="1.2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
 
 function IconChatSparkle({ className }: { className?: string }) {
   return (
@@ -125,24 +54,6 @@ function IconClose({ className }: { className?: string }) {
   );
 }
 
-function CtaChip({ cta }: { cta: ChatCta }) {
-  const className =
-    "inline-flex items-center gap-1 rounded-full border border-neutral-200/95 bg-white px-3 py-1.5 text-xs font-semibold text-brand-gunmetal shadow-sm transition hover:border-brand-accent hover:bg-brand-accent-light/60 hover:text-brand-gunmetal-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent/40 focus-visible:ring-offset-1";
-  if (cta.external) {
-    return (
-      <a href={cta.href} target="_blank" rel="noopener noreferrer" className={className}>
-        {cta.label}
-        <IconExternalLink className="shrink-0 text-neutral-500 opacity-80" />
-      </a>
-    );
-  }
-  return (
-    <Link href={cta.href} className={className}>
-      {cta.label}
-    </Link>
-  );
-}
-
 function messageText(message: { parts?: Array<{ type: string; text?: string }> }): string {
   if (!message.parts?.length) return "";
   return message.parts
@@ -150,6 +61,9 @@ function messageText(message: { parts?: Array<{ type: string; text?: string }> }
     .map((p) => p.text)
     .join("");
 }
+
+const recommendedBtnClass =
+  "rounded-full border border-brand-gunmetal/20 bg-white px-3 py-2 text-left text-xs font-semibold text-brand-gunmetal shadow-sm transition hover:border-brand-accent hover:bg-brand-accent-light/50 disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent/35";
 
 export default function ChatAssistant() {
   const panelId = useId();
@@ -165,11 +79,6 @@ export default function ChatAssistant() {
   const busy = status === "submitted" || status === "streaming";
   const latestMessage = messages[messages.length - 1];
   const latestText = latestMessage ? messageText(latestMessage) : "";
-  const intent = inferIntent(latestText);
-  const intentCtas = intent ? INTENT_CTA_MAP[intent].filter((cta) => cta.href) : [];
-  const alwaysOnCtas = APP_SIGNIN_URL
-    ? [...ALWAYS_ON_CTAS, { label: "Sign in", href: APP_SIGNIN_URL, external: true }]
-    : ALWAYS_ON_CTAS;
 
   const showTyping =
     busy &&
@@ -197,7 +106,7 @@ export default function ChatAssistant() {
     [busy, clearError, sendMessage],
   );
 
-  const sendSuggested = useCallback(
+  const sendAsUser = useCallback(
     async (text: string) => {
       if (busy) return;
       clearError();
@@ -246,25 +155,10 @@ export default function ChatAssistant() {
             className="min-h-[13rem] flex-1 space-y-4 overflow-y-auto bg-gradient-to-b from-white to-neutral-50/80 px-4 py-4 text-sm"
           >
             {messages.length === 0 ? (
-              <div className="space-y-4">
-                <p className="text-[13px] leading-relaxed text-neutral-600">
-                  Hi — ask anything about pilots, pricing, connectors, or where to read more on the site. Or tap a
-                  starter below.
-                </p>
-                <div className="flex flex-wrap gap-2" aria-label="Suggested questions">
-                  {SUGGESTED_PROMPTS.map((s) => (
-                    <button
-                      key={s.label}
-                      type="button"
-                      disabled={busy}
-                      onClick={() => void sendSuggested(s.text)}
-                      className="rounded-full border border-brand-gunmetal/20 bg-white px-3 py-2 text-left text-xs font-semibold text-brand-gunmetal shadow-sm transition hover:border-brand-accent hover:bg-brand-accent-light/50 disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent/35"
-                    >
-                      {s.label}
-                    </button>
-                  ))}
-                </div>
-              </div>
+              <p className="text-[13px] leading-relaxed text-neutral-600">
+                Hi — ask anything about pilots, pricing, connectors, or where to read more on the site. Use a suggested
+                question below or type your own.
+              </p>
             ) : null}
             {messages.map((m, i) => {
               const isLast = i === messages.length - 1;
@@ -273,35 +167,31 @@ export default function ChatAssistant() {
                 return null;
               }
               return (
-              <div
-                key={m.id}
-                className={m.role === "user" ? "flex flex-col items-end gap-1" : "flex flex-col items-start gap-1"}
-              >
-                <span
-                  className={
-                    m.role === "user"
-                      ? "text-[10px] font-bold uppercase tracking-wider text-neutral-400"
-                      : "text-[10px] font-bold uppercase tracking-wider text-brand-accent"
-                  }
-                >
-                  {m.role === "user" ? "You" : "Stratavor"}
-                </span>
                 <div
-                  className={
-                    m.role === "user"
-                      ? "max-w-[92%] rounded-2xl rounded-br-md border border-brand-gunmetal/15 bg-brand-gunmetal/[0.09] px-3.5 py-2.5 text-neutral-800 shadow-sm"
-                      : "max-w-[92%] rounded-2xl rounded-bl-md border-l-[3px] border-brand-accent bg-white px-3.5 py-2.5 text-neutral-700 shadow-sm ring-1 ring-neutral-200/60"
-                  }
+                  key={m.id}
+                  className={m.role === "user" ? "flex flex-col items-end gap-1" : "flex flex-col items-start gap-1"}
                 >
-                  <p className="whitespace-pre-wrap break-words text-[13px] leading-relaxed">
-                    {m.role === "user" ? (
-                      body
-                    ) : (
-                      <AssistantMessageBody text={body} />
-                    )}
-                  </p>
+                  <span
+                    className={
+                      m.role === "user"
+                        ? "text-[10px] font-bold uppercase tracking-wider text-neutral-400"
+                        : "text-[10px] font-bold uppercase tracking-wider text-brand-accent"
+                    }
+                  >
+                    {m.role === "user" ? "You" : "Stratavor"}
+                  </span>
+                  <div
+                    className={
+                      m.role === "user"
+                        ? "max-w-[92%] rounded-2xl rounded-br-md border border-brand-gunmetal/15 bg-brand-gunmetal/[0.09] px-3.5 py-2.5 text-neutral-800 shadow-sm"
+                        : "max-w-[92%] rounded-2xl rounded-bl-md border-l-[3px] border-brand-accent bg-white px-3.5 py-2.5 text-neutral-700 shadow-sm ring-1 ring-neutral-200/60"
+                    }
+                  >
+                    <p className="whitespace-pre-wrap break-words text-[13px] leading-relaxed">
+                      {m.role === "user" ? body : <AssistantMessageBody text={body} />}
+                    </p>
+                  </div>
                 </div>
-              </div>
               );
             })}
             {showTyping ? (
@@ -314,13 +204,6 @@ export default function ChatAssistant() {
                 </div>
               </div>
             ) : null}
-            {intentCtas.length > 0 ? (
-              <div className="flex flex-wrap gap-2 pt-1" aria-label="Suggested actions">
-                {intentCtas.map((cta) => (
-                  <CtaChip key={`intent-${cta.label}`} cta={cta} />
-                ))}
-              </div>
-            ) : null}
             {error ? (
               <p className="rounded-xl border border-red-100 bg-red-50/95 px-3 py-2.5 text-xs font-medium text-red-800" role="alert">
                 {error.message || "Something went wrong. Try again in a moment."}
@@ -331,9 +214,18 @@ export default function ChatAssistant() {
             onSubmit={onSubmit}
             className="border-t border-neutral-200/90 bg-white/95 p-4 shadow-[0_-8px_24px_-12px_rgba(0,0,0,0.08)] backdrop-blur-sm"
           >
-            <div className="mb-3 flex flex-wrap gap-2" aria-label="Quick links">
-              {alwaysOnCtas.map((cta) => (
-                <CtaChip key={`always-${cta.label}`} cta={cta} />
+            <p className="mb-2 text-[10px] font-bold uppercase tracking-wider text-neutral-400">Suggested questions</p>
+            <div className="mb-3 flex flex-wrap gap-2" aria-label="Recommended questions">
+              {RECOMMENDED_QUESTIONS.map((q) => (
+                <button
+                  key={q.label}
+                  type="button"
+                  disabled={busy}
+                  onClick={() => void sendAsUser(q.text)}
+                  className={recommendedBtnClass}
+                >
+                  {q.label}
+                </button>
               ))}
             </div>
             <label htmlFor={inputId} className="sr-only">
