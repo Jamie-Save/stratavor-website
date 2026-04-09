@@ -40,7 +40,7 @@ function shortUrlLabel(url: string): string {
 }
 
 const INLINE_LINK_CLASS =
-  "mx-0.5 inline-flex max-w-full items-center rounded-md border border-brand-gunmetal/35 bg-white px-2 py-0.5 align-baseline text-xs font-semibold leading-snug text-brand-gunmetal no-underline shadow-sm transition hover:border-brand-gunmetal hover:bg-brand-gunmetal/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gunmetal/35";
+  "mx-0.5 inline-flex max-w-full items-center rounded-lg border border-brand-gunmetal/30 bg-brand-accent-light/40 px-2 py-0.5 align-baseline text-xs font-semibold leading-snug text-brand-gunmetal no-underline shadow-sm transition hover:border-brand-accent hover:bg-brand-accent-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent/40";
 
 function InlineLink({ href, children }: { href: string; children: ReactNode }) {
   const clean = normalizeHref(href);
