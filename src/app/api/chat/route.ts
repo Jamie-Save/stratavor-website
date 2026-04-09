@@ -138,7 +138,7 @@ export async function POST(req: Request) {
     return Response.json({ error: "Could not convert messages" }, { status: 400 });
   }
 
-  const modelId = process.env.OPENAI_CHAT_MODEL ?? "gpt-4o-mini";
+  const modelId = process.env.OPENAI_CHAT_MODEL ?? "gpt-5-mini";
   const openai = createOpenAI({ apiKey });
 
   const result = streamText({
