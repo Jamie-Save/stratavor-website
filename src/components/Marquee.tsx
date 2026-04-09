@@ -2,15 +2,12 @@
 
 import Image from "next/image";
 import { Fragment, useState, useEffect, useRef } from "react";
+import type { LogoItem } from "@/data/marquee";
 
-export type MarqueeItemLogo = {
-  src?: string;
-  alt: string;
-  name: string;
-};
+export type { LogoItem as MarqueeItemLogo } from "@/data/marquee";
 
 type MarqueeProps = {
-  items: MarqueeItemLogo[];
+  items: LogoItem[];
   variant?: "trusted" | "integrations";
   /** Dark gunmetal band (trusted row on home). */
   surface?: "light" | "dark";
@@ -22,7 +19,7 @@ function LogoSlot({
   grayscale,
   surface,
 }: {
-  item: MarqueeItemLogo;
+  item: LogoItem;
   variant: "trusted" | "integrations";
   grayscale?: boolean;
   surface?: "light" | "dark";
@@ -62,7 +59,7 @@ function LogoSlot({
       ? "h-12 w-32 rounded-lg border border-white/15 bg-white/10 px-6"
       : "h-12 w-32 rounded-lg bg-neutral-100 px-6";
   const integrations =
-    "h-14 min-w-[5.5rem] shrink-0 items-center justify-center px-5 text-neutral-600";
+    "min-h-[4.75rem] min-w-[5.5rem] shrink-0 items-center justify-center px-5 text-neutral-600";
 
   const imgH = variant === "integrations" ? "h-9" : "h-8";
   const imgFilter =
@@ -73,6 +70,10 @@ function LogoSlot({
         : "grayscale-0 transition-all duration-300";
 
   if (item.src) {
+    const integrationsScale =
+      variant === "integrations" ? (item.logoScale ?? 1) : 1;
+    const integrationsHeightRem = 2.25 * integrationsScale;
+
     return (
       <div
         className={`${base} ${variant === "trusted" ? trusted : integrations}`}
@@ -82,7 +83,16 @@ function LogoSlot({
           alt={item.alt}
           width={120}
           height={40}
-          className={`${imgH} w-auto object-contain ${imgFilter}`}
+          className={
+            variant === "integrations"
+              ? `max-h-[4.85rem] w-auto object-contain ${imgFilter}`
+              : `${imgH} w-auto object-contain ${imgFilter}`
+          }
+          style={
+            variant === "integrations"
+              ? { height: `${integrationsHeightRem}rem`, width: "auto" }
+              : undefined
+          }
         />
       </div>
     );

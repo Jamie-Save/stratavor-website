@@ -9,6 +9,8 @@ export type LogoItem = {
   src?: string;
   alt: string;
   name: string;
+  /** Integrations marquee only: multiplier on default logo height (1 = baseline) for visual balance. */
+  logoScale?: number;
 };
 
 export type ImageItem = {
@@ -34,11 +36,21 @@ export const trustedByLogos: LogoItem[] = [
 export const integrationLogos: LogoItem[] = [
   { src: "/images/logos/integrations/microsoft.png", alt: "Microsoft", name: "Microsoft" },
   { src: "/images/logos/integrations/stripe.png", alt: "Stripe", name: "Stripe" },
-  { src: "/images/logos/integrations/oracle-netsuite.png", alt: "Oracle NetSuite", name: "Oracle NetSuite" },
+  {
+    src: "/images/logos/integrations/oracle-netsuite.png",
+    alt: "Oracle NetSuite",
+    name: "Oracle NetSuite",
+    logoScale: 1.2,
+  },
   { src: "/images/logos/integrations/hubspot.png", alt: "HubSpot", name: "HubSpot" },
   { src: "/images/logos/integrations/google.png", alt: "Google", name: "Google" },
-  { src: "/images/logos/integrations/xero.png", alt: "Xero", name: "Xero" },
-  { src: "/images/logos/integrations/quickbooks.png", alt: "QuickBooks", name: "QuickBooks" },
+  { src: "/images/logos/integrations/xero.png", alt: "Xero", name: "Xero", logoScale: 1.2 },
+  {
+    src: "/images/logos/integrations/quickbooks.png",
+    alt: "QuickBooks",
+    name: "QuickBooks",
+    logoScale: 1.75,
+  },
 ];
 
 export const whatWeDoImages: ImageItem[] = [
