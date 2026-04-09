@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport } from "ai";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
+import { BOOK_DEMO_CALENDAR_URL } from "@/data/contact-links";
 
 const MAX_USER_MESSAGE_CHARS = 2000;
 const APP_SIGNIN_URL = process.env.NEXT_PUBLIC_APP_SIGNIN_URL?.trim() ?? "";
@@ -16,7 +17,7 @@ type ChatCta = {
 
 const ALWAYS_ON_CTAS: ChatCta[] = [
   { label: "View Pricing", href: "/pricing" },
-  { label: "Book a Demo", href: "/demo" },
+  { label: "Book a Demo", href: BOOK_DEMO_CALENDAR_URL, external: true },
   { label: "Trust & Security", href: "/trust" },
   { label: "Contact Sales", href: "/contact" },
 ];
@@ -24,7 +25,7 @@ const ALWAYS_ON_CTAS: ChatCta[] = [
 const INTENT_CTA_MAP: Record<string, ChatCta[]> = {
   pricing: [
     { label: "View Pricing", href: "/pricing" },
-    { label: "Book a Demo", href: "/demo" },
+    { label: "Book a Demo", href: BOOK_DEMO_CALENDAR_URL, external: true },
   ],
   security: [
     { label: "Trust & Security", href: "/trust" },
@@ -32,7 +33,7 @@ const INTENT_CTA_MAP: Record<string, ChatCta[]> = {
   ],
   integrations: [
     { label: "See Connectors", href: "/pricing#compare-heading" },
-    { label: "Book a Demo", href: "/demo" },
+    { label: "Book a Demo", href: BOOK_DEMO_CALENDAR_URL, external: true },
   ],
   signin: [{ label: "Sign in", href: APP_SIGNIN_URL, external: true }],
 };
