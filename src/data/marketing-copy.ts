@@ -65,6 +65,12 @@ export const HOME_INTEGRATIONS = {
     "Connect your ERP, CRM, and finance tools. Stratavor pulls data from Xero, QuickBooks, Stripe, and more, so insights stay current.",
 } as const;
 
+export const HOME_TRUSTED_BY = {
+  sectionLabel: "Trusted by",
+  headline: "Leaders who live in the numbers.",
+  subline: "Finance, strategy, FP&A, and ops—aligned on what matters.",
+} as const;
+
 export const HOME_BOTTOM_CTA = {
   heading: "Ready to turn financial data into strategic clarity?",
   subline: "Join the finance leaders who stopped reporting and started explaining.",

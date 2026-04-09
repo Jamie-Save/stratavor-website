@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useEffect, useRef } from "react";
+import { Fragment, useState, useEffect, useRef } from "react";
 
 export type MarqueeItemLogo = {
   src?: string;
@@ -16,7 +16,6 @@ type MarqueeProps = {
   surface?: "light" | "dark";
 };
 
-// Logo slot: image or placeholder div (fixed aspect for no layout shift)
 function LogoSlot({
   item,
   variant,
@@ -28,6 +27,32 @@ function LogoSlot({
   grayscale?: boolean;
   surface?: "light" | "dark";
 }) {
+  const isTrustedDark = variant === "trusted" && surface === "dark";
+
+  if (isTrustedDark) {
+    if (item.src) {
+      return (
+        <div className="flex min-h-12 shrink-0 items-center justify-center px-4">
+          <Image
+            src={item.src}
+            alt={item.alt}
+            width={120}
+            height={40}
+            className="h-9 max-h-10 w-auto object-contain opacity-85 transition-opacity duration-300 hover:opacity-100"
+          />
+        </div>
+      );
+    }
+    return (
+      <div
+        className="flex min-h-12 min-w-[5.5rem] shrink-0 items-center justify-center px-5 font-heading text-lg font-medium tracking-wide text-white/75 transition-colors duration-300 hover:text-white sm:text-xl"
+        aria-hidden
+      >
+        {item.name}
+      </div>
+    );
+  }
+
   const base =
     surface === "dark" && variant === "trusted"
       ? "flex shrink-0 items-center justify-center text-sm font-medium text-white/85"
@@ -72,6 +97,17 @@ function LogoSlot({
   );
 }
 
+function MarqueeSeparator() {
+  return (
+    <span
+      className="inline-flex shrink-0 select-none items-center self-center px-1 font-heading text-2xl leading-none text-white/25 sm:text-[1.75rem]"
+      aria-hidden
+    >
+      ·
+    </span>
+  );
+}
+
 export default function Marquee({
   items,
   variant = "trusted",
@@ -79,6 +115,8 @@ export default function Marquee({
 }: MarqueeProps) {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const isTrustedDark = variant === "trusted" && surface === "dark";
+  const marqueeDurationSec = isTrustedDark ? 42 : 30;
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -89,38 +127,48 @@ export default function Marquee({
   }, []);
 
   const duplicated = [...items, ...items];
+  const isIntegrations = variant === "integrations";
 
   if (prefersReducedMotion) {
     return (
       <div
         ref={containerRef}
-        className="flex flex-wrap items-center justify-center gap-4"
+        className={`flex flex-wrap items-center justify-center gap-1 sm:gap-0 ${isTrustedDark ? "gap-x-0 gap-y-2" : "gap-4"}`}
       >
         {items.map((item, i) => (
-          <LogoSlot key={i} item={item} variant={variant} surface={surface} />
+          <Fragment key={`${item.name}-${i}`}>
+            {isTrustedDark && i > 0 ? <MarqueeSeparator /> : null}
+            <LogoSlot
+              item={item}
+              variant={variant}
+              surface={surface}
+              grayscale={isIntegrations ? false : true}
+            />
+          </Fragment>
         ))}
       </div>
     );
   }
 
-  const isIntegrations = variant === "integrations";
   const scrollStyle = {
-    animation: "marquee-h 30s linear infinite",
+    animation: `marquee-h ${marqueeDurationSec}s linear infinite`,
   };
-  const stripClasses = "flex gap-8 whitespace-nowrap will-change-transform";
+  const stripClasses = `flex items-center whitespace-nowrap will-change-transform ${isTrustedDark ? "gap-0" : "gap-8"}`;
 
   return (
     <div ref={containerRef} className="relative flex items-center gap-3">
       <div className="marquee-mask min-w-0 flex-1 overflow-hidden">
         <div className={stripClasses} style={scrollStyle}>
           {duplicated.map((item, i) => (
-            <LogoSlot
-              key={i}
-              item={item}
-              variant={variant}
-              surface={surface}
-              grayscale={isIntegrations ? false : true}
-            />
+            <Fragment key={`${item.name}-${i}`}>
+              {isTrustedDark && i > 0 ? <MarqueeSeparator /> : null}
+              <LogoSlot
+                item={item}
+                variant={variant}
+                surface={surface}
+                grayscale={isIntegrations ? false : true}
+              />
+            </Fragment>
           ))}
         </div>
       </div>

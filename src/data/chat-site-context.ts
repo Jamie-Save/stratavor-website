@@ -9,6 +9,7 @@ import {
   HOME_INTEGRATIONS,
   HOME_OUTCOMES,
   HOME_SOLUTIONS,
+  HOME_TRUSTED_BY,
   HOME_WHAT_WE_DO,
   POWER_BI_PAGE,
   TOOLS_PAGE,
@@ -92,6 +93,10 @@ Body: ${HOME_HERO.subline}
 Note: ${HOME_HERO.trialNote}
 Primary CTA: ${HOME_HERO.primaryCtaLabel} → ${absoluteUrl("/pricing")}
 Secondary CTA: ${HOME_HERO.secondaryCtaLabel} → ${BOOK_DEMO_CALENDAR_URL}
+
+## Home page — Trusted by band
+${HOME_TRUSTED_BY.sectionLabel}: ${HOME_TRUSTED_BY.headline}
+${HOME_TRUSTED_BY.subline}
 
 ## Home page — What we do
 ${HOME_WHAT_WE_DO.sectionLabel}: ${HOME_WHAT_WE_DO.heading}
