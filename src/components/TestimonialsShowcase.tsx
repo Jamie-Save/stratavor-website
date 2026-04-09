@@ -10,25 +10,6 @@ import {
 } from "@/data/testimonials";
 
 const TESTIMONIALS_HEADLINE = "Loved by teams who ship";
-const HEADLINE_ACCENT_SUFFIX = "ship";
-
-function TestimonialsHeadline() {
-  const headline = TESTIMONIALS_HEADLINE;
-  const i = headline.lastIndexOf(HEADLINE_ACCENT_SUFFIX);
-  const validSuffix =
-    i >= 0 && i + HEADLINE_ACCENT_SUFFIX.length === headline.length;
-  if (!validSuffix) {
-    return <>{headline}</>;
-  }
-  return (
-    <>
-      {headline.slice(0, i)}
-      <span className="bg-gradient-to-r from-white via-white to-brand-accent bg-clip-text text-transparent">
-        {headline.slice(i)}
-      </span>
-    </>
-  );
-}
 
 function getInitials(name: string): string {
   const parts = name.trim().split(/\s+/);
@@ -91,7 +72,9 @@ function FeaturedCard({ testimonial }: { testimonial: Testimonial }) {
         &ldquo;
       </span>
       <blockquote className="relative z-10">
-        <p className="text-xl font-light leading-relaxed text-white/95 sm:text-2xl">{testimonial.quote}</p>
+        <p className="whitespace-pre-line text-xl font-light leading-relaxed text-white/95 sm:text-2xl">
+          {testimonial.quote}
+        </p>
       </blockquote>
       <footer className="relative z-10 mt-8 flex items-center gap-4 border-t border-white/10 pt-8">
         <Avatar testimonial={testimonial} size="md" variant="dark" />
@@ -285,7 +268,7 @@ export default function TestimonialsShowcase() {
                   id="testimonials-heading"
                   className="text-left text-3xl font-semibold tracking-tight text-white sm:text-4xl lg:text-[2.5rem] lg:leading-tight"
                 >
-                  <TestimonialsHeadline />
+                  {TESTIMONIALS_HEADLINE}
                 </h2>
               </div>
             </div>

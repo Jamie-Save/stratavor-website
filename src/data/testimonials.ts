@@ -22,10 +22,10 @@ export type Testimonial = {
 export const testimonials: Testimonial[] = [
   {
     quote:
-      "We needed better visibility into our financial operations. The platform delivered exactly that: clear reporting and insights we can act on.",
+      "Fantastic to work with and nothing is ever too much trouble.\n\nClear with all communication and always on time with deadlines.\n\nWe have found them to be a pleasure to work with and strongly recommend",
     name: "Sarah Chen",
     title: "CFO",
-    company: "Acme Corp",
+    company: "KPI Dashboard Project",
     role: "CFO",
   },
   {

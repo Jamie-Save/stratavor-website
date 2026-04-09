@@ -15,13 +15,13 @@ export const MARKETING_NAV_LINKS: NavLink[] = [
     ],
   },
   { href: "/pricing", label: "Pricing" },
+  { href: "/about", label: "Company" },
   {
     label: "Resources",
     children: [
       { href: "/blog", label: "Blog" },
       { href: "/tools", label: "Tools & Templates" },
       { href: "/trust", label: "Trust Centre" },
-      { href: "/about", label: "Company" },
     ],
   },
 ];
