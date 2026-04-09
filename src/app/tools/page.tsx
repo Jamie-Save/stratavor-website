@@ -14,7 +14,7 @@ export default function ToolsPage() {
       <section className="border-b border-neutral-200/80 bg-white py-12 sm:py-16" aria-labelledby="tools-heading">
         <div className="mx-auto max-w-content px-content lg:px-8">
           <p className="section-label mb-4 text-center">{TOOLS_PAGE.sectionLabel}</p>
-          <h1 id="tools-heading" className="text-center text-display font-semibold tracking-tight text-brand-gunmetal sm:text-display-lg">
+          <h1 id="tools-heading" className="text-center text-display font-semibold tracking-tight text-brand-gunmetal sm:text-display-lg 2xl:text-display-xl">
             {TOOLS_PAGE.heading}
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-center text-body-lg text-neutral-600">{TOOLS_PAGE.intro}</p>

@@ -55,7 +55,7 @@ export default function WhatWeDoGallery() {
                     <p className="section-label mb-2 lg:hidden">Step {step}</p>
                     <h3
                       id={`what-we-do-${i}-title`}
-                      className="font-heading text-xl font-semibold tracking-tight text-brand-gunmetal sm:text-2xl"
+                      className="font-heading text-xl font-semibold tracking-tight text-brand-gunmetal sm:text-2xl 2xl:text-3xl"
                     >
                       {item.title}
                     </h3>
@@ -87,7 +87,7 @@ export default function WhatWeDoGallery() {
                       width={IMG_W}
                       height={IMG_H}
                       className="h-full w-full object-cover object-top"
-                      sizes="(max-width: 1024px) 100vw, 58vw"
+                      sizes="(max-width: 1024px) 100vw, (max-width: 1536px) 62vw, 900px"
                       priority={i === 0}
                     />
                   </div>

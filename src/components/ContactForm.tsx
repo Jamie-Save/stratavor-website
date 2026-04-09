@@ -65,7 +65,7 @@ export function ContactForm({ intent = "general" }: { intent?: string }) {
   return (
     <div className="mx-auto max-w-2xl">
       <div className="text-center">
-        <h1 className="text-display font-semibold tracking-tight text-brand-gunmetal sm:text-display-lg">
+        <h1 className="text-display font-semibold tracking-tight text-brand-gunmetal sm:text-display-lg 2xl:text-display-xl">
           {config.heading}
         </h1>
         <p className="mt-4 text-body-lg text-neutral-600">{config.description}</p>

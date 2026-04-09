@@ -162,7 +162,7 @@ export default function HeroCarousel() {
                     width={HERO_IMG_WIDTH}
                     height={HERO_IMG_HEIGHT}
                     className="block h-auto w-full"
-                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    sizes="(max-width: 1024px) 100vw, (max-width: 1536px) 52vw, 800px"
                     priority={i === 0}
                   />
                 </div>

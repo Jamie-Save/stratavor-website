@@ -44,8 +44,8 @@ export default function HeroSplit() {
         }}
       />
 
-      <div className="mx-auto grid max-w-content grid-cols-1 gap-12 px-content pt-12 pb-20 lg:grid-cols-[auto_1fr] lg:gap-16 lg:pt-16 lg:pb-28 lg:px-8">
-        <div className="flex max-w-md flex-col justify-center lg:max-w-lg">
+      <div className="mx-auto grid max-w-content grid-cols-1 gap-12 px-content pt-12 pb-20 lg:grid-cols-[auto_1fr] lg:gap-16 lg:pt-16 lg:pb-28 lg:px-8 2xl:gap-20 2xl:pb-32">
+        <div className="flex max-w-md flex-col justify-center lg:max-w-lg 2xl:max-w-xl">
           <div className="flex gap-5">
             <div
               className="mt-2 hidden h-[min(100%,7.5rem)] min-h-[5rem] w-1 shrink-0 rounded-full bg-gradient-to-b from-brand-gunmetal/45 via-brand-gunmetal/15 to-brand-accent/25 sm:block"
@@ -53,10 +53,10 @@ export default function HeroSplit() {
             />
             <div className="min-w-0 flex-1">
               <p className="section-label mb-4">{HOME_HERO.sectionLabel}</p>
-              <h1 className="text-display font-bold leading-tight tracking-tight text-brand-gunmetal lg:text-display-lg">
+              <h1 className="text-display font-bold leading-tight tracking-tight text-brand-gunmetal lg:text-display-lg 2xl:text-display-xl">
                 <HeroHeadline />
               </h1>
-              <p className="text-body-lg mt-6 max-w-prose text-neutral-600">{HOME_HERO.subline}</p>
+              <p className="text-body-lg mt-6 max-w-prose text-neutral-600 2xl:text-xl">{HOME_HERO.subline}</p>
               <div className="mt-10 flex flex-wrap gap-4">
                 <Link
                   href="/pricing"

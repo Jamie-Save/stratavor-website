@@ -15,7 +15,7 @@ export function PricingHero() {
           <div className="text-center lg:text-left">
             <h1
               id="pricing-hero-heading"
-              className="text-display font-semibold tracking-tight text-brand-gunmetal sm:text-display-lg"
+              className="text-display font-semibold tracking-tight text-brand-gunmetal sm:text-display-lg 2xl:text-display-xl"
             >
               Everything you need.{" "}
               <span className="font-medium italic text-brand-gunmetal/85">Nothing hidden.</span>

@@ -77,6 +77,7 @@ const config: Config = {
         sans: ["var(--font-body)", "system-ui", "sans-serif"],
       },
       fontSize: {
+        "display-xl": ["3.875rem", { lineHeight: "1.08", letterSpacing: "-0.02em", fontWeight: "700" }],
         "display-lg": ["3.5rem", { lineHeight: "1.1", letterSpacing: "-0.02em", fontWeight: "700" }],
         display: ["2.75rem", { lineHeight: "1.15", letterSpacing: "-0.015em", fontWeight: "700" }],
         "heading-lg": ["2rem", { lineHeight: "1.2", letterSpacing: "-0.015em", fontWeight: "600" }],

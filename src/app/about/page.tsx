@@ -16,7 +16,7 @@ export default function AboutPage() {
           <p className="section-label mb-4 text-center">Company</p>
           <h1
             id="about-heading"
-            className="mx-auto max-w-3xl text-center text-display font-semibold tracking-tight text-brand-gunmetal sm:text-display-lg"
+            className="mx-auto max-w-3xl text-center text-display font-semibold tracking-tight text-brand-gunmetal sm:text-display-lg 2xl:text-display-xl"
           >
             {ABOUT_PAGE.heroHeadline}
           </h1>
