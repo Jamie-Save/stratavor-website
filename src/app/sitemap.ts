@@ -1,9 +1,10 @@
 import type { MetadataRoute } from "next";
+import { BLOG_POSTS } from "@/data/blog-posts";
 import { TRUST_DOCUMENTS } from "@/data/trust-policies";
-
-const BASE_URL = "https://stratavor.com";
+import { getSiteUrl } from "@/lib/site-url";
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const baseUrl = getSiteUrl();
   const staticRoutes = [
     { path: "/", priority: 1.0, changeFrequency: "weekly" as const },
     { path: "/pricing", priority: 0.9, changeFrequency: "monthly" as const },
@@ -25,12 +26,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
     }));
 
-  const allRoutes = [...staticRoutes, ...policyRoutes];
-
-  return allRoutes.map((route) => ({
-    url: `${BASE_URL}${route.path}`,
+  const staticAndPolicy = [...staticRoutes, ...policyRoutes].map((route) => ({
+    url: `${baseUrl}${route.path}`,
     lastModified: new Date(),
     changeFrequency: route.changeFrequency,
     priority: route.priority,
   }));
+
+  const blogEntries: MetadataRoute.Sitemap = BLOG_POSTS.map((post) => ({
+    url: `${baseUrl}/blog/${post.slug}`,
+    lastModified: new Date(`${post.date}T12:00:00Z`),
+    changeFrequency: "monthly" as const,
+    priority: 0.65,
+  }));
+
+  return [...staticAndPolicy, ...blogEntries];
 }

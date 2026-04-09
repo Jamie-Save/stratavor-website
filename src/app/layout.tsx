@@ -4,8 +4,16 @@ import { AnalyticsScript } from "@/components/Analytics";
 import ChatAssistant from "@/components/ChatAssistant";
 import Footer from "@/components/Footer";
 import HeaderSticky from "@/components/HeaderSticky";
-import { OrganizationJsonLd, SoftwareApplicationJsonLd } from "@/components/StructuredData";
+import {
+  OrganizationJsonLd,
+  SoftwareApplicationJsonLd,
+  WebSiteJsonLd,
+} from "@/components/StructuredData";
+import { getSiteUrl } from "@/lib/site-url";
 import "./globals.css";
+
+const siteUrl = getSiteUrl();
+const defaultOgImage = "/hero/intelligence-hub.png";
 
 const plexSans = IBM_Plex_Sans({
   subsets: ["latin"],
@@ -28,20 +36,30 @@ export const metadata: Metadata = {
   },
   description:
     "Stratavor turns your financial data into board-ready insights. AI-powered reporting, variance narratives, and strategic intelligence, connected to your systems.",
-  metadataBase: new URL("https://stratavor.com"),
+  metadataBase: new URL(siteUrl),
   openGraph: {
     type: "website",
     locale: "en_IE",
     siteName: "Stratavor",
+    url: siteUrl,
     title: "Stratavor | Strategic Intelligence Platform",
     description:
       "Transform financial data into board-ready insights with AI-powered commentary and strategic intelligence.",
+    images: [
+      {
+        url: defaultOgImage,
+        width: 1200,
+        height: 630,
+        alt: "Stratavor Intelligence Hub dashboard preview",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Stratavor | Strategic Intelligence Platform",
     description:
       "Transform financial data into board-ready insights with AI-powered commentary.",
+    images: [defaultOgImage],
   },
   robots: {
     index: true,
@@ -81,6 +99,7 @@ export default function RootLayout({
         <AnalyticsScript />
         <ChatAssistant />
         <OrganizationJsonLd />
+        <WebSiteJsonLd />
         <SoftwareApplicationJsonLd />
       </body>
     </html>

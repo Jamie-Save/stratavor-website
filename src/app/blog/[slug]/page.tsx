@@ -1,20 +1,38 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import {
-  getBlogPost,
-  getAllBlogSlugs,
-} from "@/data/blog-posts";
+import { BlogPostingJsonLd } from "@/components/StructuredData";
+import { getAllBlogSlugs, getBlogPost } from "@/data/blog-posts";
+import { absoluteUrl } from "@/lib/site-url";
 
 const MONTHS = [
-  "January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December",
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
 ];
 
 function formatBlogDate(isoDate: string): string {
   const [y, m, d] = isoDate.split("-").map(Number);
   const month = MONTHS[(m ?? 1) - 1];
   return `${d ?? 1} ${month} ${y ?? ""}`;
+}
+
+function headingId(text: string, maxLen: number): string {
+  return text
+    .trim()
+    .replace(/\s+/g, "-")
+    .toLowerCase()
+    .replace(/[^a-z0-9-]/g, "")
+    .slice(0, maxLen);
 }
 
 function BlogPostBody({ body }: { body: string }) {
@@ -27,23 +45,28 @@ function BlogPostBody({ body }: { body: string }) {
     <div className="mt-10 space-y-6">
       {blocks.map((block, i) => {
         if (block.startsWith("## ")) {
+          const text = block.slice(3);
+          const hid = headingId(text, 60) || `h2-${i}`;
           return (
             <h2
               key={i}
-              id={block.slice(3).replace(/\s+/g, "-").toLowerCase().slice(0, 60)}
+              id={hid}
               className="text-xl font-semibold tracking-tight text-brand-gunmetal sm:text-2xl"
             >
-              {block.slice(3)}
+              {text}
             </h2>
           );
         }
         if (block.startsWith("### ")) {
+          const text = block.slice(4);
+          const hid = headingId(text, 60) || `h3-${i}`;
           return (
             <h3
               key={i}
+              id={hid}
               className="text-lg font-semibold text-brand-gunmetal sm:text-xl"
             >
-              {block.slice(4)}
+              {text}
             </h3>
           );
         }
@@ -61,6 +84,8 @@ export async function generateStaticParams() {
   return getAllBlogSlugs().map((slug) => ({ slug }));
 }
 
+const articleOgImage = "/hero/intelligence-hub.png";
+
 export async function generateMetadata({
   params,
 }: {
@@ -69,12 +94,37 @@ export async function generateMetadata({
   const { slug } = await params;
   const post = getBlogPost(slug);
   if (!post) return { title: "Post | Stratavor" };
+
+  const canonical = absoluteUrl(`/blog/${post.slug}`);
+  const publishedTime = `${post.date}T12:00:00.000Z`;
+
   return {
     title: `${post.title} | Blog | Stratavor`,
     description: post.excerpt,
+    alternates: { canonical },
+    authors: [{ name: post.author }],
     openGraph: {
+      type: "article",
       title: post.title,
       description: post.excerpt,
+      url: canonical,
+      publishedTime,
+      modifiedTime: publishedTime,
+      authors: [post.author],
+      images: [
+        {
+          url: articleOgImage,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.excerpt,
+      images: [articleOgImage],
     },
   };
 }
@@ -92,6 +142,7 @@ export default async function BlogPostPage({
 
   return (
     <article className="min-h-screen bg-white">
+      <BlogPostingJsonLd post={post} />
       <div className="mx-auto max-w-3xl px-content py-12 lg:px-8">
         <Link
           href="/blog"
@@ -115,7 +166,7 @@ export default async function BlogPostPage({
             {post.title}
           </h1>
           <p className="mt-4 text-sm text-neutral-500">
-            {post.author} · {formattedDate}
+            {post.author} · <time dateTime={post.date}>{formattedDate}</time>
           </p>
         </header>
 
