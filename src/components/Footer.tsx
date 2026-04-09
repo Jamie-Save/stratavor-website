@@ -80,17 +80,18 @@ export default function Footer() {
       <div className="relative mx-auto max-w-content px-content py-16 lg:px-8 lg:py-20">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-6">
           <div className="relative lg:col-span-2">
-            <div className="rounded-2xl bg-white/[0.04] p-6 shadow-medium ring-1 ring-white/10 lg:p-8">
+            <div className="inline-flex max-w-full rounded-2xl bg-white/[0.04] px-5 py-6 shadow-medium ring-1 ring-white/10 sm:px-7 sm:py-7 lg:px-8 lg:py-8">
               <Link
                 href="/"
-                className="block w-fit rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-gunmetal"
+                className="mx-auto flex items-center justify-center rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-gunmetal"
               >
                 <Image
-                  src="/images/stratavor-logo-white.svg"
+                  src="/images/footer-chesspiece.svg"
                   alt="Stratavor"
-                  width={360}
-                  height={110}
-                  className="h-20 w-auto object-contain sm:h-[5.25rem] lg:h-24"
+                  width={98}
+                  height={173}
+                  unoptimized
+                  className="h-[8.5rem] w-auto max-h-[min(11rem,50vh)] object-contain object-center sm:h-40 lg:h-44"
                 />
               </Link>
             </div>
