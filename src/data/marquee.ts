@@ -49,7 +49,7 @@ export const integrationLogos: LogoItem[] = [
     src: "/images/logos/integrations/quickbooks.png",
     alt: "QuickBooks",
     name: "QuickBooks",
-    logoScale: 1.75,
+    logoScale: 3.5,
   },
 ];
 

@@ -59,7 +59,7 @@ function LogoSlot({
       ? "h-12 w-32 rounded-lg border border-white/15 bg-white/10 px-6"
       : "h-12 w-32 rounded-lg bg-neutral-100 px-6";
   const integrations =
-    "min-h-[4.75rem] min-w-[5.5rem] shrink-0 items-center justify-center px-5 text-neutral-600";
+    "min-w-[5.5rem] shrink-0 items-center justify-center px-5 py-2 text-neutral-600";
 
   const imgH = variant === "integrations" ? "h-9" : "h-8";
   const imgFilter =
@@ -73,10 +73,19 @@ function LogoSlot({
     const integrationsScale =
       variant === "integrations" ? (item.logoScale ?? 1) : 1;
     const integrationsHeightRem = 2.25 * integrationsScale;
+    const integrationsSlotMinRem =
+      variant === "integrations"
+        ? Math.max(4.75, integrationsHeightRem + 0.4)
+        : undefined;
 
     return (
       <div
         className={`${base} ${variant === "trusted" ? trusted : integrations}`}
+        style={
+          integrationsSlotMinRem != null
+            ? { minHeight: `${integrationsSlotMinRem}rem` }
+            : undefined
+        }
       >
         <Image
           src={item.src}
@@ -85,7 +94,7 @@ function LogoSlot({
           height={40}
           className={
             variant === "integrations"
-              ? `max-h-[4.85rem] w-auto object-contain ${imgFilter}`
+              ? `w-auto object-contain ${imgFilter}`
               : `${imgH} w-auto object-contain ${imgFilter}`
           }
           style={
@@ -136,8 +145,51 @@ export default function Marquee({
     return () => mq.removeEventListener("change", handler);
   }, []);
 
-  const duplicated = [...items, ...items];
   const isIntegrations = variant === "integrations";
+
+  /** One loop of content; duplicated as two siblings so translateX(-50%) is pixel-seamless. */
+  function MarqueeSegment({
+    copyId,
+    ariaHidden,
+  }: {
+    copyId: string;
+    ariaHidden?: boolean;
+  }) {
+    if (isTrustedDark) {
+      return (
+        <div className="flex shrink-0 items-center" aria-hidden={ariaHidden || undefined}>
+          {items.map((item, i) => (
+            <Fragment key={`${copyId}-${item.name}-${i}`}>
+              {i > 0 ? <MarqueeSeparator /> : null}
+              <LogoSlot
+                item={item}
+                variant={variant}
+                surface={surface}
+                grayscale={isIntegrations ? false : true}
+              />
+            </Fragment>
+          ))}
+        </div>
+      );
+    }
+    const gapClass = variant === "integrations" ? "gap-8" : "gap-4";
+    return (
+      <div
+        className={`flex shrink-0 items-center ${gapClass}`}
+        aria-hidden={ariaHidden || undefined}
+      >
+        {items.map((item, i) => (
+          <LogoSlot
+            key={`${copyId}-${item.name}-${i}`}
+            item={item}
+            variant={variant}
+            surface={surface}
+            grayscale={isIntegrations ? false : true}
+          />
+        ))}
+      </div>
+    );
+  }
 
   if (prefersReducedMotion) {
     return (
@@ -163,23 +215,16 @@ export default function Marquee({
   const scrollStyle = {
     animation: `marquee-h ${marqueeDurationSec}s linear infinite`,
   };
-  const stripClasses = `flex items-center whitespace-nowrap will-change-transform ${isTrustedDark ? "gap-0" : "gap-8"}`;
 
   return (
     <div ref={containerRef} className="relative flex items-center gap-3">
       <div className="marquee-mask min-w-0 flex-1 overflow-hidden">
-        <div className={stripClasses} style={scrollStyle}>
-          {duplicated.map((item, i) => (
-            <Fragment key={`${item.name}-${i}`}>
-              {isTrustedDark && i > 0 ? <MarqueeSeparator /> : null}
-              <LogoSlot
-                item={item}
-                variant={variant}
-                surface={surface}
-                grayscale={isIntegrations ? false : true}
-              />
-            </Fragment>
-          ))}
+        <div
+          className="flex w-max whitespace-nowrap will-change-transform"
+          style={scrollStyle}
+        >
+          <MarqueeSegment copyId="a" />
+          <MarqueeSegment copyId="b" ariaHidden />
         </div>
       </div>
     </div>
