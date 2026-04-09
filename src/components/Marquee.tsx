@@ -37,7 +37,7 @@ function LogoSlot({
       ? "h-12 w-32 rounded-lg border border-white/15 bg-white/10 px-6"
       : "h-12 w-32 rounded-lg bg-neutral-100 px-6";
   const integrations =
-    "h-14 w-36 rounded-lg border border-neutral-200 bg-white px-8 text-neutral-600";
+    "h-14 min-w-[5.5rem] shrink-0 items-center justify-center px-5 text-neutral-600";
 
   const imgH = variant === "integrations" ? "h-9" : "h-8";
   const imgFilter =
