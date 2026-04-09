@@ -123,7 +123,7 @@ export default function ChatAssistant() {
           role="dialog"
           aria-label="Stratavor assistant"
           aria-modal="false"
-          className="chat-panel-animate-in pointer-events-auto flex max-h-[min(38rem,calc(100vh-5rem))] w-[min(100vw-2rem,26rem)] flex-col overflow-hidden rounded-3xl border border-neutral-200/80 bg-white shadow-large ring-1 ring-black/[0.04] sm:w-[min(100vw-2rem,28rem)]"
+          className="chat-panel-animate-in pointer-events-auto flex max-h-[min(52rem,calc(100vh-3.5rem))] w-[min(100vw-2rem,26rem)] flex-col overflow-hidden rounded-3xl border border-neutral-200/80 bg-white shadow-large ring-1 ring-black/[0.04] sm:w-[min(100vw-2rem,28rem)]"
         >
           <header className="relative border-b border-white/10 bg-gradient-to-br from-brand-gunmetal via-brand-gunmetal to-brand-gunmetal-dark px-4 pb-4 pt-4 text-white ring-1 ring-inset ring-white/15">
             <div className="flex items-start justify-between gap-3">
@@ -152,7 +152,7 @@ export default function ChatAssistant() {
           </p>
           <div
             ref={scrollRef}
-            className="min-h-[13rem] flex-1 space-y-4 overflow-y-auto bg-gradient-to-b from-white to-neutral-50/80 px-4 py-4 text-sm"
+            className="min-h-[18rem] flex-1 space-y-4 overflow-y-auto bg-gradient-to-b from-white to-neutral-50/80 px-4 py-4 text-sm"
           >
             {messages.length === 0 ? (
               <p className="text-[13px] leading-relaxed text-neutral-600">
@@ -175,7 +175,7 @@ export default function ChatAssistant() {
                     className={
                       m.role === "user"
                         ? "text-[10px] font-bold uppercase tracking-wider text-neutral-400"
-                        : "text-[10px] font-bold uppercase tracking-wider text-brand-accent"
+                        : "text-[10px] font-bold uppercase tracking-wider text-brand-gunmetal"
                     }
                   >
                     {m.role === "user" ? "You" : "Stratavor"}
@@ -184,7 +184,7 @@ export default function ChatAssistant() {
                     className={
                       m.role === "user"
                         ? "max-w-[92%] rounded-2xl rounded-br-md border border-brand-gunmetal/15 bg-brand-gunmetal/[0.09] px-3.5 py-2.5 text-neutral-800 shadow-sm"
-                        : "max-w-[92%] rounded-2xl rounded-bl-md border-l-[3px] border-brand-accent bg-white px-3.5 py-2.5 text-neutral-700 shadow-sm ring-1 ring-neutral-200/60"
+                        : "max-w-[92%] rounded-2xl rounded-bl-md border-l-[3px] border-brand-gunmetal bg-white px-3.5 py-2.5 text-neutral-700 shadow-sm ring-1 ring-neutral-200/60"
                     }
                   >
                     <p className="whitespace-pre-wrap break-words text-[13px] leading-relaxed">
@@ -196,7 +196,7 @@ export default function ChatAssistant() {
             })}
             {showTyping ? (
               <div className="flex flex-col items-start gap-1" aria-live="polite" aria-label="Assistant is typing">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-brand-accent">Stratavor</span>
+                <span className="text-[10px] font-bold uppercase tracking-wider text-brand-gunmetal">Stratavor</span>
                 <div className="flex items-center gap-1.5 rounded-2xl rounded-bl-md border border-neutral-200/80 bg-white px-4 py-3 shadow-sm ring-1 ring-neutral-200/50">
                   <span className="chat-typing-dot" />
                   <span className="chat-typing-dot" />
@@ -253,7 +253,7 @@ export default function ChatAssistant() {
               ) : (
                 <button
                   type="submit"
-                  className="shrink-0 rounded-2xl bg-brand-accent px-4 py-2.5 text-xs font-bold text-white shadow-md transition hover:bg-brand-accent-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2"
+                  className="shrink-0 rounded-2xl border-2 border-brand-gunmetal bg-brand-gunmetal px-4 py-2.5 text-xs font-bold text-white shadow-soft transition hover:bg-white hover:text-brand-gunmetal hover:shadow-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gunmetal focus-visible:ring-offset-2"
                 >
                   Send
                 </button>
