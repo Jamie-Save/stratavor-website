@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import Link from "next/link";
+import { HUBSPOT_INTEREST_OPTIONS } from "@/data/contact-interest-options";
 import { trackEvent } from "./Analytics";
 
 type Intent = "sales" | "demo" | "security" | "general" | "login";
@@ -29,21 +30,66 @@ const INTENT_CONFIG: Record<Intent, { heading: string; description: string }> = 
   },
 };
 
-export function ContactForm({ intent = "general" }: { intent?: string }) {
+export function ContactForm({
+  intent = "general",
+  source,
+  tool,
+}: {
+  intent?: string;
+  source?: string;
+  tool?: string;
+}) {
   const resolvedIntent = (Object.keys(INTENT_CONFIG).includes(intent) ? intent : "general") as Intent;
   const config = INTENT_CONFIG[resolvedIntent];
 
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const form = e.currentTarget;
+    const fd = new FormData(form);
+    const honeypot = String(fd.get("website") ?? "").trim();
+    if (honeypot) return;
+
+    setError(null);
     setSending(true);
     trackEvent("form_submit", { intent: resolvedIntent });
-    setTimeout(() => {
-      setSending(false);
+
+    const payload = {
+      firstName: String(fd.get("firstName") ?? "").trim(),
+      lastName: String(fd.get("lastName") ?? "").trim(),
+      email: String(fd.get("email") ?? "").trim(),
+      company: String(fd.get("company") ?? "").trim(),
+      interest: String(fd.get("interest") ?? "").trim(),
+      message: String(fd.get("message") ?? "").trim(),
+      intent: resolvedIntent,
+      ...(source?.trim() ? { source: source.trim() } : {}),
+      ...(tool?.trim() ? { tool: tool.trim() } : {}),
+    };
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const data = (await res.json().catch(() => ({}))) as { error?: string };
+
+      if (!res.ok) {
+        setError(data.error || "Something went wrong. Please try again.");
+        setSending(false);
+        return;
+      }
+
+      form.reset();
       setSubmitted(true);
-    }, 800);
+    } catch {
+      setError("Network error. Check your connection and try again.");
+    } finally {
+      setSending(false);
+    }
   }
 
   if (submitted) {
@@ -93,6 +139,14 @@ export function ContactForm({ intent = "general" }: { intent?: string }) {
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="mt-10 space-y-6 rounded-2xl border border-neutral-200 bg-white p-8 shadow-soft sm:p-10">
+          {error ? (
+            <p className="rounded-xl border border-red-100 bg-red-50 px-4 py-3 text-sm text-red-800" role="alert">
+              {error}
+            </p>
+          ) : null}
+
+          <input name="website" type="text" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
+
           <div className="grid gap-6 sm:grid-cols-2">
             <div>
               <label htmlFor="first-name" className="block text-sm font-medium text-neutral-700">
@@ -157,15 +211,24 @@ export function ContactForm({ intent = "general" }: { intent?: string }) {
             <select
               id="interest"
               name="interest"
-              defaultValue={resolvedIntent === "demo" ? "demo" : resolvedIntent === "security" ? "security" : ""}
+              required
+              defaultValue={
+                resolvedIntent === "demo"
+                  ? "Personalized Demo"
+                  : resolvedIntent === "security"
+                    ? "Security Review"
+                    : ""
+              }
               className="mt-2 w-full rounded-xl border border-neutral-200 bg-white px-4 py-3 text-neutral-800 shadow-xs transition-colors focus:border-brand-gunmetal focus:outline-none focus:ring-2 focus:ring-brand-gunmetal/20"
             >
-              <option value="">Select an option</option>
-              <option value="demo">Personalised demo</option>
-              <option value="pricing">Pricing &amp; plans</option>
-              <option value="security">Security review / compliance pack</option>
-              <option value="partnership">Partnership</option>
-              <option value="other">Something else</option>
+              <option value="" disabled>
+                Select an option
+              </option>
+              {HUBSPOT_INTEREST_OPTIONS.map((label) => (
+                <option key={label} value={label}>
+                  {label}
+                </option>
+              ))}
             </select>
           </div>
 

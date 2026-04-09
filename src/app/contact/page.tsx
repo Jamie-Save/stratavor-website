@@ -9,13 +9,13 @@ export const metadata: Metadata = {
 export default async function ContactPage({
   searchParams,
 }: {
-  searchParams: Promise<{ intent?: string }>;
+  searchParams: Promise<{ intent?: string; source?: string; tool?: string }>;
 }) {
   const params = await searchParams;
   return (
     <section className="bg-neutral-50 py-section">
       <div className="mx-auto max-w-content px-content lg:px-8">
-        <ContactForm intent={params.intent} />
+        <ContactForm intent={params.intent} source={params.source} tool={params.tool} />
       </div>
     </section>
   );

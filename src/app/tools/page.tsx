@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { CONTACT_GENERAL_URL } from "@/data/contact-links";
 import { TOOLS_PAGE } from "@/data/marketing-copy";
 
 export const metadata: Metadata = {
@@ -33,7 +32,7 @@ export default function ToolsPage() {
                   <h3 className="mt-4 font-semibold text-neutral-900">{tool.title}</h3>
                   <p className="mt-2 flex-1 text-sm text-neutral-600">{tool.description}</p>
                   <Link
-                    href={CONTACT_GENERAL_URL}
+                    href={`/contact?intent=general&source=tools&tool=${encodeURIComponent(tool.slug)}`}
                     className="mt-5 inline-flex items-center gap-1 text-sm font-medium text-brand-gunmetal transition-colors hover:text-brand-gunmetal-dark"
                   >
                     Request access <span aria-hidden>→</span>

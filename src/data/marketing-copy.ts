@@ -130,36 +130,42 @@ export const TOOLS_PAGE = {
     "Free resources built for finance leaders who want to move from reporting to strategic intelligence.",
   tools: [
     {
+      slug: "board-pack-template",
       title: "Board Pack Template",
       description:
         "A structured, executive-ready board pack template covering financials, KPIs, strategic initiatives, and risk. Ready to customise.",
       category: "Template",
     },
     {
+      slug: "variance-analysis-framework",
       title: "Variance Analysis Framework",
       description:
         "A systematic approach to explaining what changed, why it matters, and what action to take. Designed for CFOs and FP&A leads.",
       category: "Framework",
     },
     {
+      slug: "kpi-selection-guide",
       title: "KPI Selection Guide",
       description:
         "How to choose the right metrics for your stage, industry, and audience. Avoid vanity metrics and focus on what drives decisions.",
       category: "Guide",
     },
     {
+      slug: "integration-readiness-checklist",
       title: "Integration Readiness Checklist",
       description:
         "Evaluate your finance stack before connecting to a strategic intelligence platform. Covers data quality, access, and governance.",
       category: "Checklist",
     },
     {
+      slug: "ai-readiness-assessment",
       title: "AI Readiness Assessment",
       description:
         "A quick diagnostic to understand whether your organisation is ready to adopt AI-assisted financial commentary and insights.",
       category: "Assessment",
     },
     {
+      slug: "strategic-planning-calendar",
       title: "Strategic Planning Calendar",
       description:
         "Annual planning cadence for finance and strategy teams. Aligns board reporting, forecasting, and strategic reviews.",
