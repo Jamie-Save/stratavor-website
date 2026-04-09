@@ -3,10 +3,29 @@ import HeroCarousel from "./HeroCarousel";
 import { BOOK_DEMO_CALENDAR_URL } from "@/data/contact-links";
 import { HOME_HERO } from "@/data/marketing-copy";
 
+const HEADLINE_ACCENT = "Strategy.";
+
+function HeroHeadline() {
+  const { headline } = HOME_HERO;
+  const i = headline.lastIndexOf(HEADLINE_ACCENT);
+  if (i < 0) {
+    return <>{headline}</>;
+  }
+  const before = headline.slice(0, i);
+  const accent = headline.slice(i);
+  return (
+    <>
+      {before}
+      <span className="bg-gradient-to-r from-brand-gunmetal via-brand-gunmetal to-brand-accent bg-clip-text text-transparent">
+        {accent}
+      </span>
+    </>
+  );
+}
+
 export default function HeroSplit() {
   return (
     <section className="relative overflow-hidden bg-white">
-      {/* Premium mesh gradient */}
       <div
         className="absolute inset-0 -z-10"
         aria-hidden
@@ -15,7 +34,6 @@ export default function HeroSplit() {
             "radial-gradient(ellipse 80% 60% at 20% -20%, rgba(57, 84, 96, 0.06) 0%, transparent 50%), radial-gradient(ellipse 60% 50% at 80% 20%, rgba(232, 104, 58, 0.06) 0%, transparent 40%), radial-gradient(ellipse 90% 70% at 50% 100%, rgba(209, 215, 218, 0.12) 0%, transparent 50%)",
         }}
       />
-      {/* Faint noise texture overlay */}
       <div
         className="absolute inset-0 -z-10 opacity-[0.03]"
         aria-hidden
@@ -27,34 +45,40 @@ export default function HeroSplit() {
       />
 
       <div className="mx-auto grid max-w-content grid-cols-1 gap-12 px-content pt-12 pb-20 lg:grid-cols-[auto_1fr] lg:gap-16 lg:pt-16 lg:pb-28 lg:px-8">
-        {/* LEFT COLUMN – narrow so text lines up with buttons; carousel gets remaining space */}
-        <div className="flex max-w-sm flex-col justify-center">
-          <p className="section-label mb-4">{HOME_HERO.sectionLabel}</p>
-          <h1 className="text-display font-bold leading-tight tracking-tight text-brand-gunmetal lg:text-display-lg">
-            {HOME_HERO.headline}
-          </h1>
-          <p className="text-body-lg mt-6 max-w-sm text-neutral-600">{HOME_HERO.subline}</p>
-          <div className="mt-10 flex flex-wrap gap-4">
-            <Link
-              href="/pricing"
-              className="inline-flex items-center justify-center rounded-xl bg-brand-accent px-7 py-3.5 text-[15px] font-semibold text-white shadow-soft transition-all hover:bg-brand-accent-hover hover:shadow-medium focus-visible:bg-brand-accent-hover focus-visible:shadow-medium"
-            >
-              {HOME_HERO.primaryCtaLabel}
-            </Link>
-            <Link
-              href={BOOK_DEMO_CALENDAR_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-xl border border-neutral-200 bg-white px-7 py-3.5 text-[15px] font-semibold text-brand-gunmetal transition-all duration-300 hover:border-brand-gunmetal hover:bg-brand-gunmetal hover:text-white focus-visible:border-brand-gunmetal focus-visible:bg-brand-gunmetal focus-visible:text-white focus-visible:ring-2 focus-visible:ring-brand-gunmetal focus-visible:ring-offset-2 focus-visible:ring-offset-white"
-            >
-              {HOME_HERO.secondaryCtaLabel}
-            </Link>
+        <div className="flex max-w-md flex-col justify-center lg:max-w-lg">
+          <div className="flex gap-5">
+            <div
+              className="mt-2 hidden h-[min(100%,7.5rem)] min-h-[5rem] w-1 shrink-0 rounded-full bg-gradient-to-b from-brand-gunmetal/45 via-brand-gunmetal/15 to-brand-accent/25 sm:block"
+              aria-hidden
+            />
+            <div className="min-w-0 flex-1">
+              <p className="section-label mb-4">{HOME_HERO.sectionLabel}</p>
+              <h1 className="text-display font-bold leading-tight tracking-tight text-brand-gunmetal lg:text-display-lg">
+                <HeroHeadline />
+              </h1>
+              <p className="text-body-lg mt-6 max-w-prose text-neutral-600">{HOME_HERO.subline}</p>
+              <div className="mt-10 flex flex-wrap gap-4">
+                <Link
+                  href="/pricing"
+                  className="inline-flex items-center justify-center rounded-xl bg-brand-accent px-7 py-3.5 text-[15px] font-semibold text-white shadow-soft transition-all hover:bg-brand-accent-hover hover:shadow-medium focus-visible:bg-brand-accent-hover focus-visible:shadow-medium"
+                >
+                  {HOME_HERO.primaryCtaLabel}
+                </Link>
+                <Link
+                  href={BOOK_DEMO_CALENDAR_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center rounded-xl border border-neutral-200 bg-white px-7 py-3.5 text-[15px] font-semibold text-brand-gunmetal transition-all duration-300 hover:border-brand-gunmetal hover:bg-brand-gunmetal hover:text-white focus-visible:border-brand-gunmetal focus-visible:bg-brand-gunmetal focus-visible:text-white focus-visible:ring-2 focus-visible:ring-brand-gunmetal focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+                >
+                  {HOME_HERO.secondaryCtaLabel}
+                </Link>
+              </div>
+              <p className="mt-4 text-sm text-neutral-500">{HOME_HERO.trialNote}</p>
+            </div>
           </div>
-          <p className="mt-4 text-sm text-neutral-500">{HOME_HERO.trialNote}</p>
         </div>
 
-        {/* RIGHT COLUMN: Carousel */}
-        <div className="flex items-center">
+        <div className="flex min-w-0 items-center lg:-mr-4 xl:-mr-6">
           <HeroCarousel />
         </div>
       </div>
