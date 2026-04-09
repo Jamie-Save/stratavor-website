@@ -5,16 +5,12 @@ import Link from "next/link";
 import { HUBSPOT_INTEREST_OPTIONS } from "@/data/contact-interest-options";
 import { trackEvent } from "./Analytics";
 
-type Intent = "sales" | "demo" | "security" | "general" | "login";
+type Intent = "sales" | "security" | "general" | "login";
 
 const INTENT_CONFIG: Record<Intent, { heading: string; description: string }> = {
   sales: {
     heading: "Talk to our team",
     description: "Tell us about your organisation and we'll connect you with the right person.",
-  },
-  demo: {
-    heading: "Book a personalised demo",
-    description: "See Stratavor in action with your use case. We'll walk you through the platform.",
   },
   security: {
     heading: "Request a security review",
@@ -29,6 +25,14 @@ const INTENT_CONFIG: Record<Intent, { heading: string; description: string }> = 
     description: "Questions about Stratavor? We'd love to hear from you.",
   },
 };
+
+const THANK_YOU_NEXT_LINKS = [
+  { href: "/", label: "Return home" },
+  { href: "/pricing", label: "View pricing" },
+  { href: "/demo", label: "Explore the demo" },
+  { href: "/blog", label: "Read the blog" },
+  { href: "/trust", label: "Trust Centre" },
+] as const;
 
 export function ContactForm({
   intent = "general",
@@ -104,6 +108,19 @@ export function ContactForm({
         <p className="mt-3 text-neutral-600">
           We&apos;ve received your enquiry and will be in touch within one business day.
         </p>
+        <p className="mt-8 text-sm font-medium text-brand-gunmetal">Where to next?</p>
+        <ul className="mt-3 space-y-2 text-left">
+          {THANK_YOU_NEXT_LINKS.map(({ href, label }) => (
+            <li key={href}>
+              <Link
+                href={href}
+                className="block rounded-xl border border-neutral-200 bg-neutral-50/80 px-4 py-3 text-sm font-medium text-brand-gunmetal transition-colors hover:border-brand-gunmetal/25 hover:bg-white"
+              >
+                {label}
+              </Link>
+            </li>
+          ))}
+        </ul>
       </div>
     );
   }
@@ -150,7 +167,7 @@ export function ContactForm({
           <div className="grid gap-6 sm:grid-cols-2">
             <div>
               <label htmlFor="first-name" className="block text-sm font-medium text-neutral-700">
-                First name <span className="font-normal text-neutral-400">(optional)</span>
+                First name
               </label>
               <input
                 id="first-name"
@@ -162,7 +179,7 @@ export function ContactForm({
             </div>
             <div>
               <label htmlFor="last-name" className="block text-sm font-medium text-neutral-700">
-                Last name <span className="font-normal text-neutral-400">(optional)</span>
+                Last name
               </label>
               <input
                 id="last-name"
@@ -192,7 +209,7 @@ export function ContactForm({
 
           <div>
             <label htmlFor="company" className="block text-sm font-medium text-neutral-700">
-              Company <span className="font-normal text-neutral-400">(optional)</span>
+              Company
             </label>
             <input
               id="company"
@@ -205,18 +222,12 @@ export function ContactForm({
 
           <div>
             <label htmlFor="interest" className="block text-sm font-medium text-neutral-700">
-              I&apos;m interested in <span className="font-normal text-neutral-400">(optional)</span>
+              I&apos;m interested in
             </label>
             <select
               id="interest"
               name="interest"
-              defaultValue={
-                resolvedIntent === "demo"
-                  ? "Personalized Demo"
-                  : resolvedIntent === "security"
-                    ? "Security Review"
-                    : ""
-              }
+              defaultValue={resolvedIntent === "security" ? "Security Review" : ""}
               className="mt-2 w-full rounded-xl border border-neutral-200 bg-white px-4 py-3 text-neutral-800 shadow-xs transition-colors focus:border-brand-gunmetal focus:outline-none focus:ring-2 focus:ring-brand-gunmetal/20"
             >
               <option value="">Prefer not to say</option>
@@ -230,7 +241,7 @@ export function ContactForm({
 
           <div>
             <label htmlFor="message" className="block text-sm font-medium text-neutral-700">
-              Message <span className="text-neutral-400">(optional)</span>
+              Message
             </label>
             <textarea
               id="message"

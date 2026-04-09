@@ -16,7 +16,6 @@ import {
 } from "@/data/marketing-copy";
 import {
   BOOK_DEMO_CALENDAR_URL,
-  CONTACT_DEMO_URL,
   CONTACT_GENERAL_URL,
   CONTACT_LOGIN_URL,
   CONTACT_PILOT_URL,
@@ -54,9 +53,8 @@ function flattenNavLinks(links: NavLink[]): string[] {
 /** Contact form intents (same query params as /contact page). */
 function contactIntentLines(): string {
   return [
-    `Book a time (HubSpot scheduler): ${BOOK_DEMO_CALENDAR_URL}`,
+    `Book a demo (HubSpot scheduler): ${BOOK_DEMO_CALENDAR_URL}`,
     `Pilot / trial interest: ${absoluteUrl(CONTACT_PILOT_URL)}`,
-    `Book a demo (contact form): ${absoluteUrl(CONTACT_DEMO_URL)}`,
     `Security / compliance pack: ${absoluteUrl(CONTACT_SECURITY_URL)}`,
     `Login help: ${absoluteUrl(CONTACT_LOGIN_URL)}`,
     `General: ${absoluteUrl(CONTACT_GENERAL_URL)}`,
@@ -147,8 +145,7 @@ ${toolsBlock}
 ${navBlock}
 
 ## Book a demo
-Public meeting scheduler (pick a time): ${BOOK_DEMO_CALENDAR_URL}
-Form-based demo / sales enquiry: ${absoluteUrl(CONTACT_DEMO_URL)}
+HubSpot scheduler (pick a time): ${BOOK_DEMO_CALENDAR_URL}
 
 ## Contact intents (use when directing users)
 ${contactIntentLines()}`;

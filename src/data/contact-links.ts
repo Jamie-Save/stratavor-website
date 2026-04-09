@@ -1,5 +1,5 @@
 const DEFAULT_BOOK_DEMO_CALENDAR =
-  "https://stratavor.com/meetings/jamie-saveall/group-schedule";
+  "https://stratavor.com/meetings/jamie-saveall/group-schedule?uuid=a78c2567-2aa5-4a02-83b4-e9160a35442c";
 
 /** HubSpot group schedule — used for "Book a demo" CTAs site-wide. Override via NEXT_PUBLIC_BOOK_DEMO_CALENDAR_URL. */
 export const BOOK_DEMO_CALENDAR_URL =
@@ -9,7 +9,8 @@ export const BOOK_DEMO_CALENDAR_URL =
 
 /** Contact form deep links (must stay in sync with contact page handling). */
 export const CONTACT_LOGIN_URL = "/contact?intent=login";
-export const CONTACT_DEMO_URL = "/contact?intent=demo";
+/** Same as BOOK_DEMO_CALENDAR_URL — demo bookings use HubSpot; /contact?intent=demo redirects there. */
+export const CONTACT_DEMO_URL = BOOK_DEMO_CALENDAR_URL;
 export const CONTACT_PILOT_URL = "/contact?intent=pilot";
 export const CONTACT_SECURITY_URL = "/contact?intent=security";
 export const CONTACT_GENERAL_URL = "/contact?intent=general";
