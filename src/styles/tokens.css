@@ -67,7 +67,7 @@
   --border-focus: var(--gunmetal);
 
   /* ── Layout ── */
-  --max-content: 1280px;
+  --max-content: 1400px;
   --content-padding: clamp(1.25rem, 5vw, 2.5rem);
 
   /* ── Spacing scale (4px base) ── */
