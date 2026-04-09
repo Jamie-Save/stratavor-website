@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport } from "ai";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
+import { AssistantMessageBody } from "@/components/ChatAssistantMessageBody";
 import { BOOK_DEMO_CALENDAR_URL } from "@/data/contact-links";
 
 const MAX_USER_MESSAGE_CHARS = 2000;
@@ -175,7 +176,13 @@ export default function ChatAssistant() {
                     : "mr-4 rounded-xl bg-neutral-100 px-3 py-2 text-neutral-700"
                 }
               >
-                <p className="whitespace-pre-wrap break-words">{messageText(m)}</p>
+                <p className="whitespace-pre-wrap break-words">
+                  {m.role === "user" ? (
+                    messageText(m)
+                  ) : (
+                    <AssistantMessageBody text={messageText(m)} />
+                  )}
+                </p>
               </div>
             ))}
             {intentCtas.length > 0 ? (
