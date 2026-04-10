@@ -1,17 +1,20 @@
 /* Scoped impact stats banner — all selectors under .impactStatsBanner */
+/* Matches stratavor-stats-banner: Plex Serif numerals, Plex Sans labels, single-row stats + dividers */
 .impactStatsBanner {
   position: relative;
   width: 100%;
+  max-width: 780px;
+  margin-inline: auto;
   overflow: hidden;
   border-radius: 14px;
   background: #395460;
-  padding: 36px 20px;
+  padding: 48px 24px;
   box-sizing: border-box;
 }
 
-@media (min-width: 640px) {
+@media (max-width: 639px) {
   .impactStatsBanner {
-    padding: 48px 24px;
+    padding: 36px 16px;
   }
 }
 
@@ -35,25 +38,19 @@
 
 .impactStatsBanner__stats {
   display: flex;
-  flex-direction: column;
-  align-items: stretch;
+  flex-direction: row;
   justify-content: center;
+  align-items: flex-start;
   gap: 0;
   max-width: 720px;
   margin: 0 auto;
 }
 
-@media (min-width: 640px) {
-  .impactStatsBanner__stats {
-    flex-direction: row;
-    align-items: flex-start;
-  }
-}
-
 .impactStatsBanner__stat {
   flex: 1;
+  min-width: 0;
   text-align: center;
-  padding: 20px 16px;
+  padding: 0 12px;
   position: relative;
 }
 
@@ -63,66 +60,33 @@
   }
 }
 
-/* Mobile: separator between stacked stats */
-.impactStatsBanner__stat + .impactStatsBanner__stat {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-@media (min-width: 640px) {
-  .impactStatsBanner__stat + .impactStatsBanner__stat {
-    border-top: none;
-  }
-
-  .impactStatsBanner__stat + .impactStatsBanner__stat::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 8px;
-    bottom: 8px;
-    width: 1px;
-    background: rgba(255, 255, 255, 0.1);
-  }
+.impactStatsBanner__stat + .impactStatsBanner__stat::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 8px;
+  bottom: 8px;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .impactStatsBanner__num {
-  font-size: 2.25rem;
-  font-weight: 900;
+  font-family: var(--font-heading), "IBM Plex Serif", Georgia, serif;
+  font-size: clamp(1.75rem, 5vw, 56px);
+  font-weight: 700;
   color: #fff;
   line-height: 1;
   letter-spacing: -1px;
 }
 
-@media (min-width: 640px) {
-  .impactStatsBanner__num {
-    font-size: 3rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .impactStatsBanner__num {
-    font-size: 56px;
-  }
-}
-
 .impactStatsBanner__unit {
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: clamp(1.125rem, 3.2vw, 36px);
+  font-weight: 600;
   vertical-align: baseline;
 }
 
-@media (min-width: 640px) {
-  .impactStatsBanner__unit {
-    font-size: 2rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .impactStatsBanner__unit {
-    font-size: 36px;
-  }
-}
-
 .impactStatsBanner__label {
+  font-family: var(--font-body), "IBM Plex Sans", system-ui, sans-serif;
   font-size: 14px;
   color: rgba(255, 255, 255, 0.55);
   font-weight: 400;
@@ -131,6 +95,7 @@
 }
 
 .impactStatsBanner__source {
+  font-family: var(--font-body), "IBM Plex Sans", system-ui, sans-serif;
   font-size: 11px;
   color: rgba(255, 255, 255, 0.25);
   margin-top: 6px;

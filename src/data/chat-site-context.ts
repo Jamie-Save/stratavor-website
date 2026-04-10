@@ -93,8 +93,9 @@ Primary CTA: ${HOME_HERO.primaryCtaLabel} → ${CONTACT_LOGIN_URL}
 Secondary CTA: ${HOME_HERO.secondaryCtaLabel} → ${BOOK_DEMO_CALENDAR_URL}
 
 ## Home page — Trusted by band
-${HOME_TRUSTED_BY.sectionLabel}: ${HOME_TRUSTED_BY.headline}
-${HOME_TRUSTED_BY.subline}
+${HOME_TRUSTED_BY.sectionLabel}: ${HOME_TRUSTED_BY.headlineLines.join(" ")}
+${HOME_TRUSTED_BY.sublineLines.join(" ")}
+Credential: ${HOME_TRUSTED_BY.credentialLine}
 
 ## Home page — What we do
 ${HOME_WHAT_WE_DO.sectionLabel}: ${HOME_WHAT_WE_DO.heading}

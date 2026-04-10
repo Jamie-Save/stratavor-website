@@ -67,9 +67,28 @@ export const HOME_INTEGRATIONS = {
 
 export const HOME_TRUSTED_BY = {
   sectionLabel: "Trusted by",
-  headline: "Leaders who live in the numbers.",
-  subline: "Finance, strategy, FP&A, and ops—aligned on what matters.",
+  /** Two lines for the trusted card headline (line break between). */
+  headlineLines: ["Leaders who live in", "the numbers."] as const,
+  /** Two lines for the right-column subline. */
+  sublineLines: ["Finance, strategy, FP&A, and ops —", "aligned on what matters."] as const,
+  credentialLine: "Built on 15+ years leading finance & data transformations",
 } as const;
+
+/** Role labels in the trusted-by ticker (highlighted = brighter in the marquee). */
+export const TRUSTED_BY_TICKER_ROLES: readonly { label: string; highlighted: boolean }[] = [
+  { label: "CFO", highlighted: true },
+  { label: "Finance Director", highlighted: false },
+  { label: "FP&A", highlighted: false },
+  { label: "Executive", highlighted: true },
+  { label: "Strategy", highlighted: false },
+  { label: "Board", highlighted: true },
+  { label: "Controller", highlighted: false },
+  { label: "COO", highlighted: false },
+  { label: "CEO", highlighted: true },
+  { label: "Operations", highlighted: false },
+  { label: "Investor Relations", highlighted: false },
+  { label: "Head of Finance", highlighted: false },
+];
 
 export const HOME_BOTTOM_CTA = {
   heading: "Ready to turn financial data into strategic clarity?",

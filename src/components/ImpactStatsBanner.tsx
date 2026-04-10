@@ -1,15 +1,7 @@
 "use client";
 
-import { Titillium_Web } from "next/font/google";
 import { useEffect, useRef } from "react";
 import "./impact-stats-banner.css";
-
-const titillium = Titillium_Web({
-  weight: ["300", "400", "600", "700", "900"],
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-impact-banner",
-});
 
 function easeOutCubic(p: number) {
   return 1 - Math.pow(1 - p, 3);
@@ -101,12 +93,7 @@ export default function ImpactStatsBanner() {
   }, []);
 
   return (
-    <div
-      className={`impactStatsBanner ${titillium.variable}`}
-      style={{
-        fontFamily: "var(--font-impact-banner), Titillium Web, system-ui, sans-serif",
-      }}
-    >
+    <div className="impactStatsBanner font-body">
       <h2 className="sr-only">Stratavor impact statistics banner with three key metrics</h2>
       <div className="impactStatsBanner__stats">
         <div className="impactStatsBanner__stat">

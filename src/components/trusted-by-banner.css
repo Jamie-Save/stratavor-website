@@ -1,0 +1,167 @@
+/* Scoped trusted-by card + role ticker */
+.stratavorTrustedBanner {
+  width: 100%;
+  max-width: 780px;
+  margin-inline: auto;
+  background: #395460;
+  border-radius: 14px;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.stratavorTrustedBanner__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 32px 24px 22px;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+@media (min-width: 640px) {
+  .stratavorTrustedBanner__top {
+    padding: 40px 40px 28px;
+    gap: 32px;
+  }
+}
+
+.stratavorTrustedBanner__left {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: min(100%, 280px);
+}
+
+.stratavorTrustedBanner__label {
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  padding-left: 14px;
+  border-left: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.stratavorTrustedBanner__head {
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.2;
+  margin-top: 6px;
+}
+
+@media (min-width: 640px) {
+  .stratavorTrustedBanner__head {
+    font-size: 28px;
+  }
+}
+
+.stratavorTrustedBanner__right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  text-align: right;
+  min-width: min(100%, 260px);
+}
+
+.stratavorTrustedBanner__sub {
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.4);
+  line-height: 1.5;
+  text-align: right;
+}
+
+.stratavorTrustedBanner__cred {
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.25);
+  text-align: right;
+  border-right: 2px solid rgba(255, 255, 255, 0.12);
+  padding-right: 12px;
+}
+
+.stratavorTrustedBanner__tickerWrap {
+  position: relative;
+  width: 100%;
+  height: 52px;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.stratavorTrustedBanner__tickerWrap::before,
+.stratavorTrustedBanner__tickerWrap::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.stratavorTrustedBanner__tickerWrap::before {
+  left: 0;
+  background: linear-gradient(90deg, #395460 0%, transparent 100%);
+}
+
+.stratavorTrustedBanner__tickerWrap::after {
+  right: 0;
+  background: linear-gradient(270deg, #395460 0%, transparent 100%);
+}
+
+.stratavorTrustedBanner__ticker {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: max-content;
+  animation: stratavorTrustedBanner_scroll 22s linear infinite;
+}
+
+.stratavorTrustedBanner__dot {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.1);
+  padding: 0 4px;
+  flex-shrink: 0;
+}
+
+.stratavorTrustedBanner__role {
+  font-size: 15px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.25);
+  white-space: nowrap;
+  padding: 0 18px;
+  transition: color 0.3s;
+  flex-shrink: 0;
+}
+
+.stratavorTrustedBanner__role--hi {
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 600;
+}
+
+@keyframes stratavorTrustedBanner_scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stratavorTrustedBanner__ticker {
+    animation: none !important;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    min-height: 52px;
+    padding: 12px 16px;
+    box-sizing: border-box;
+    gap: 0 4px;
+    row-gap: 4px;
+  }
+}
