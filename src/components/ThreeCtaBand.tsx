@@ -25,10 +25,7 @@ export default function ThreeCtaBand() {
           >
             {HOME_BOTTOM_CTA.bookDemoLabel}
           </Link>
-          <Link
-            href={CONTACT_LOGIN_URL}
-            className="inline-flex w-full items-center justify-center rounded-xl bg-brand-accent px-7 py-3.5 text-[15px] font-semibold text-white shadow-soft transition-all hover:bg-brand-accent-hover hover:shadow-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2 focus-visible:ring-offset-white sm:w-auto"
-          >
+          <Link href={CONTACT_LOGIN_URL} className="btn-primary w-full sm:w-auto">
             {HOME_BOTTOM_CTA.trialLabel}
           </Link>
           <Link href={CONTACT_GENERAL_URL} className="btn-outline w-full sm:w-auto">

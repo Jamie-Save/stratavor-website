@@ -146,10 +146,7 @@ export default function HeaderSticky() {
           </Link>
 
           {/* Free Trial */}
-          <Link
-            href={CONTACT_LOGIN_URL}
-            className="shrink-0 rounded-xl bg-brand-accent px-5 py-2.5 text-sm font-semibold text-white shadow-soft transition-all hover:bg-brand-accent-hover hover:shadow-medium focus-visible:bg-brand-accent-hover focus-visible:ring-2 focus-visible:ring-brand-accent/30"
-          >
+          <Link href={CONTACT_LOGIN_URL} className="btn-primary-sm">
             Start Free Trial
           </Link>
         </div>

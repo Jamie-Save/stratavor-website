@@ -4,26 +4,6 @@ import HeroPlatformAnimation from "./HeroPlatformAnimation";
 import { BOOK_DEMO_CALENDAR_URL, CONTACT_LOGIN_URL } from "@/data/contact-links";
 import { HOME_HERO } from "@/data/marketing-copy";
 
-const HEADLINE_ACCENT = "Strategy.";
-
-function HeroHeadline() {
-  const { headline } = HOME_HERO;
-  const i = headline.lastIndexOf(HEADLINE_ACCENT);
-  if (i < 0) {
-    return <>{headline}</>;
-  }
-  const before = headline.slice(0, i);
-  const accent = headline.slice(i);
-  return (
-    <>
-      {before}
-      <span className="bg-gradient-to-r from-brand-gunmetal via-brand-gunmetal to-brand-accent bg-clip-text text-transparent">
-        {accent}
-      </span>
-    </>
-  );
-}
-
 export default function HeroSplit() {
   return (
     <section className="relative overflow-hidden bg-white">
@@ -55,14 +35,11 @@ export default function HeroSplit() {
             <div className="min-w-0 flex-1">
               <p className="section-label mb-4">{HOME_HERO.sectionLabel}</p>
               <h1 className="text-display font-bold leading-tight tracking-tight text-brand-gunmetal lg:text-display-lg 2xl:text-display-xl">
-                <HeroHeadline />
+                {HOME_HERO.headline}
               </h1>
               <p className="text-body-lg mt-6 max-w-prose text-neutral-600 2xl:text-xl">{HOME_HERO.subline}</p>
               <div className="mt-10 flex flex-wrap gap-4">
-                <Link
-                  href={CONTACT_LOGIN_URL}
-                  className="inline-flex items-center justify-center rounded-xl bg-brand-accent px-7 py-3.5 text-[15px] font-semibold text-white shadow-soft transition-all hover:bg-brand-accent-hover hover:shadow-medium focus-visible:bg-brand-accent-hover focus-visible:shadow-medium"
-                >
+                <Link href={CONTACT_LOGIN_URL} className="btn-primary">
                   {HOME_HERO.primaryCtaLabel}
                 </Link>
                 <Link

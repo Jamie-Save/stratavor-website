@@ -59,6 +59,13 @@
     @apply focus-visible:ring-brand-gunmetal focus-visible:ring-offset-white;
   }
 
+  /** Same flip as btn-primary, compact for header / toolbars */
+  .btn-primary-sm {
+    @apply inline-flex shrink-0 items-center justify-center rounded-xl border-2 border-brand-gunmetal bg-brand-gunmetal px-5 py-2.5 text-sm font-semibold text-white shadow-soft transition-all;
+    @apply hover:bg-white hover:text-brand-gunmetal hover:shadow-medium;
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gunmetal focus-visible:ring-offset-2 focus-visible:ring-offset-white;
+  }
+
   .btn-outline {
     @apply btn border border-neutral-200 bg-white text-brand-gunmetal;
     @apply hover:border-brand-gunmetal hover:bg-brand-gunmetal hover:text-white;
