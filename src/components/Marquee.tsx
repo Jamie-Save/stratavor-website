@@ -72,10 +72,15 @@ function LogoSlot({
   if (item.src) {
     const integrationsScale =
       variant === "integrations" ? (item.logoScale ?? 1) : 1;
-    const integrationsHeightRem = 2.25 * integrationsScale;
+    /** Home + pricing integrations marquee: logos 1.5× previous 2.25rem base. */
+    const integrationsSizeMul = variant === "integrations" ? 1.5 : 1;
+    const integrationsHeightRem = 2.25 * integrationsScale * integrationsSizeMul;
     const integrationsSlotMinRem =
       variant === "integrations"
-        ? Math.max(4.75, integrationsHeightRem + 0.4)
+        ? Math.max(
+            4.75 * integrationsSizeMul,
+            integrationsHeightRem + 0.4 * integrationsSizeMul,
+          )
         : undefined;
 
     return (
