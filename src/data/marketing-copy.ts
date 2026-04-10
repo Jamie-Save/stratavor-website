@@ -26,38 +26,84 @@ export const HOME_SOLUTIONS = {
     "Six capabilities that help finance teams report with confidence, explain what changed, and act before issues compound.",
 } as const;
 
-export const HOME_OUTCOMES: readonly { title: string; description: string }[] = [
+/** Rotating HTML snippets for the AI narratives demo card (allows <strong>…</strong>). */
+export const HOME_AI_NARRATIVE_SNIPPETS: readonly string[] = [
+  "Revenue declined <strong>32% YoY</strong> to €117.5m. Implementation revenue is the primary drag while subscription lines remain stable.",
+  "Cash position strengthened to <strong>€36.3m</strong>, up 55% YoY. Receivable days at <strong>1,208</strong> signal collection risk requiring review.",
+  "EBITDA compressed <strong>39%</strong> to €89.2m. OpEx grew from 13.8% to 20.9% of revenue. Cost discipline recommended across operating expenses.",
+  "Return on equity dropped <strong>72pp</strong> to 28%. Four of ten KPIs flagged Critical, concentrated in profitability and efficiency.",
+];
+
+export type HomeSolutionCard = {
+  id: string;
+  iconSrc: string;
+  title: string;
+  description: string;
+  spanWide: boolean;
+  variant: "default" | "featured" | "ask";
+};
+
+/** Bento layout order matches home reference (featured AI + Ask span two columns on large screens). */
+export const HOME_SOLUTION_CARDS: readonly HomeSolutionCard[] = [
   {
-    title: "Board-Ready Reporting",
+    id: "ai-narratives",
+    iconSrc: "/images/solutions-deliver/ai-narratives.svg",
+    title: "AI-powered variance narratives",
     description:
-      "Turn manual reporting into automated, audit-ready outputs. Stratavor surfaces the numbers that matter so you spend less time building decks and more time on strategy.",
+      "Stratavor acts like a seasoned financial analyst, explaining your key metrics in plain language. It highlights trends, flags anomalies, and provides the context you need so you walk into every board meeting prepared.",
+    spanWide: true,
+    variant: "featured",
   },
   {
-    title: "AI-Powered Variance Narratives",
+    id: "board-ready",
+    iconSrc: "/images/solutions-deliver/board-ready.svg",
+    title: "Board-ready reporting",
     description:
-      "Ask your data questions in plain language. Get clear, contextual explanations of what changed and why, so you can explain variances to the board without digging through spreadsheets.",
+      "Turn manual reporting into automated, polished board packs in minutes. Stratavor surfaces the numbers that matter and generates executive commentary, so your team spends less time building decks and more time on strategy.",
+    spanWide: false,
+    variant: "default",
   },
   {
-    title: "Unified System Intelligence",
+    id: "unified",
+    iconSrc: "/images/solutions-deliver/unified.svg",
+    title: "Unified system intelligence",
     description:
-      "Connect QuickBooks, Xero, NetSuite, Stripe and more in one place. One source of truth across your systems so your strategic view is always current and consistent.",
+      "Connect QuickBooks, Xero, NetSuite, HubSpot and more into one secure hub. Reports always reflect the latest data, with no manual gathering, no reconciliation errors, and no version conflicts across your finance stack.",
+    spanWide: false,
+    variant: "default",
   },
   {
-    title: "Savings & initiative tracking",
+    id: "savings",
+    iconSrc: "/images/solutions-deliver/savings.svg",
+    title: "Savings and initiative tracking",
     description:
-      "See cost-saving and efficiency programmes in one view—owners, timelines, and impact versus plan—so leadership can sponsor initiatives without chasing spreadsheets.",
+      "See every cost-saving and efficiency programme in one view. Track owners, timelines, and real impact versus plan so leadership can sponsor initiatives with confidence and without chasing updates across spreadsheets.",
+    spanWide: false,
+    variant: "default",
   },
   {
+    id: "risk",
+    iconSrc: "/images/solutions-deliver/risk.svg",
     title: "Risk intelligence",
     description:
-      "Surface concentrations, threshold breaches, and early-warning signals across financial and operational data. Give the board context on what could move the numbers, not just what already did.",
+      "Surface concentrations, threshold breaches, and early-warning signals across your financial and operational data. Give the board context on what could move the numbers next, not just what already happened.",
+    spanWide: false,
+    variant: "default",
   },
   {
+    id: "ask",
+    iconSrc: "/images/solutions-deliver/ask.svg",
     title: "Ask Stratavor anything",
     description:
-      "Query connected data in natural language: drill into drivers, compare periods, or prep talking points. Built for exploration and follow-ups, alongside structured variance narratives.",
+      "Query your connected data in natural language. Drill into revenue drivers, compare periods side by side, or prep talking points for your next board meeting. Built for exploration and follow-ups alongside your structured reports.",
+    spanWide: true,
+    variant: "ask",
   },
 ];
+
+export const HOME_OUTCOMES: readonly { title: string; description: string }[] = HOME_SOLUTION_CARDS.map(
+  ({ title, description }) => ({ title, description }),
+);
 
 export const HOME_INTEGRATIONS = {
   sectionLabel: "Integrations",

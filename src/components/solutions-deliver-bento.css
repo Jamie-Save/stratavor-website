@@ -1,0 +1,340 @@
+/* Scoped: What Stratavor Delivers bento (from stratavor-solutions-section reference) */
+
+.sdb-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-top: 3rem;
+  width: 100%;
+}
+
+.sdb-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 28px;
+  transition:
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.3s ease;
+  box-shadow:
+    0 1px 2px rgba(57, 84, 96, 0.04),
+    0 4px 16px rgba(57, 84, 96, 0.035);
+  cursor: default;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.sdb-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 0;
+  background: var(--gunmetal);
+  border-radius: 0 0 3px 0;
+  transition: height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .sdb-card:hover {
+    transform: translateY(-3px);
+    box-shadow:
+      0 6px 12px rgba(57, 84, 96, 0.06),
+      0 16px 40px rgba(57, 84, 96, 0.065);
+  }
+}
+
+.sdb-card:hover::after {
+  height: 100%;
+}
+
+.sdb-card--wide {
+  grid-column: span 2;
+}
+
+.sdb-card--feat {
+  background: var(--gunmetal);
+}
+
+.sdb-card--feat::after {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .sdb-card--feat:hover {
+    box-shadow:
+      0 6px 12px rgba(57, 84, 96, 0.1),
+      0 20px 48px rgba(57, 84, 96, 0.12);
+  }
+}
+
+.sdb-cardTop {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.sdb-ic {
+  flex-shrink: 0;
+}
+
+.sdb-ic img {
+  width: 32px;
+  height: 32px;
+  display: block;
+}
+
+.sdb-title {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #1a2e38;
+}
+
+.sdb-card--wide .sdb-title {
+  font-size: 22px;
+}
+
+.sdb-card--feat .sdb-title {
+  color: #fff;
+}
+
+.sdb-desc {
+  font-size: 15px;
+  color: #7a8a92;
+  line-height: 1.6;
+  flex-grow: 1;
+}
+
+.sdb-card--feat .sdb-desc {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.sdb-demo {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-top: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.sdb-demoTxt {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  font-style: italic;
+  min-height: 36px;
+}
+
+.sdb-demoTxt strong {
+  color: #fff;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.sdb-demoCur {
+  display: inline-block;
+  width: 1.5px;
+  height: 14px;
+  background: rgba(255, 255, 255, 0.45);
+  animation: sdb-blink 0.8s step-end infinite;
+  vertical-align: middle;
+  margin-left: 2px;
+}
+
+.sdb-ask {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(57, 84, 96, 0.03);
+  border: 1px solid rgba(57, 84, 96, 0.06);
+  border-radius: 10px;
+  padding: 10px 14px;
+  margin-top: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.sdb-card:hover .sdb-ask {
+  border-color: rgba(57, 84, 96, 0.12);
+}
+
+.sdb-ask span:first-child {
+  font-size: 14px;
+  color: rgba(57, 84, 96, 0.3);
+  font-style: italic;
+}
+
+.sdb-askCur {
+  width: 1px;
+  height: 14px;
+  background: rgba(57, 84, 96, 0.25);
+  animation: sdb-blink 0.8s step-end infinite;
+}
+
+@keyframes sdb-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.sdb-head {
+  font-family: var(--font-heading);
+  font-size: 42px;
+  font-weight: 700;
+  color: #1a2e38;
+  text-align: center;
+  margin-top: 12px;
+  line-height: 1.15;
+}
+
+.sdb-sub {
+  font-size: 16px;
+  color: #7a8a92;
+  text-align: center;
+  margin-top: 14px;
+  max-width: 540px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.55;
+}
+
+.sdb-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gunmetal);
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  text-align: center;
+  opacity: 0.4;
+}
+
+@media (max-width: 900px) {
+  .sdb-head {
+    font-size: 34px;
+  }
+
+  .sdb-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 2.25rem;
+  }
+
+  .sdb-card--wide {
+    grid-column: span 2;
+  }
+
+  .sdb-card {
+    padding: 22px;
+  }
+
+  .sdb-title {
+    font-size: 18px;
+  }
+
+  .sdb-card--wide .sdb-title {
+    font-size: 20px;
+  }
+
+  .sdb-desc {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 640px) {
+  .sdb-label {
+    font-size: 10px;
+  }
+
+  .sdb-head {
+    font-size: 26px;
+  }
+
+  .sdb-sub {
+    font-size: 13px;
+    margin-top: 10px;
+  }
+
+  .sdb-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 28px;
+  }
+
+  .sdb-card--wide {
+    grid-column: span 1;
+  }
+
+  .sdb-card {
+    padding: 18px;
+  }
+
+  .sdb-cardTop {
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+
+  .sdb-ic img {
+    width: 26px;
+    height: 26px;
+  }
+
+  .sdb-title {
+    font-size: 16px;
+  }
+
+  .sdb-card--wide .sdb-title {
+    font-size: 17px;
+  }
+
+  .sdb-desc {
+    font-size: 13px;
+  }
+
+  .sdb-card:hover {
+    transform: none;
+  }
+
+  .sdb-demo {
+    padding: 10px 12px;
+    margin-top: 12px;
+  }
+
+  .sdb-demoTxt {
+    font-size: 12px;
+    min-height: 28px;
+  }
+
+  .sdb-ask {
+    padding: 8px 12px;
+    margin-top: 12px;
+  }
+
+  .sdb-ask span:first-child {
+    font-size: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sdb-card,
+  .sdb-card::after {
+    transition: none;
+  }
+
+  .sdb-card:hover {
+    transform: none;
+  }
+
+  .sdb-demoCur,
+  .sdb-askCur {
+    animation: none;
+    opacity: 0.6;
+  }
+}
