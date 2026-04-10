@@ -1,7 +1,13 @@
 "use client";
 
 import { Titillium_Web } from "next/font/google";
+import Image from "next/image";
 import { useCallback, useEffect, useRef, useState, type MutableRefObject } from "react";
+import {
+  HERO_ACCOUNTING_LOGOS,
+  HERO_CRM_LOGO,
+  HERO_ERP_LOGO,
+} from "@/data/marquee";
 import "./hero-platform-animation.css";
 
 const titillium = Titillium_Web({
@@ -98,8 +104,6 @@ export default function HeroPlatformAnimation() {
     };
   }, []);
 
-  const textFont = { fontFamily: "inherit" } as const;
-
   return (
     <div
       className={`stratavorHeroPlatformAnim ${titillium.variable}`}
@@ -108,16 +112,14 @@ export default function HeroPlatformAnimation() {
       }}
     >
       <svg className="conn-svg" viewBox="0 0 680 680" preserveAspectRatio="none" aria-hidden>
-        <path d="M100,96 C210,96 250,274 302,274" opacity="0.5" />
-        <path d="M132,210 C230,210 252,290 304,290" opacity="0.5" />
-        <path d="M100,320 C200,320 264,306 308,306" opacity="0.5" />
-        <path d="M132,430 C230,430 252,320 304,320" opacity="0.5" />
-        <path d="M100,536 C210,536 250,336 302,336" opacity="0.5" />
-        <path className="flow" d="M100,96 C210,96 250,274 302,274" />
-        <path className="flow flow--d1" d="M132,210 C230,210 252,290 304,290" />
-        <path className="flow flow--d2" d="M100,320 C200,320 264,306 308,306" />
-        <path className="flow flow--d3" d="M132,430 C230,430 252,320 304,320" />
-        <path className="flow flow--d4" d="M100,536 C210,536 250,336 302,336" />
+        <path d="M124,100 C215,100 252,270 302,272" opacity="0.5" />
+        <path d="M132,244 C228,240 252,290 304,292" opacity="0.5" />
+        <path d="M100,392 C198,388 262,302 308,306" opacity="0.5" />
+        <path d="M132,532 C228,528 252,318 304,322" opacity="0.5" />
+        <path className="flow" d="M124,100 C215,100 252,270 302,272" />
+        <path className="flow flow--d1" d="M132,244 C228,240 252,290 304,292" />
+        <path className="flow flow--d2" d="M100,392 C198,388 262,302 308,306" />
+        <path className="flow flow--d3" d="M132,532 C228,528 252,318 304,322" />
         <path d="M378,280 C430,278 470,96 548,96" opacity="0.5" />
         <path d="M380,306 C430,306 460,306 520,306" opacity="0.5" />
         <path d="M378,330 C430,332 470,506 548,506" opacity="0.5" />
@@ -170,52 +172,47 @@ export default function HeroPlatformAnimation() {
         </svg>
       </div>
 
-      <div className="nd nd--xero">
-        <div className="logo-circ" style={{ background: "#13B5EA", borderColor: "#0EA3D4" }}>
-          <svg viewBox="0 0 100 40" width={60} aria-hidden>
-            <text x={50} y={32} textAnchor="middle" fill="#fff" style={textFont} fontWeight={700} fontSize={36}>
-              xero
-            </text>
-          </svg>
+      <div className="nd nd--accounting" aria-label="Accounting: Xero and QuickBooks">
+        <div className="logo-pair">
+          {HERO_ACCOUNTING_LOGOS.map((logo) => (
+            <Image
+              key={logo.src}
+              src={logo.src}
+              alt={logo.alt}
+              width={120}
+              height={48}
+              className="w-auto object-contain"
+              style={{ maxHeight: logo.maxHeightPx }}
+            />
+          ))}
         </div>
         <div className="nd-lbl">Accounting</div>
       </div>
 
       <div className="nd nd--netsuite">
-        <div className="logo-circ">
-          <svg viewBox="0 0 100 52" width={64} aria-hidden>
-            <text x={50} y={18} textAnchor="middle" fill="#C74634" style={textFont} fontWeight={700} fontSize={14} letterSpacing={3}>
-              ORACLE
-            </text>
-            <text x={50} y={42} textAnchor="middle" fill="#403C38" style={textFont} fontWeight={600} fontSize={18}>
-              NetSuite
-            </text>
-          </svg>
+        <div className="logo-circ logo-circ--img">
+          <Image
+            src={HERO_ERP_LOGO.src}
+            alt={HERO_ERP_LOGO.alt}
+            width={160}
+            height={64}
+            className="max-h-[34px] w-auto object-contain"
+            style={{ maxHeight: HERO_ERP_LOGO.maxHeightPx }}
+          />
         </div>
         <div className="nd-lbl">ERP</div>
       </div>
 
-      <div className="nd nd--quickbooks">
-        <div className="logo-circ" style={{ background: "#2CA01C", borderColor: "#249318" }}>
-          <svg viewBox="0 0 100 52" width={62} aria-hidden>
-            <text x={50} y={22} textAnchor="middle" fill="rgba(255,255,255,0.7)" style={textFont} fontWeight={600} fontSize={13} letterSpacing={1}>
-              INTUIT
-            </text>
-            <text x={50} y={44} textAnchor="middle" fill="#fff" style={textFont} fontWeight={700} fontSize={15}>
-              QuickBooks
-            </text>
-          </svg>
-        </div>
-        <div className="nd-lbl">Accounting</div>
-      </div>
-
       <div className="nd nd--hubspot">
-        <div className="logo-circ" style={{ background: "#FF7A59", borderColor: "#F06A48" }}>
-          <svg viewBox="0 0 100 36" width={62} aria-hidden>
-            <text x={50} y={28} textAnchor="middle" fill="#fff" style={textFont} fontWeight={700} fontSize={24}>
-              HubSpot
-            </text>
-          </svg>
+        <div className="logo-circ logo-circ--img">
+          <Image
+            src={HERO_CRM_LOGO.src}
+            alt={HERO_CRM_LOGO.alt}
+            width={160}
+            height={64}
+            className="max-h-[34px] w-auto object-contain"
+            style={{ maxHeight: HERO_CRM_LOGO.maxHeightPx }}
+          />
         </div>
         <div className="nd-lbl">CRM</div>
       </div>

@@ -53,6 +53,31 @@ export const integrationLogos: LogoItem[] = [
   },
 ];
 
+/** Hero platform animation: same asset paths as integrationLogos; `maxHeightPx` caps rendered logo height in the diagram. */
+export type HeroIntegrationLogo = {
+  src: string;
+  alt: string;
+  maxHeightPx: number;
+};
+
+/** Xero + QuickBooks shown together as “Accounting”. */
+export const HERO_ACCOUNTING_LOGOS: readonly HeroIntegrationLogo[] = [
+  { src: "/images/logos/integrations/xero.png", alt: "Xero", maxHeightPx: 36 },
+  { src: "/images/logos/integrations/quickbooks.png", alt: "QuickBooks", maxHeightPx: 24 },
+];
+
+export const HERO_ERP_LOGO: HeroIntegrationLogo = {
+  src: "/images/logos/integrations/oracle-netsuite.png",
+  alt: "Oracle NetSuite",
+  maxHeightPx: 34,
+};
+
+export const HERO_CRM_LOGO: HeroIntegrationLogo = {
+  src: "/images/logos/integrations/hubspot.png",
+  alt: "HubSpot",
+  maxHeightPx: 34,
+};
+
 export const whatWeDoImages: ImageItem[] = [
   {
     src: "/hero/intelligence-hub.png",
