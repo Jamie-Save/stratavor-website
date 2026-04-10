@@ -232,7 +232,7 @@ export default function TestimonialsShowcase() {
   return (
     <section
       id="customers"
-      className="relative overflow-hidden bg-gradient-to-b from-brand-gunmetal to-brand-gunmetal-dark py-section"
+      className="relative overflow-hidden bg-gradient-to-b from-brand-gunmetal to-brand-gunmetal-dark pt-section pb-0"
       aria-labelledby="testimonials-heading"
     >
       <div
