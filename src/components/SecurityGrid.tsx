@@ -25,7 +25,7 @@ export default function SecurityGrid() {
               >
                 <SecurityIcon
                   name={item.icon}
-                  className="transition-colors duration-normal group-hover:bg-white/20 group-hover:text-white"
+                  className="transition-colors duration-normal group-hover:bg-white/20"
                 />
                 <h3 className="mt-5 font-semibold text-neutral-900 transition-colors duration-normal group-hover:text-white">
                   {item.title}

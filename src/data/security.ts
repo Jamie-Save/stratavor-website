@@ -14,10 +14,28 @@ export const SECURITY_HOME_SECTION = {
   trustCentreUrl: "https://stratavor.com/trust",
 } as const;
 
+/** Maps to SVG assets in public/images/security/ (same artwork as brand compliance icons). */
+export type SecurityIconId =
+  | "soc2"
+  | "iso27001"
+  | "gdpr"
+  | "encryption"
+  | "rba"
+  | "traceability";
+
+export const SECURITY_ICON_SRC: Record<SecurityIconId, string> = {
+  soc2: "/images/security/soc-2.svg",
+  iso27001: "/images/security/iso-27001.svg",
+  gdpr: "/images/security/gdpr.svg",
+  encryption: "/images/security/encryption.svg",
+  rba: "/images/security/rba.svg",
+  traceability: "/images/security/traceability.svg",
+};
+
 export type SecurityItem = {
   title: string;
   description: string;
-  icon: "shield" | "cert" | "gavel" | "lock" | "users" | "trace";
+  icon: SecurityIconId;
 };
 
 export const securityItems: SecurityItem[] = [
@@ -25,37 +43,37 @@ export const securityItems: SecurityItem[] = [
     title: "SOC 2 readiness",
     description:
       "Controls and auditability designed in from day one, with enterprise-grade evidence trails.",
-    icon: "shield",
+    icon: "soc2",
   },
   {
     title: "Information security (ISO 27001)",
     description:
       "A security management approach that scales with customers, users, and data sensitivity.",
-    icon: "cert",
+    icon: "iso27001",
   },
   {
     title: "GDPR-aligned handling",
     description:
       "Clear purpose, retention, and governance patterns for defensible EU-grade compliance.",
-    icon: "gavel",
+    icon: "gdpr",
   },
   {
     title: "Encryption in transit + at rest",
     description:
       "Secure transport and storage patterns so sensitive reporting stays protected end-to-end.",
-    icon: "lock",
+    icon: "encryption",
   },
   {
     title: "Role-based access + audit logs",
     description:
       "Permissions that match real org structure, with clear accountability and change history.",
-    icon: "users",
+    icon: "rba",
   },
   {
     title: "Show-your-work traceability",
     description:
       "Every KPI and narrative can be tied back to source fields and period logic.",
-    icon: "trace",
+    icon: "traceability",
   },
 ];
 
