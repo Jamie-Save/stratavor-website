@@ -8,7 +8,7 @@ export const BOOK_DEMO_CALENDAR_URL =
   DEFAULT_BOOK_DEMO_CALENDAR;
 
 /** Contact form deep links (must stay in sync with contact page handling). */
-export const CONTACT_LOGIN_URL = "/contact?intent=login";
+export const CONTACT_LOGIN_URL = "https://app.stratavor.com/login";
 /** Same as BOOK_DEMO_CALENDAR_URL — demo bookings use HubSpot; /contact?intent=demo redirects there. */
 export const CONTACT_DEMO_URL = BOOK_DEMO_CALENDAR_URL;
 export const CONTACT_PILOT_URL = "/contact?intent=pilot";

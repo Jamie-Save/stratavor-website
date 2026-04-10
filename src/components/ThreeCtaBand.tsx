@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BOOK_DEMO_CALENDAR_URL, CONTACT_GENERAL_URL } from "@/data/contact-links";
+import { BOOK_DEMO_CALENDAR_URL, CONTACT_GENERAL_URL, CONTACT_LOGIN_URL } from "@/data/contact-links";
 import { HOME_BOTTOM_CTA } from "@/data/marketing-copy";
 
 export default function ThreeCtaBand() {
@@ -26,7 +26,7 @@ export default function ThreeCtaBand() {
             {HOME_BOTTOM_CTA.bookDemoLabel}
           </Link>
           <Link
-            href="/pricing"
+            href={CONTACT_LOGIN_URL}
             className="inline-flex w-full items-center justify-center rounded-xl bg-brand-accent px-7 py-3.5 text-[15px] font-semibold text-white shadow-soft transition-all hover:bg-brand-accent-hover hover:shadow-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2 focus-visible:ring-offset-white sm:w-auto"
           >
             {HOME_BOTTOM_CTA.trialLabel}

@@ -139,12 +139,12 @@ export function ContactForm({
           <p className="text-neutral-700">
             The Stratavor platform is available at{" "}
             <a
-              href="https://app.stratavor.com"
+              href="https://app.stratavor.com/login"
               target="_blank"
               rel="noopener noreferrer"
               className="font-semibold text-brand-accent underline-offset-2 hover:underline"
             >
-              app.stratavor.com
+              app.stratavor.com/login
             </a>
           </p>
           <p className="mt-4 text-sm text-neutral-500">

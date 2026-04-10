@@ -1,6 +1,6 @@
 import Link from "next/link";
 import HeroCarousel from "./HeroCarousel";
-import { BOOK_DEMO_CALENDAR_URL } from "@/data/contact-links";
+import { BOOK_DEMO_CALENDAR_URL, CONTACT_LOGIN_URL } from "@/data/contact-links";
 import { HOME_HERO } from "@/data/marketing-copy";
 
 const HEADLINE_ACCENT = "Strategy.";
@@ -59,7 +59,7 @@ export default function HeroSplit() {
               <p className="text-body-lg mt-6 max-w-prose text-neutral-600 2xl:text-xl">{HOME_HERO.subline}</p>
               <div className="mt-10 flex flex-wrap gap-4">
                 <Link
-                  href="/pricing"
+                  href={CONTACT_LOGIN_URL}
                   className="inline-flex items-center justify-center rounded-xl bg-brand-accent px-7 py-3.5 text-[15px] font-semibold text-white shadow-soft transition-all hover:bg-brand-accent-hover hover:shadow-medium focus-visible:bg-brand-accent-hover focus-visible:shadow-medium"
                 >
                   {HOME_HERO.primaryCtaLabel}

@@ -89,7 +89,7 @@ Label: ${HOME_HERO.sectionLabel}
 Headline: ${HOME_HERO.headline}
 Body: ${HOME_HERO.subline}
 Note: ${HOME_HERO.trialNote}
-Primary CTA: ${HOME_HERO.primaryCtaLabel} → ${absoluteUrl("/pricing")}
+Primary CTA: ${HOME_HERO.primaryCtaLabel} → ${CONTACT_LOGIN_URL}
 Secondary CTA: ${HOME_HERO.secondaryCtaLabel} → ${BOOK_DEMO_CALENDAR_URL}
 
 ## Home page — Trusted by band
@@ -117,7 +117,7 @@ For which systems are core connectors vs roadmap, use the Pricing FAQ in the mai
 ## Home page — Closing call to action
 ${HOME_BOTTOM_CTA.heading}
 ${HOME_BOTTOM_CTA.subline}
-Actions: ${HOME_BOTTOM_CTA.bookDemoLabel} (${BOOK_DEMO_CALENDAR_URL}), ${HOME_BOTTOM_CTA.trialLabel} (${absoluteUrl("/pricing")}), ${HOME_BOTTOM_CTA.contactUsLabel} (${absoluteUrl(CONTACT_GENERAL_URL)})
+Actions: ${HOME_BOTTOM_CTA.bookDemoLabel} (${BOOK_DEMO_CALENDAR_URL}), ${HOME_BOTTOM_CTA.trialLabel} (${CONTACT_LOGIN_URL}), ${HOME_BOTTOM_CTA.contactUsLabel} (${absoluteUrl(CONTACT_GENERAL_URL)})
 
 ## About / company (https://stratavor.com/about)
 Headline: ${ABOUT_PAGE.heroHeadline}
