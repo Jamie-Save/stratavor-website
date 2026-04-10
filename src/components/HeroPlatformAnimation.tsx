@@ -180,10 +180,15 @@ export default function HeroPlatformAnimation() {
               key={logo.src}
               src={logo.src}
               alt={logo.alt}
-              width={120}
-              height={48}
-              className="w-auto object-contain"
-              style={{ maxHeight: logo.maxHeightPx }}
+              width={80}
+              height={80}
+              className="object-contain"
+              style={{
+                maxHeight: logo.maxHeightPx,
+                maxWidth: logo.maxHeightPx,
+                width: logo.maxHeightPx,
+                height: logo.maxHeightPx,
+              }}
             />
           ))}
         </div>
@@ -218,17 +223,22 @@ export default function HeroPlatformAnimation() {
         <div className="nd-lbl">CRM</div>
       </div>
 
-      <div className="nd nd--workspace" aria-label="Workspace: Google and Microsoft">
+      <div className="nd nd--workspace" aria-label="Workspace: Google and Windows">
         <div className="logo-stack">
           {HERO_WORKSPACE_LOGOS.map((logo) => (
             <Image
               key={logo.src}
               src={logo.src}
               alt={logo.alt}
-              width={120}
-              height={40}
-              className="w-auto object-contain"
-              style={{ maxHeight: logo.maxHeightPx }}
+              width={56}
+              height={56}
+              className="object-contain"
+              style={{
+                maxHeight: logo.maxHeightPx,
+                maxWidth: logo.maxHeightPx,
+                width: logo.maxHeightPx,
+                height: logo.maxHeightPx,
+              }}
             />
           ))}
         </div>
