@@ -42,8 +42,7 @@
 
   /* ── Section label ── */
   .section-label {
-    @apply text-caption font-semibold uppercase tracking-widest;
-    color: var(--label-red);
+    @apply text-caption font-semibold uppercase tracking-widest text-brand-gunmetal;
   }
 
   /* ── Button primitives ── */
