@@ -53,23 +53,23 @@ export const integrationLogos: LogoItem[] = [
   },
 ];
 
-/** Hero platform animation: same asset paths as integrationLogos; `maxHeightPx` caps rendered logo height in the diagram. */
+/** Hero platform animation: `maxHeightPx` caps rendered logo size in the diagram (PNG or SVG). */
 export type HeroIntegrationLogo = {
   src: string;
   alt: string;
   maxHeightPx: number;
 };
 
-/** Xero + QuickBooks in the hero diagram only (circular icon PNGs; same box size). Rest of site uses integration logos. */
+/** Xero + QuickBooks in the hero diagram only (SVG; same box size). Rest of site uses integration logos. */
 export const HERO_ACCOUNTING_LOGOS: readonly HeroIntegrationLogo[] = [
-  { src: "/images/hero/accounting-xero-circle.png", alt: "Xero", maxHeightPx: 40 },
-  { src: "/images/hero/accounting-quickbooks-circle.png", alt: "QuickBooks", maxHeightPx: 40 },
+  { src: "/images/hero/accounting-xero.svg", alt: "Xero", maxHeightPx: 40 },
+  { src: "/images/hero/accounting-quickbooks.svg", alt: "QuickBooks", maxHeightPx: 40 },
 ];
 
-/** Google “G” + Windows logo in the hero diagram only (same box size). Rest of site uses integration logos. */
+/** Google + Windows in the hero diagram only (SVG; same box size). Rest of site uses integration logos. */
 export const HERO_WORKSPACE_LOGOS: readonly HeroIntegrationLogo[] = [
-  { src: "/images/hero/workspace-google-g.png", alt: "Google", maxHeightPx: 28 },
-  { src: "/images/hero/workspace-windows.png", alt: "Microsoft Windows", maxHeightPx: 28 },
+  { src: "/images/hero/workspace-google.svg", alt: "Google", maxHeightPx: 28 },
+  { src: "/images/hero/workspace-windows.svg", alt: "Microsoft Windows", maxHeightPx: 28 },
 ];
 
 export const HERO_ERP_LOGO: HeroIntegrationLogo = {

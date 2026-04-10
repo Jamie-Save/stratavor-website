@@ -11,15 +11,15 @@ export function SecurityIcon({
   const src = SECURITY_ICON_SRC[name];
   return (
     <span
-      className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-brand-gunmetal/10 p-1.5 ${className}`.trim()}
+      className={`flex h-16 w-16 shrink-0 items-center justify-center rounded-lg bg-brand-gunmetal/10 p-2 ${className}`.trim()}
     >
       <Image
         src={src}
         alt=""
-        width={40}
-        height={40}
+        width={48}
+        height={48}
         unoptimized
-        className="max-h-9 w-full object-contain transition-[filter] duration-normal group-hover:brightness-0 group-hover:invert"
+        className="max-h-12 w-full object-contain transition-[filter] duration-normal group-hover:brightness-0 group-hover:invert"
       />
     </span>
   );

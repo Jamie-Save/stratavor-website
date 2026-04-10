@@ -182,6 +182,7 @@ export default function HeroPlatformAnimation() {
               alt={logo.alt}
               width={80}
               height={80}
+              unoptimized={logo.src.endsWith(".svg")}
               className="object-contain"
               style={{
                 maxHeight: logo.maxHeightPx,
@@ -232,6 +233,7 @@ export default function HeroPlatformAnimation() {
               alt={logo.alt}
               width={56}
               height={56}
+              unoptimized={logo.src.endsWith(".svg")}
               className="object-contain"
               style={{
                 maxHeight: logo.maxHeightPx,
