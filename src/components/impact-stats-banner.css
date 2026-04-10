@@ -3,10 +3,8 @@
 .impactStatsBanner {
   position: relative;
   width: 100%;
-  max-width: 780px;
-  margin-inline: auto;
   overflow: hidden;
-  border-radius: 14px;
+  border-radius: 0;
   background: #395460;
   padding: 48px 24px;
   box-sizing: border-box;

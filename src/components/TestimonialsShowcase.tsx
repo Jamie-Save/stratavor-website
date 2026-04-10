@@ -372,10 +372,10 @@ export default function TestimonialsShowcase() {
             <ArrowButton direction="next" onClick={goNext} />
           </div>
         </div>
+      </div>
 
-        <div className="mt-16 lg:mt-20">
-          <ImpactStatsBanner />
-        </div>
+      <div className="relative z-0 mt-16 w-full lg:mt-20">
+        <ImpactStatsBanner />
       </div>
     </section>
   );

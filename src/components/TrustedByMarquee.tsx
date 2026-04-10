@@ -46,11 +46,10 @@ export default function TrustedByMarquee() {
 
   return (
     <section
-      className="bg-neutral-50 py-10 lg:py-14"
+      className="w-full bg-neutral-50 py-10 lg:py-14"
       aria-labelledby="trusted-by-heading"
     >
-      <div className="mx-auto max-w-content px-content lg:px-8">
-        <div className="stratavorTrustedBanner font-body">
+      <div className="stratavorTrustedBanner font-body w-full">
           <div className="stratavorTrustedBanner__top">
             <div className="stratavorTrustedBanner__topCluster">
               <div className="stratavorTrustedBanner__left">
@@ -79,7 +78,6 @@ export default function TrustedByMarquee() {
             </div>
           </div>
         </div>
-      </div>
     </section>
   );
 }

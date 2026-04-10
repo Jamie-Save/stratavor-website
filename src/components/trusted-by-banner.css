@@ -2,7 +2,7 @@
 .stratavorTrustedBanner {
   width: 100%;
   background: #395460;
-  border-radius: 14px;
+  border-radius: 0;
   position: relative;
   overflow: hidden;
   box-sizing: border-box;
