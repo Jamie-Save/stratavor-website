@@ -113,20 +113,30 @@ export default function HeroPlatformAnimation() {
       }}
     >
       <svg className="conn-svg" viewBox="0 0 680 680" preserveAspectRatio="none" aria-hidden>
-        <path d="M120,106 C212,104 252,270 302,272" opacity="0.5" />
-        <path d="M132,256 C228,252 252,290 304,292" opacity="0.5" />
-        <path d="M100,400 C198,396 262,302 308,306" opacity="0.5" />
-        <path d="M132,526 C228,522 252,318 304,322" opacity="0.5" />
-        <path className="flow" d="M120,106 C212,104 252,270 302,272" />
-        <path className="flow flow--d1" d="M132,256 C228,252 252,290 304,292" />
-        <path className="flow flow--d2" d="M100,400 C198,396 262,302 308,306" />
-        <path className="flow flow--d3" d="M132,526 C228,522 252,318 304,322" />
+        <path d="M120,76 C212,74 252,270 302,272" opacity="0.5" />
+        <path d="M132,208 C228,204 252,290 304,292" opacity="0.5" />
+        <path d="M100,346 C198,342 262,302 308,306" opacity="0.5" />
+        <path d="M132,451 C228,447 252,318 304,322" opacity="0.5" />
+        <path className="flow" d="M120,76 C212,74 252,270 302,272" />
+        <path className="flow flow--d1" d="M132,208 C228,204 252,290 304,292" />
+        <path className="flow flow--d2" d="M100,346 C198,342 262,302 308,306" />
+        <path className="flow flow--d3" d="M132,451 C228,447 252,318 304,322" />
         <path d="M378,280 C430,278 470,96 548,96" opacity="0.5" />
         <path d="M380,306 C430,306 460,306 520,306" opacity="0.5" />
         <path d="M378,330 C430,332 470,506 548,506" opacity="0.5" />
         <path className="flow flow--r1" d="M378,280 C430,278 470,96 548,96" />
         <path className="flow flow--r2" d="M380,306 C430,306 460,306 520,306" />
         <path className="flow flow--r3" d="M378,330 C430,332 470,506 548,506" />
+        <path
+          d="M332,375 C328,434 326,492 336,532"
+          opacity="0.5"
+        />
+        <path
+          d="M348,532 C352,468 354,410 348,375"
+          opacity="0.5"
+        />
+        <path className="flow flow--ai-in" d="M332,375 C328,434 326,492 336,532" />
+        <path className="flow flow--ai-out" d="M348,532 C352,468 354,410 348,375" />
       </svg>
 
       <div className="hub">
@@ -180,8 +190,8 @@ export default function HeroPlatformAnimation() {
               key={logo.src}
               src={logo.src}
               alt={logo.alt}
-              width={80}
-              height={80}
+              width={96}
+              height={96}
               unoptimized={logo.src.endsWith(".svg")}
               className="object-contain"
               style={{
@@ -196,32 +206,32 @@ export default function HeroPlatformAnimation() {
         <div className="nd-lbl">Accounting</div>
       </div>
 
-      <div className="nd nd--netsuite">
-        <div className="logo-circ logo-circ--img">
+      <div className="nd nd--netsuite" aria-label="ERP: Oracle NetSuite">
+        <div className="logo-circ logo-circ--stacked">
           <Image
             src={HERO_ERP_LOGO.src}
             alt={HERO_ERP_LOGO.alt}
             width={160}
             height={64}
-            className="max-h-[34px] w-auto object-contain"
+            className="min-h-0 w-auto shrink object-contain"
             style={{ maxHeight: HERO_ERP_LOGO.maxHeightPx }}
           />
+          <div className="nd-lbl">ERP</div>
         </div>
-        <div className="nd-lbl">ERP</div>
       </div>
 
-      <div className="nd nd--hubspot">
-        <div className="logo-circ logo-circ--img">
+      <div className="nd nd--hubspot" aria-label="CRM: HubSpot">
+        <div className="logo-circ logo-circ--stacked">
           <Image
             src={HERO_CRM_LOGO.src}
             alt={HERO_CRM_LOGO.alt}
             width={160}
             height={64}
-            className="max-h-[34px] w-auto object-contain"
+            className="min-h-0 w-auto shrink object-contain"
             style={{ maxHeight: HERO_CRM_LOGO.maxHeightPx }}
           />
+          <div className="nd-lbl">CRM</div>
         </div>
-        <div className="nd-lbl">CRM</div>
       </div>
 
       <div className="nd nd--workspace" aria-label="Workspace: Google and Windows">
@@ -231,8 +241,8 @@ export default function HeroPlatformAnimation() {
               key={logo.src}
               src={logo.src}
               alt={logo.alt}
-              width={56}
-              height={56}
+              width={68}
+              height={68}
               unoptimized={logo.src.endsWith(".svg")}
               className="object-contain"
               style={{

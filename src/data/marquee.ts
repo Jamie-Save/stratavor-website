@@ -62,26 +62,26 @@ export type HeroIntegrationLogo = {
 
 /** Xero + QuickBooks in the hero diagram only (SVG; same box size). Rest of site uses integration logos. */
 export const HERO_ACCOUNTING_LOGOS: readonly HeroIntegrationLogo[] = [
-  { src: "/images/hero/accounting-xero.svg", alt: "Xero", maxHeightPx: 40 },
-  { src: "/images/hero/accounting-quickbooks.svg", alt: "QuickBooks", maxHeightPx: 40 },
+  { src: "/images/hero/accounting-xero.svg", alt: "Xero", maxHeightPx: 48 },
+  { src: "/images/hero/accounting-quickbooks.svg", alt: "QuickBooks", maxHeightPx: 48 },
 ];
 
 /** Google + Windows in the hero diagram only (SVG; same box size). Rest of site uses integration logos. */
 export const HERO_WORKSPACE_LOGOS: readonly HeroIntegrationLogo[] = [
-  { src: "/images/hero/workspace-google.svg", alt: "Google", maxHeightPx: 28 },
-  { src: "/images/hero/workspace-windows.svg", alt: "Microsoft Windows", maxHeightPx: 28 },
+  { src: "/images/hero/workspace-google.svg", alt: "Google", maxHeightPx: 34 },
+  { src: "/images/hero/workspace-windows.svg", alt: "Microsoft Windows", maxHeightPx: 34 },
 ];
 
 export const HERO_ERP_LOGO: HeroIntegrationLogo = {
   src: "/images/logos/integrations/oracle-netsuite.png",
   alt: "Oracle NetSuite",
-  maxHeightPx: 34,
+  maxHeightPx: 74,
 };
 
 export const HERO_CRM_LOGO: HeroIntegrationLogo = {
   src: "/images/logos/integrations/hubspot.png",
   alt: "HubSpot",
-  maxHeightPx: 34,
+  maxHeightPx: 68,
 };
 
 export const whatWeDoImages: ImageItem[] = [

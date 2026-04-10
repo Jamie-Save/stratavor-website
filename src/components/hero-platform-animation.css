@@ -5,6 +5,7 @@
 }
 
 .stratavorHeroPlatformAnim {
+  --hero-logo-lbl-gap: 7px;
   position: relative;
   width: min(780px, 100%);
   height: min(680px, 72vh);
@@ -119,6 +120,10 @@
 
 .stratavorHeroPlatformAnim .nd {
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--hero-logo-lbl-gap);
   opacity: 0;
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -129,76 +134,82 @@
 }
 
 .stratavorHeroPlatformAnim .logo-circ {
-  width: 88px;
-  height: 88px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   background: #fff;
-  border: 1.5px solid rgba(57, 84, 96, 0.08);
+  border: none;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: border-color 0.3s, box-shadow 0.3s;
+  transition: box-shadow 0.3s;
   overflow: hidden;
 }
 
 .stratavorHeroPlatformAnim .logo-circ:hover {
-  border-color: rgba(57, 84, 96, 0.2);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
 }
 
 .stratavorHeroPlatformAnim .logo-circ--img {
-  padding: 10px 12px;
+  padding: 8px 10px;
+}
+
+/* ERP/CRM: label inside circle; gap matches Accounting/Workspace (.nd) */
+.stratavorHeroPlatformAnim .logo-circ--stacked {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--hero-logo-lbl-gap);
+  width: 108px;
+  height: 108px;
+  padding: 6px 8px 8px;
 }
 
 .stratavorHeroPlatformAnim .logo-pair {
-  width: 92px;
-  min-height: 124px;
+  width: auto;
+  min-width: 120px;
   height: auto;
+  min-height: 0;
   box-sizing: border-box;
-  border-radius: 20px;
+  border-radius: 14px;
   background: #fff;
-  border: 1.5px solid rgba(57, 84, 96, 0.08);
+  border: none;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: 10px 12px;
+  gap: 10px;
+  padding: 8px 12px;
   cursor: pointer;
-  transition:
-    border-color 0.3s,
-    box-shadow 0.3s;
-  overflow: hidden;
+  transition: box-shadow 0.3s;
+  overflow: visible;
 }
 
 .stratavorHeroPlatformAnim .logo-pair:hover {
-  border-color: rgba(57, 84, 96, 0.2);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
 }
 
 .stratavorHeroPlatformAnim .logo-stack {
-  width: 88px;
-  min-height: 88px;
+  width: auto;
+  min-width: 92px;
+  min-height: 0;
   box-sizing: border-box;
-  border-radius: 44px;
+  border-radius: 14px;
   background: #fff;
-  border: 1.5px solid rgba(57, 84, 96, 0.08);
+  border: none;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  padding: 10px 8px;
+  gap: 8px;
+  padding: 8px 10px;
   cursor: pointer;
-  transition:
-    border-color 0.3s,
-    box-shadow 0.3s;
-  overflow: hidden;
+  transition: box-shadow 0.3s;
+  overflow: visible;
 }
 
 .stratavorHeroPlatformAnim .logo-stack:hover {
-  border-color: rgba(57, 84, 96, 0.2);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
 }
 
@@ -206,7 +217,7 @@
   font-size: 10px;
   color: #979a9c;
   font-weight: 400;
-  margin-top: 5px;
+  margin-top: 0;
   text-align: center;
   white-space: nowrap;
 }
@@ -288,18 +299,18 @@
 
 .stratavorHeroPlatformAnim .ai-wrap {
   position: absolute;
-  bottom: 16px;
+  bottom: 48px;
   left: 0;
   right: 0;
   display: flex;
   justify-content: center;
   z-index: 12;
-  padding: 0 20px;
+  padding: 0 16px;
 }
 
 .stratavorHeroPlatformAnim .ai-card {
   opacity: 0;
-  width: 400px;
+  width: 312px;
   max-width: 100%;
   background: #fff;
   border-radius: 10px;
@@ -387,7 +398,7 @@
 }
 
 .stratavorHeroPlatformAnim .nd--netsuite {
-  top: 212px;
+  top: 154px;
   left: 42px;
   animation:
     stratavorHero_fi 0.6s 0.35s forwards,
@@ -395,7 +406,7 @@
 }
 
 .stratavorHeroPlatformAnim .nd--hubspot {
-  top: 356px;
+  top: 292px;
   left: 8px;
   animation:
     stratavorHero_fi 0.6s 0.5s forwards,
@@ -403,7 +414,7 @@
 }
 
 .stratavorHeroPlatformAnim .nd--workspace {
-  top: 482px;
+  top: 426px;
   left: 42px;
   animation:
     stratavorHero_fi 0.6s 0.65s forwards,
@@ -468,6 +479,14 @@
 .stratavorHeroPlatformAnim .flow--r3 {
   animation-delay: -2s;
   animation-direction: reverse;
+}
+
+.stratavorHeroPlatformAnim .flow--ai-in {
+  animation-delay: -0.4s;
+}
+
+.stratavorHeroPlatformAnim .flow--ai-out {
+  animation-delay: -1.1s;
 }
 
 @keyframes stratavorHero_sp {
