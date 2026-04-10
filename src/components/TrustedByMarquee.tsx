@@ -52,21 +52,23 @@ export default function TrustedByMarquee() {
       <div className="mx-auto max-w-content px-content lg:px-8">
         <div className="stratavorTrustedBanner font-body">
           <div className="stratavorTrustedBanner__top">
-            <div className="stratavorTrustedBanner__left">
-              <div className="stratavorTrustedBanner__label">{HOME_TRUSTED_BY.sectionLabel}</div>
-              <h2 id="trusted-by-heading" className="stratavorTrustedBanner__head">
-                {HOME_TRUSTED_BY.headlineLines[0]}
-                <br />
-                {HOME_TRUSTED_BY.headlineLines[1]}
-              </h2>
-            </div>
-            <div className="stratavorTrustedBanner__right">
-              <p className="stratavorTrustedBanner__sub">
-                {HOME_TRUSTED_BY.sublineLines[0]}
-                <br />
-                {HOME_TRUSTED_BY.sublineLines[1]}
-              </p>
-              <p className="stratavorTrustedBanner__cred">{HOME_TRUSTED_BY.credentialLine}</p>
+            <div className="stratavorTrustedBanner__topCluster">
+              <div className="stratavorTrustedBanner__left">
+                <div className="stratavorTrustedBanner__label">{HOME_TRUSTED_BY.sectionLabel}</div>
+                <h2 id="trusted-by-heading" className="stratavorTrustedBanner__head">
+                  {HOME_TRUSTED_BY.headlineLines[0]}
+                  <br />
+                  {HOME_TRUSTED_BY.headlineLines[1]}
+                </h2>
+              </div>
+              <div className="stratavorTrustedBanner__right">
+                <p className="stratavorTrustedBanner__sub">
+                  {HOME_TRUSTED_BY.sublineLines[0]}
+                  <br />
+                  {HOME_TRUSTED_BY.sublineLines[1]}
+                </p>
+                <p className="stratavorTrustedBanner__cred">{HOME_TRUSTED_BY.credentialLine}</p>
+              </div>
             </div>
           </div>
 

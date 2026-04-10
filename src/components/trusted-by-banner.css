@@ -1,8 +1,6 @@
-/* Scoped trusted-by card + role ticker */
+/* Scoped trusted-by card + role ticker — full width of content rail; text cluster centered */
 .stratavorTrustedBanner {
   width: 100%;
-  max-width: 780px;
-  margin-inline: auto;
   background: #395460;
   border-radius: 14px;
   position: relative;
@@ -11,17 +9,28 @@
 }
 
 .stratavorTrustedBanner__top {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
   padding: 32px 24px 22px;
-  gap: 24px;
-  flex-wrap: wrap;
 }
 
 @media (min-width: 640px) {
   .stratavorTrustedBanner__top {
     padding: 40px 40px 28px;
+  }
+}
+
+.stratavorTrustedBanner__topCluster {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 52rem;
+  margin-inline: auto;
+}
+
+@media (min-width: 640px) {
+  .stratavorTrustedBanner__topCluster {
     gap: 32px;
   }
 }
