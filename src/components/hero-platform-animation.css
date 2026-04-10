@@ -152,17 +152,19 @@
 }
 
 .stratavorHeroPlatformAnim .logo-pair {
-  width: 136px;
-  height: 88px;
+  width: 92px;
+  min-height: 124px;
+  height: auto;
   box-sizing: border-box;
-  border-radius: 44px;
+  border-radius: 20px;
   background: #fff;
   border: 1.5px solid rgba(57, 84, 96, 0.08);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  padding: 0 14px;
+  gap: 8px;
+  padding: 10px 12px;
   cursor: pointer;
   transition:
     border-color 0.3s,
@@ -171,6 +173,31 @@
 }
 
 .stratavorHeroPlatformAnim .logo-pair:hover {
+  border-color: rgba(57, 84, 96, 0.2);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
+}
+
+.stratavorHeroPlatformAnim .logo-stack {
+  width: 88px;
+  min-height: 88px;
+  box-sizing: border-box;
+  border-radius: 44px;
+  background: #fff;
+  border: 1.5px solid rgba(57, 84, 96, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 8px;
+  cursor: pointer;
+  transition:
+    border-color 0.3s,
+    box-shadow 0.3s;
+  overflow: hidden;
+}
+
+.stratavorHeroPlatformAnim .logo-stack:hover {
   border-color: rgba(57, 84, 96, 0.2);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
 }
@@ -352,15 +379,15 @@
 
 /* Node + card entrance / float (class names avoid inline keyframe refs) */
 .stratavorHeroPlatformAnim .nd--accounting {
-  top: 52px;
-  left: 6px;
+  top: 44px;
+  left: 8px;
   animation:
     stratavorHero_fi 0.6s 0.2s forwards,
     stratavorHero_floatY 5.5s 1.2s ease-in-out infinite;
 }
 
 .stratavorHeroPlatformAnim .nd--netsuite {
-  top: 200px;
+  top: 212px;
   left: 42px;
   animation:
     stratavorHero_fi 0.6s 0.35s forwards,
@@ -368,15 +395,15 @@
 }
 
 .stratavorHeroPlatformAnim .nd--hubspot {
-  top: 348px;
+  top: 356px;
   left: 8px;
   animation:
     stratavorHero_fi 0.6s 0.5s forwards,
     stratavorHero_floatY 4.6s 1.6s ease-in-out infinite;
 }
 
-.stratavorHeroPlatformAnim .nd--sheets {
-  top: 488px;
+.stratavorHeroPlatformAnim .nd--workspace {
+  top: 482px;
   left: 42px;
   animation:
     stratavorHero_fi 0.6s 0.65s forwards,

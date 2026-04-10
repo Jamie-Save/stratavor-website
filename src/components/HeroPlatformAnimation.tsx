@@ -7,6 +7,7 @@ import {
   HERO_ACCOUNTING_LOGOS,
   HERO_CRM_LOGO,
   HERO_ERP_LOGO,
+  HERO_WORKSPACE_LOGOS,
 } from "@/data/marquee";
 import "./hero-platform-animation.css";
 
@@ -112,14 +113,14 @@ export default function HeroPlatformAnimation() {
       }}
     >
       <svg className="conn-svg" viewBox="0 0 680 680" preserveAspectRatio="none" aria-hidden>
-        <path d="M124,100 C215,100 252,270 302,272" opacity="0.5" />
-        <path d="M132,244 C228,240 252,290 304,292" opacity="0.5" />
-        <path d="M100,392 C198,388 262,302 308,306" opacity="0.5" />
-        <path d="M132,532 C228,528 252,318 304,322" opacity="0.5" />
-        <path className="flow" d="M124,100 C215,100 252,270 302,272" />
-        <path className="flow flow--d1" d="M132,244 C228,240 252,290 304,292" />
-        <path className="flow flow--d2" d="M100,392 C198,388 262,302 308,306" />
-        <path className="flow flow--d3" d="M132,532 C228,528 252,318 304,322" />
+        <path d="M120,106 C212,104 252,270 302,272" opacity="0.5" />
+        <path d="M132,256 C228,252 252,290 304,292" opacity="0.5" />
+        <path d="M100,400 C198,396 262,302 308,306" opacity="0.5" />
+        <path d="M132,526 C228,522 252,318 304,322" opacity="0.5" />
+        <path className="flow" d="M120,106 C212,104 252,270 302,272" />
+        <path className="flow flow--d1" d="M132,256 C228,252 252,290 304,292" />
+        <path className="flow flow--d2" d="M100,400 C198,396 262,302 308,306" />
+        <path className="flow flow--d3" d="M132,526 C228,522 252,318 304,322" />
         <path d="M378,280 C430,278 470,96 548,96" opacity="0.5" />
         <path d="M380,306 C430,306 460,306 520,306" opacity="0.5" />
         <path d="M378,330 C430,332 470,506 548,506" opacity="0.5" />
@@ -217,28 +218,21 @@ export default function HeroPlatformAnimation() {
         <div className="nd-lbl">CRM</div>
       </div>
 
-      <div className="nd nd--sheets">
-        <div className="logo-circ">
-          <svg viewBox="0 0 60 60" width={48} aria-hidden>
-            <rect x={2} y={2} width={56} height={56} rx={6} fill="#217346" />
-            <rect x={10} y={10} width={10} height={7} rx={1} fill="rgba(255,255,255,0.9)" />
-            <rect x={22} y={10} width={10} height={7} rx={1} fill="rgba(255,255,255,0.5)" />
-            <rect x={34} y={10} width={10} height={7} rx={1} fill="rgba(255,255,255,0.5)" />
-            <rect x={10} y={19} width={10} height={7} rx={1} fill="rgba(255,255,255,0.5)" />
-            <rect x={22} y={19} width={10} height={7} rx={1} fill="rgba(255,255,255,0.9)" />
-            <rect x={34} y={19} width={10} height={7} rx={1} fill="rgba(255,255,255,0.5)" />
-            <rect x={10} y={28} width={10} height={7} rx={1} fill="rgba(255,255,255,0.5)" />
-            <rect x={22} y={28} width={10} height={7} rx={1} fill="rgba(255,255,255,0.5)" />
-            <rect x={34} y={28} width={10} height={7} rx={1} fill="rgba(255,255,255,0.9)" />
-            <rect x={10} y={37} width={10} height={7} rx={1} fill="rgba(255,255,255,0.9)" />
-            <rect x={22} y={37} width={10} height={7} rx={1} fill="rgba(255,255,255,0.5)" />
-            <rect x={34} y={37} width={10} height={7} rx={1} fill="rgba(255,255,255,0.5)" />
-            <rect x={10} y={46} width={10} height={7} rx={1} fill="rgba(255,255,255,0.5)" />
-            <rect x={22} y={46} width={10} height={7} rx={1} fill="rgba(255,255,255,0.5)" />
-            <rect x={34} y={46} width={10} height={7} rx={1} fill="rgba(255,255,255,0.9)" />
-          </svg>
+      <div className="nd nd--workspace" aria-label="Workspace: Google and Microsoft">
+        <div className="logo-stack">
+          {HERO_WORKSPACE_LOGOS.map((logo) => (
+            <Image
+              key={logo.src}
+              src={logo.src}
+              alt={logo.alt}
+              width={120}
+              height={40}
+              className="w-auto object-contain"
+              style={{ maxHeight: logo.maxHeightPx }}
+            />
+          ))}
         </div>
-        <div className="nd-lbl">Spreadsheets</div>
+        <div className="nd-lbl">Workspace</div>
       </div>
 
       <div className="nd nd--out1">

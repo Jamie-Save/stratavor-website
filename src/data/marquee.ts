@@ -60,10 +60,16 @@ export type HeroIntegrationLogo = {
   maxHeightPx: number;
 };
 
-/** Xero + QuickBooks shown together as “Accounting”. */
+/** Xero + QuickBooks shown together as “Accounting” (stacked: Xero above QuickBooks). */
 export const HERO_ACCOUNTING_LOGOS: readonly HeroIntegrationLogo[] = [
   { src: "/images/logos/integrations/xero.png", alt: "Xero", maxHeightPx: 36 },
-  { src: "/images/logos/integrations/quickbooks.png", alt: "QuickBooks", maxHeightPx: 24 },
+  { src: "/images/logos/integrations/quickbooks.png", alt: "QuickBooks", maxHeightPx: 38 },
+];
+
+/** Google + Microsoft stacked for hero “Workspace” node (replaces spreadsheets mock). */
+export const HERO_WORKSPACE_LOGOS: readonly HeroIntegrationLogo[] = [
+  { src: "/images/logos/integrations/google.png", alt: "Google", maxHeightPx: 28 },
+  { src: "/images/logos/integrations/microsoft.png", alt: "Microsoft", maxHeightPx: 28 },
 ];
 
 export const HERO_ERP_LOGO: HeroIntegrationLogo = {
