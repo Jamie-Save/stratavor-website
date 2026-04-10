@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import { BOOK_DEMO_CALENDAR_URL } from "@/data/contact-links";
 
 const socialLinks = [
@@ -77,29 +76,14 @@ export default function Footer() {
         aria-hidden
       />
 
-      <div className="relative mx-auto max-w-content px-content py-16 lg:px-8 lg:py-20">
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-6">
-          <div className="relative lg:col-span-2">
-            <div className="inline-flex max-w-full rounded-2xl bg-white/[0.04] px-5 py-6 shadow-medium ring-1 ring-white/10 sm:px-7 sm:py-7 lg:px-8 lg:py-8">
-              <Link
-                href="/"
-                className="mx-auto flex items-center justify-center rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-gunmetal"
-              >
-                <Image
-                  src="/images/footer-chesspiece.svg"
-                  alt="Stratavor"
-                  width={98}
-                  height={173}
-                  unoptimized
-                  className="h-[8.5rem] w-auto max-h-[min(11rem,50vh)] object-contain object-center sm:h-40 lg:h-44"
-                />
-              </Link>
-            </div>
-            <p className="mt-6 max-w-sm text-base leading-relaxed text-white/55">
+      <div className="relative mx-auto max-w-content px-content py-12 lg:px-8 lg:py-16">
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-6 lg:gap-x-10 lg:gap-y-8">
+          <div className="relative md:col-span-2 lg:col-span-2">
+            <p className="max-w-sm text-base leading-relaxed text-white/55">
               Strategic intelligence for finance leaders. Turn your data into board-ready insights.
             </p>
 
-            <div className="mt-6">
+            <div className="mt-5">
               <h3 className="text-caption font-semibold uppercase tracking-widest text-white/40">
                 Social
               </h3>
@@ -150,8 +134,8 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="relative mt-20">
-          <div className="mb-6 flex items-center justify-center gap-2" aria-hidden>
+        <div className="relative mt-14 lg:mt-16">
+          <div className="mb-5 flex items-center justify-center gap-2" aria-hidden>
             <span className="h-px w-14 bg-gradient-to-r from-transparent to-brand-accent/35 sm:w-20" />
             <span className="size-1 shrink-0 rounded-full bg-brand-accent/40 ring-2 ring-brand-accent/15" />
             <span className="h-px w-14 bg-gradient-to-l from-transparent to-brand-accent/35 sm:w-20" />
