@@ -135,11 +135,6 @@ export default function Footer() {
         </div>
 
         <div className="relative mt-14 lg:mt-16">
-          <div className="mb-5 flex items-center justify-center gap-2" aria-hidden>
-            <span className="h-px w-14 bg-gradient-to-r from-transparent to-brand-accent/35 sm:w-20" />
-            <span className="size-1 shrink-0 rounded-full bg-brand-accent/40 ring-2 ring-brand-accent/15" />
-            <span className="h-px w-14 bg-gradient-to-l from-transparent to-brand-accent/35 sm:w-20" />
-          </div>
           <div className="flex flex-col gap-4 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-sm text-white/40">
               &copy; {new Date().getFullYear()} Stratavor Limited. All rights reserved.
