@@ -1,5 +1,6 @@
 import Link from "next/link";
-import HeroCarousel from "./HeroCarousel";
+import HeroPlatformAnimation from "./HeroPlatformAnimation";
+// import HeroCarousel from "./HeroCarousel"; // swap back to test carousel vs platform animation
 import { BOOK_DEMO_CALENDAR_URL, CONTACT_LOGIN_URL } from "@/data/contact-links";
 import { HOME_HERO } from "@/data/marketing-copy";
 
@@ -78,8 +79,8 @@ export default function HeroSplit() {
           </div>
         </div>
 
-        <div className="flex min-w-0 items-center lg:-mr-4 xl:-mr-6">
-          <HeroCarousel />
+        <div className="flex min-w-0 items-center justify-center lg:-mr-4 xl:-mr-6">
+          <HeroPlatformAnimation />
         </div>
       </div>
     </section>

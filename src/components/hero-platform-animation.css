@@ -1,0 +1,557 @@
+/* Scoped platform hero demo — keyframes prefixed to avoid global collisions */
+.stratavorHeroPlatformAnim,
+.stratavorHeroPlatformAnim * {
+  box-sizing: border-box;
+}
+
+.stratavorHeroPlatformAnim {
+  position: relative;
+  width: min(780px, 100%);
+  height: min(680px, 72vh);
+  max-height: 680px;
+  margin-inline: auto;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 20px 60px rgba(57, 84, 96, 0.08);
+  font-family: var(--font-titillium-hero, "Titillium Web", system-ui, sans-serif);
+}
+
+.stratavorHeroPlatformAnim .hub {
+  position: absolute;
+  top: 46%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: 120px;
+  z-index: 10;
+}
+
+.stratavorHeroPlatformAnim .hub-bg {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, #4a6d7d, #395460 40%, #1a3340 100%);
+  box-shadow:
+    0 0 0 10px rgba(57, 84, 96, 0.05),
+    0 0 0 24px rgba(57, 84, 96, 0.025),
+    0 0 0 44px rgba(57, 84, 96, 0.012),
+    0 12px 40px rgba(57, 84, 96, 0.2);
+}
+
+.stratavorHeroPlatformAnim .hub-r {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(57, 84, 96, 0.07);
+}
+
+.stratavorHeroPlatformAnim .hub-r1 {
+  inset: -22px;
+  animation: stratavorHero_sp 24s linear infinite;
+}
+
+.stratavorHeroPlatformAnim .hub-r1::after {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  margin-left: -5px;
+  border-radius: 50%;
+  background: #e30613;
+  box-shadow: 0 0 6px rgba(227, 6, 19, 0.4);
+}
+
+.stratavorHeroPlatformAnim .hub-r2 {
+  inset: -44px;
+  border-color: rgba(57, 84, 96, 0.05);
+  animation: stratavorHero_spr 32s linear infinite;
+}
+
+.stratavorHeroPlatformAnim .hub-r2::after {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  margin-left: -5px;
+  border-radius: 50%;
+  background: #38ab45;
+  box-shadow: 0 0 6px rgba(56, 171, 69, 0.4);
+}
+
+.stratavorHeroPlatformAnim .hub-r3 {
+  inset: -44px;
+  border-color: transparent;
+  animation: stratavorHero_sp 28s linear infinite;
+}
+
+.stratavorHeroPlatformAnim .hub-r3::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  margin-left: -5px;
+  border-radius: 50%;
+  background: #ffd500;
+  box-shadow: 0 0 6px rgba(255, 213, 0, 0.5);
+}
+
+.stratavorHeroPlatformAnim .rk {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 52px;
+  height: auto;
+  z-index: 2;
+  filter: drop-shadow(0 3px 10px rgba(0, 0, 0, 0.25));
+  animation: stratavorHero_rf 5s ease-in-out infinite;
+  cursor: pointer;
+}
+
+.stratavorHeroPlatformAnim .rk.stratavorHeroPlatformAnim__rkBounce {
+  animation: stratavorHero_rb 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.stratavorHeroPlatformAnim .nd {
+  position: absolute;
+  opacity: 0;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.stratavorHeroPlatformAnim .nd:hover {
+  transform: scale(1.06) !important;
+  z-index: 20;
+}
+
+.stratavorHeroPlatformAnim .logo-circ {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1.5px solid rgba(57, 84, 96, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  overflow: hidden;
+}
+
+.stratavorHeroPlatformAnim .logo-circ:hover {
+  border-color: rgba(57, 84, 96, 0.2);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
+}
+
+.stratavorHeroPlatformAnim .nd-lbl {
+  font-size: 10px;
+  color: #979a9c;
+  font-weight: 400;
+  margin-top: 5px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.stratavorHeroPlatformAnim .out-card {
+  width: 168px;
+  background: #fff;
+  border-radius: 10px;
+  border: 1.5px solid rgba(57, 84, 96, 0.08);
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.stratavorHeroPlatformAnim .out-card:hover {
+  border-color: rgba(57, 84, 96, 0.2);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.stratavorHeroPlatformAnim .out-prev {
+  height: 82px;
+  background: #f8f9fa;
+  padding: 7px 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+.stratavorHeroPlatformAnim .out-t {
+  padding: 7px 10px 2px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #395460;
+}
+
+.stratavorHeroPlatformAnim .out-s {
+  padding: 0 10px 7px;
+  font-size: 8.5px;
+  color: #979a9c;
+}
+
+.stratavorHeroPlatformAnim .mt {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.stratavorHeroPlatformAnim .mt td {
+  padding: 2px 3px;
+  font-size: 7px;
+  color: #395460;
+  border-bottom: 1px solid rgba(57, 84, 96, 0.05);
+}
+
+.stratavorHeroPlatformAnim .mt .mh {
+  font-weight: 600;
+  background: rgba(57, 84, 96, 0.04);
+  font-size: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.stratavorHeroPlatformAnim .tag {
+  display: inline-block;
+  padding: 1px 4px;
+  border-radius: 2px;
+  font-size: 5.5px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+.stratavorHeroPlatformAnim .tg {
+  background: rgba(56, 171, 69, 0.1);
+  color: #38ab45;
+}
+
+.stratavorHeroPlatformAnim .tr {
+  background: rgba(227, 6, 19, 0.08);
+  color: #e30613;
+}
+
+.stratavorHeroPlatformAnim .ai-wrap {
+  position: absolute;
+  bottom: 16px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  z-index: 12;
+  padding: 0 20px;
+}
+
+.stratavorHeroPlatformAnim .ai-card {
+  opacity: 0;
+  width: 400px;
+  max-width: 100%;
+  background: #fff;
+  border-radius: 10px;
+  border: 1.5px solid rgba(57, 84, 96, 0.08);
+  padding: 10px 16px;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.stratavorHeroPlatformAnim .ai-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.stratavorHeroPlatformAnim .ai-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 3px;
+  background: rgba(57, 84, 96, 0.06);
+  font-size: 8px;
+  font-weight: 600;
+  color: #395460;
+  margin-bottom: 6px;
+}
+
+.stratavorHeroPlatformAnim .ai-badge svg {
+  width: 11px;
+  height: 11px;
+}
+
+.stratavorHeroPlatformAnim .ai-text {
+  font-size: 9.5px;
+  color: #5a6a74;
+  line-height: 1.55;
+  font-style: italic;
+  text-align: center;
+}
+
+.stratavorHeroPlatformAnim .ai-text strong {
+  color: #395460;
+  font-style: normal;
+}
+
+.stratavorHeroPlatformAnim .typing-cursor {
+  display: inline-block;
+  width: 1px;
+  height: 11px;
+  background: #395460;
+  animation: stratavorHero_blink 0.8s step-end infinite;
+  vertical-align: middle;
+  margin-left: 1px;
+}
+
+.stratavorHeroPlatformAnim .conn-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.stratavorHeroPlatformAnim .conn-svg path {
+  fill: none;
+  stroke: rgba(57, 84, 96, 0.08);
+  stroke-width: 1.5;
+}
+
+.stratavorHeroPlatformAnim .conn-svg .flow {
+  stroke: rgba(57, 84, 96, 0.12);
+  stroke-dasharray: 6 4;
+  animation: stratavorHero_dashFlow 2.5s linear infinite;
+}
+
+/* Node + card entrance / float (class names avoid inline keyframe refs) */
+.stratavorHeroPlatformAnim .nd--xero {
+  top: 52px;
+  left: 14px;
+  animation:
+    stratavorHero_fi 0.6s 0.2s forwards,
+    stratavorHero_floatY 5.5s 1.2s ease-in-out infinite;
+}
+
+.stratavorHeroPlatformAnim .nd--netsuite {
+  top: 166px;
+  left: 10px;
+  animation:
+    stratavorHero_fi 0.6s 0.35s forwards,
+    stratavorHero_floatY2 4.8s 1.4s ease-in-out infinite;
+}
+
+.stratavorHeroPlatformAnim .nd--quickbooks {
+  top: 278px;
+  left: 16px;
+  animation:
+    stratavorHero_fi 0.6s 0.5s forwards,
+    stratavorHero_floatY3 5.2s 1.6s ease-in-out infinite;
+}
+
+.stratavorHeroPlatformAnim .nd--hubspot {
+  top: 388px;
+  left: 10px;
+  animation:
+    stratavorHero_fi 0.6s 0.65s forwards,
+    stratavorHero_floatY 4.6s 1.8s ease-in-out infinite;
+}
+
+.stratavorHeroPlatformAnim .nd--sheets {
+  top: 494px;
+  left: 14px;
+  animation:
+    stratavorHero_fi 0.6s 0.8s forwards,
+    stratavorHero_floatY2 5s 2s ease-in-out infinite;
+}
+
+.stratavorHeroPlatformAnim .nd--out1 {
+  top: 40px;
+  right: 12px;
+  left: auto;
+  animation:
+    stratavorHero_fi2 0.7s 0.5s forwards,
+    stratavorHero_floatY3 5.4s 1.5s ease-in-out infinite;
+}
+
+.stratavorHeroPlatformAnim .nd--out2 {
+  top: 250px;
+  right: 12px;
+  left: auto;
+  animation:
+    stratavorHero_fi2 0.7s 0.7s forwards,
+    stratavorHero_floatY 4.8s 1.7s ease-in-out infinite;
+}
+
+.stratavorHeroPlatformAnim .nd--out3 {
+  top: 450px;
+  right: 12px;
+  left: auto;
+  animation:
+    stratavorHero_fi2 0.7s 0.9s forwards,
+    stratavorHero_floatY2 5.2s 1.9s ease-in-out infinite;
+}
+
+.stratavorHeroPlatformAnim .ai-card--animate {
+  animation:
+    stratavorHero_fi3 0.8s 1.2s forwards,
+    stratavorHero_floatY3 6s 2.2s ease-in-out infinite;
+}
+
+.stratavorHeroPlatformAnim .flow--d1 {
+  animation-delay: -0.6s;
+}
+
+.stratavorHeroPlatformAnim .flow--d2 {
+  animation-delay: -1.2s;
+}
+
+.stratavorHeroPlatformAnim .flow--d3 {
+  animation-delay: -1.8s;
+}
+
+.stratavorHeroPlatformAnim .flow--d4 {
+  animation-delay: -0.4s;
+}
+
+.stratavorHeroPlatformAnim .flow--r1 {
+  animation-delay: -0.8s;
+  animation-direction: reverse;
+}
+
+.stratavorHeroPlatformAnim .flow--r2 {
+  animation-delay: -1.5s;
+  animation-direction: reverse;
+}
+
+.stratavorHeroPlatformAnim .flow--r3 {
+  animation-delay: -2s;
+  animation-direction: reverse;
+}
+
+@keyframes stratavorHero_sp {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes stratavorHero_spr {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0);
+  }
+}
+
+@keyframes stratavorHero_rf {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) translateY(0);
+  }
+  50% {
+    transform: translate(-50%, -50%) translateY(-4px);
+  }
+}
+
+@keyframes stratavorHero_rb {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  40% {
+    transform: translate(-50%, -50%) translateY(-7px) scale(1.07);
+  }
+  70% {
+    transform: translate(-50%, -50%) translateY(1px) scale(0.97);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes stratavorHero_fi {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes stratavorHero_fi2 {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes stratavorHero_fi3 {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes stratavorHero_dashFlow {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -20;
+  }
+}
+
+@keyframes stratavorHero_floatY {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes stratavorHero_floatY2 {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes stratavorHero_floatY3 {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes stratavorHero_blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stratavorHeroPlatformAnim .hub-r1,
+  .stratavorHeroPlatformAnim .hub-r2,
+  .stratavorHeroPlatformAnim .hub-r3,
+  .stratavorHeroPlatformAnim .rk,
+  .stratavorHeroPlatformAnim .conn-svg .flow,
+  .stratavorHeroPlatformAnim .nd,
+  .stratavorHeroPlatformAnim .ai-card--animate,
+  .stratavorHeroPlatformAnim .typing-cursor {
+    animation: none !important;
+  }
+
+  .stratavorHeroPlatformAnim .nd,
+  .stratavorHeroPlatformAnim .ai-card--animate {
+    opacity: 1 !important;
+  }
+}
