@@ -9,7 +9,7 @@ export const PRICING_FAQ: PricingFAQItem[] = [
     id: "pilot",
     question: "What's included in the free pilot?",
     answer:
-      "Full Growth tier access for 14 days. Connect your Xero or QuickBooks, and see your real data across every module: Intelligence Hub, Financial Snapshot, Risk Intelligence, Cost Saving Hub, AI chatbot, and more. No credit card required. After 14 days, choose a plan or walk away. Your data is deleted automatically.",
+      "Full Growth tier access for 7 days. Connect your Xero or QuickBooks, and see your real data across every module: Intelligence Hub, Financial Snapshot, Risk Intelligence, Cost Saving Hub, AI chatbot, and more. No credit card required. After 7 days, choose a plan or walk away. Your data is deleted automatically.",
   },
   {
     id: "connectors-vs-custom",

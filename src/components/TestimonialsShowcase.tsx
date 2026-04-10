@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState, useCallback, useRef, useEffect } from "react";
+import ImpactStatsBanner from "@/components/ImpactStatsBanner";
 import {
   testimonials,
   filterPills,
@@ -372,21 +373,8 @@ export default function TestimonialsShowcase() {
           </div>
         </div>
 
-        <div className="relative left-1/2 right-1/2 mt-16 w-screen max-w-none -translate-x-1/2 border-y border-white/10 bg-black/20 px-content py-12 sm:py-14 lg:mt-20 lg:px-8 lg:py-16">
-          <div className="mx-auto grid max-w-content grid-cols-1 gap-8 sm:grid-cols-3 sm:gap-0 sm:divide-x sm:divide-white/15">
-            {[
-              { value: "98%", label: "Customer satisfaction" },
-              { value: "3x", label: "Faster reporting" },
-              { value: "50%", label: "Less manual work" },
-            ].map((stat) => (
-              <div key={stat.label} className="group px-0 text-left sm:px-8 sm:first:pl-0 sm:last:pr-0">
-                <p className="text-4xl font-bold tabular-nums tracking-tight text-white sm:text-5xl lg:text-6xl motion-reduce:transform-none lg:transition-transform lg:duration-300 lg:group-hover:-translate-y-0.5 motion-reduce:lg:group-hover:translate-y-0">
-                  {stat.value}
-                </p>
-                <p className="mt-2 text-sm font-semibold text-white/70 sm:text-base">{stat.label}</p>
-              </div>
-            ))}
-          </div>
+        <div className="mt-16 lg:mt-20">
+          <ImpactStatsBanner />
         </div>
       </div>
     </section>

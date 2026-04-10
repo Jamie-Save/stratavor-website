@@ -325,7 +325,7 @@
 /* Node + card entrance / float (class names avoid inline keyframe refs) */
 .stratavorHeroPlatformAnim .nd--xero {
   top: 52px;
-  left: 14px;
+  left: 8px;
   animation:
     stratavorHero_fi 0.6s 0.2s forwards,
     stratavorHero_floatY 5.5s 1.2s ease-in-out infinite;
@@ -333,7 +333,7 @@
 
 .stratavorHeroPlatformAnim .nd--netsuite {
   top: 166px;
-  left: 10px;
+  left: 42px;
   animation:
     stratavorHero_fi 0.6s 0.35s forwards,
     stratavorHero_floatY2 4.8s 1.4s ease-in-out infinite;
@@ -341,7 +341,7 @@
 
 .stratavorHeroPlatformAnim .nd--quickbooks {
   top: 278px;
-  left: 16px;
+  left: 8px;
   animation:
     stratavorHero_fi 0.6s 0.5s forwards,
     stratavorHero_floatY3 5.2s 1.6s ease-in-out infinite;
@@ -349,7 +349,7 @@
 
 .stratavorHeroPlatformAnim .nd--hubspot {
   top: 388px;
-  left: 10px;
+  left: 42px;
   animation:
     stratavorHero_fi 0.6s 0.65s forwards,
     stratavorHero_floatY 4.6s 1.8s ease-in-out infinite;
@@ -357,7 +357,7 @@
 
 .stratavorHeroPlatformAnim .nd--sheets {
   top: 494px;
-  left: 14px;
+  left: 8px;
   animation:
     stratavorHero_fi 0.6s 0.8s forwards,
     stratavorHero_floatY2 5s 2s ease-in-out infinite;
@@ -365,7 +365,7 @@
 
 .stratavorHeroPlatformAnim .nd--out1 {
   top: 40px;
-  right: 12px;
+  right: 6px;
   left: auto;
   animation:
     stratavorHero_fi2 0.7s 0.5s forwards,
@@ -374,7 +374,7 @@
 
 .stratavorHeroPlatformAnim .nd--out2 {
   top: 250px;
-  right: 12px;
+  right: 36px;
   left: auto;
   animation:
     stratavorHero_fi2 0.7s 0.7s forwards,
@@ -383,7 +383,7 @@
 
 .stratavorHeroPlatformAnim .nd--out3 {
   top: 450px;
-  right: 12px;
+  right: 6px;
   left: auto;
   animation:
     stratavorHero_fi2 0.7s 0.9s forwards,

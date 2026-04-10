@@ -9,7 +9,7 @@ export const HOME_HERO = {
     "Connect QuickBooks, Xero, NetSuite, Stripe and more. Stratavor turns your raw financial data into strategic insights, AI-powered commentary, and executive clarity.",
   primaryCtaLabel: "Start Free Trial",
   secondaryCtaLabel: "Book a demo",
-  trialNote: "14-day free trial. No credit card required.",
+  trialNote: "7-day free trial. No credit card required.",
 } as const;
 
 export const HOME_WHAT_WE_DO = {

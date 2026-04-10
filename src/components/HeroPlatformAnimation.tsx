@@ -108,22 +108,22 @@ export default function HeroPlatformAnimation() {
       }}
     >
       <svg className="conn-svg" viewBox="0 0 680 680" preserveAspectRatio="none" aria-hidden>
-        <path d="M116,96 C226,96 244,306 300,306" opacity="0.5" />
-        <path d="M116,206 C216,206 254,306 300,306" opacity="0.5" />
-        <path d="M116,316 C206,316 264,306 300,306" opacity="0.5" />
-        <path d="M116,426 C216,426 254,306 300,306" opacity="0.5" />
-        <path d="M116,530 C226,530 244,306 300,306" opacity="0.5" />
-        <path className="flow" d="M116,96 C226,96 244,306 300,306" />
-        <path className="flow flow--d1" d="M116,206 C216,206 254,306 300,306" />
-        <path className="flow flow--d2" d="M116,316 C206,316 264,306 300,306" />
-        <path className="flow flow--d3" d="M116,426 C216,426 254,306 300,306" />
-        <path className="flow flow--d4" d="M116,530 C226,530 244,306 300,306" />
-        <path d="M380,306 C430,306 460,96 535,96" opacity="0.5" />
-        <path d="M380,306 C430,306 450,306 535,306" opacity="0.5" />
-        <path d="M380,306 C430,306 460,506 535,506" opacity="0.5" />
-        <path className="flow flow--r1" d="M380,306 C430,306 460,96 535,96" />
-        <path className="flow flow--r2" d="M380,306 C430,306 450,306 535,306" />
-        <path className="flow flow--r3" d="M380,306 C430,306 460,506 535,506" />
+        <path d="M100,96 C210,96 250,274 302,274" opacity="0.5" />
+        <path d="M132,210 C230,210 252,290 304,290" opacity="0.5" />
+        <path d="M100,320 C200,320 264,306 308,306" opacity="0.5" />
+        <path d="M132,430 C230,430 252,320 304,320" opacity="0.5" />
+        <path d="M100,536 C210,536 250,336 302,336" opacity="0.5" />
+        <path className="flow" d="M100,96 C210,96 250,274 302,274" />
+        <path className="flow flow--d1" d="M132,210 C230,210 252,290 304,290" />
+        <path className="flow flow--d2" d="M100,320 C200,320 264,306 308,306" />
+        <path className="flow flow--d3" d="M132,430 C230,430 252,320 304,320" />
+        <path className="flow flow--d4" d="M100,536 C210,536 250,336 302,336" />
+        <path d="M378,280 C430,278 470,96 548,96" opacity="0.5" />
+        <path d="M380,306 C430,306 460,306 520,306" opacity="0.5" />
+        <path d="M378,330 C430,332 470,506 548,506" opacity="0.5" />
+        <path className="flow flow--r1" d="M378,280 C430,278 470,96 548,96" />
+        <path className="flow flow--r2" d="M380,306 C430,306 460,306 520,306" />
+        <path className="flow flow--r3" d="M378,330 C430,332 470,506 548,506" />
       </svg>
 
       <div className="hub">

@@ -66,7 +66,7 @@ export const CHAT_ASSISTANT_SOURCE_OF_TRUTH_V1 = `## Product modules and user jo
 Who each plan is for:
 
 - Essentials - best for smaller SMEs or founders who need a clean financial baseline: connect your accounting system, get validated financials and AI commentary, download board-ready PDFs. The foundation.
-- Growth - best for scaling SMEs (typically EUR 2M-20M revenue) that need deeper analysis: management-level reporting, customer and product intelligence, benchmarking, trend analysis, and the AI chat layer. Includes a 14-day free pilot so you can see value before committing.
+- Growth - best for scaling SMEs (typically EUR 2M-20M revenue) that need deeper analysis: management-level reporting, customer and product intelligence, benchmarking, trend analysis, and the AI chat layer. Includes a 7-day free pilot so you can see value before committing.
 - Enterprise - best for larger mid-market organisations (EUR 20M-50M+) that need bespoke configuration, multiple data sources, extended team access, dedicated onboarding, and enterprise procurement support. Pricing is scoped to your needs.
 
 Safe interim response for plan-fit questions:

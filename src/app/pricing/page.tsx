@@ -8,7 +8,7 @@ import { absoluteUrl } from "@/lib/site-url";
 export const metadata: Metadata = {
   title: "Pricing | Stratavor",
   description:
-    "Essentials, Growth, and Enterprise plans: every module and full AI at every tier. Compare capacity and start a 14-day free pilot with Growth access.",
+    "Essentials, Growth, and Enterprise plans: every module and full AI at every tier. Compare capacity and start a 7-day free pilot with Growth access.",
   alternates: {
     canonical: absoluteUrl("/pricing"),
   },
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     url: absoluteUrl("/pricing"),
     title: "Pricing | Stratavor",
     description:
-      "Essentials, Growth, and Enterprise plans with full AI at every tier. Start a 14-day free pilot.",
+      "Essentials, Growth, and Enterprise plans with full AI at every tier. Start a 7-day free pilot.",
   },
 };
 
