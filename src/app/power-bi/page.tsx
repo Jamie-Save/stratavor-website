@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 };
 
 const POWERBI_EMBED_URL =
-  "https://app.powerbi.com/view?r=eyJrIjoiM2ExODA4YjgtNjcwNS00YTQxLTkzYmUtODUzNzg2ZmUxODAzIiwidCI6ImE4NDcyNTg3LTZiY2QtNGUyMi1hYmQ2LWE3MjU5NGU4ZTQzYiIsImMiOjh9";
+  "https://app.powerbi.com/view?r=eyJrIjoiNzZkMGZmNDgtYmRjYS00NWY4LTk2M2MtNGZmM2FlNmZlODcyIiwidCI6ImE4NDcyNTg3LTZiY2QtNGUyMi1hYmQ2LWE3MjU5NGU4ZTQzYiIsImMiOjh9";
 
 export default function PowerBIPage() {
   return (
