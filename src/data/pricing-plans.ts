@@ -1,6 +1,6 @@
 import { formatPlanPrice } from "@/lib/currency";
 import type { SupportedCurrency } from "@/types/supported-currency";
-import { CONTACT_PILOT_URL } from "./contact-links";
+import { BOOK_DEMO_CALENDAR_URL, CONTACT_PILOT_URL } from "./contact-links";
 
 export type { SupportedCurrency };
 export type BillingPeriod = "monthly" | "annual";
@@ -178,7 +178,7 @@ export const PRICING_PLANS: PricingPlan[] = [
       "Dedicated account manager",
     ],
     cta: "Talk to us",
-    ctaHref: "https://stratavor.com/meetings/jamie-saveall/group-schedule",
+    ctaHref: BOOK_DEMO_CALENDAR_URL,
     ctaExternal: true,
     ctaStyle: "inverse-outline",
   },

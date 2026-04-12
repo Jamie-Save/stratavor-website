@@ -816,7 +816,7 @@ export function FAQItem({ item, isOpen, onToggle }: FAQItemProps) {
 ```typescript
 import { formatPlanPrice } from "@/lib/currency";
 import type { SupportedCurrency } from "@/types/supported-currency";
-import { CONTACT_PILOT_URL } from "./contact-links";
+import { BOOK_DEMO_CALENDAR_URL, CONTACT_PILOT_URL } from "./contact-links";
 
 export type { SupportedCurrency };
 export type BillingPeriod = "monthly" | "annual";
@@ -994,7 +994,7 @@ export const PRICING_PLANS: PricingPlan[] = [
       "Dedicated account manager",
     ],
     cta: "Talk to us",
-    ctaHref: "https://stratavor.com/meetings/jamie-saveall/group-schedule",
+    ctaHref: BOOK_DEMO_CALENDAR_URL,
     ctaExternal: true,
     ctaStyle: "inverse-outline",
   },
@@ -1178,7 +1178,7 @@ export function formatPlanPrice(amount: number, currency: SupportedCurrency): st
 
 ```typescript
 const DEFAULT_BOOK_DEMO_CALENDAR =
-  "https://stratavor.com/meetings/jamie-saveall/group-schedule?uuid=a78c2567-2aa5-4a02-83b4-e9160a35442c";
+  "https://meetings-eu1.hubspot.com/jamie-saveall/group-schedule";
 
 /** HubSpot group schedule — used for "Book a demo" CTAs site-wide. Override via NEXT_PUBLIC_BOOK_DEMO_CALENDAR_URL. */
 export const BOOK_DEMO_CALENDAR_URL =

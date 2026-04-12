@@ -1,5 +1,5 @@
 const DEFAULT_BOOK_DEMO_CALENDAR =
-  "https://stratavor.com/meetings/jamie-saveall/group-schedule?uuid=a78c2567-2aa5-4a02-83b4-e9160a35442c";
+  "https://meetings-eu1.hubspot.com/jamie-saveall/group-schedule";
 
 /** HubSpot group schedule — used for "Book a demo" CTAs site-wide. Override via NEXT_PUBLIC_BOOK_DEMO_CALENDAR_URL. */
 export const BOOK_DEMO_CALENDAR_URL =
