@@ -5,12 +5,16 @@ import Link from "next/link";
 import { HUBSPOT_INTEREST_OPTIONS } from "@/data/contact-interest-options";
 import { trackEvent } from "./Analytics";
 
-type Intent = "sales" | "security" | "general" | "login";
+type Intent = "sales" | "pilot" | "security" | "general" | "login";
 
 const INTENT_CONFIG: Record<Intent, { heading: string; description: string }> = {
   sales: {
     heading: "Talk to our team",
     description: "Tell us about your organisation and we'll connect you with the right person.",
+  },
+  pilot: {
+    heading: "Start your pilot",
+    description: "Tell us where to send setup details for your 7-day Growth pilot.",
   },
   security: {
     heading: "Request a security review",
@@ -227,7 +231,13 @@ export function ContactForm({
             <select
               id="interest"
               name="interest"
-              defaultValue={resolvedIntent === "security" ? "Security Review" : ""}
+              defaultValue={
+                resolvedIntent === "security"
+                  ? "Security Review"
+                  : resolvedIntent === "pilot"
+                    ? "Pricing & Plans"
+                    : ""
+              }
               className="mt-2 w-full rounded-xl border border-neutral-200 bg-white px-4 py-3 text-neutral-800 shadow-xs transition-colors focus:border-brand-gunmetal focus:outline-none focus:ring-2 focus:ring-brand-gunmetal/20"
             >
               <option value="">Prefer not to say</option>

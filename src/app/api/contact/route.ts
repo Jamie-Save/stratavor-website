@@ -12,7 +12,7 @@ import {
 
 export const maxDuration = 30;
 
-const INTENT_VALUES = ["sales", "demo", "security", "general"] as const;
+const INTENT_VALUES = ["sales", "demo", "pilot", "security", "general"] as const;
 
 function str(v: unknown, max: number): string {
   if (typeof v !== "string") return "";
